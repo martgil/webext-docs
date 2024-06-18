@@ -131,6 +131,24 @@ Details of a message display script registered programmatically
       
       The list of JavaScript files to inject
    
+   
+   .. api-member::
+      :name: [``runAt``]
+      :type: (`string`, optional)
+      
+      Determines when the files specified in css and js are injected. The states directly correspond to :code:`Document.readyState`: :value:`loading`, :value:`interactive` and :value:`complete`
+      
+      Supported values:
+      
+      .. api-member::
+         :name: :value:`document_start`
+      
+      .. api-member::
+         :name: :value:`document_end`
+      
+      .. api-member::
+         :name: :value:`document_idle`
+   
 
 .. rst-class:: api-main-section
 

@@ -42,7 +42,7 @@ Manifest file properties
       :name: ``management_url``
       :type: (string)
       
-      A page for configuring accounts, to be displayed in the preferences UI. **Note:** Within this UI only a limited subset of the WebExtension APIs is available: ``cloudFile``, ``extension``, ``i18n``, ``runtime``, ``storage``, ``test``.
+      A page for configuring accounts, to be displayed in the preferences UI. **Note:** Within this UI only a limited subset of the WebExtension APIs is available: :value:`cloudFile`, :value:`extension`, :value:`i18n`, :value:`runtime`, :value:`storage`, :value:`test`.
    
    
    .. api-member::
@@ -57,14 +57,14 @@ Manifest file properties
       :type: (boolean, optional)
       :annotation: -- [Added in TB 90]
       
-      Enable browser styles in the ``management_url`` page. See the `MDN documentation on browser styles <https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles>`__ for more information.
+      Enable browser styles in the :value:`management_url` page. See the <a href='https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles'>MDN documentation on browser styles</a> for more information.
    
    
    .. api-member::
       :name: [``data_format``]
       :type: (string, optional) **Deprecated.**
       
-      This property is no longer used. The only supported data format for the ``data`` argument in :ref:`cloudFile.onFileUpload` is `File <https://developer.mozilla.org/docs/Web/API/File>`__.
+      This property is no longer used. The only supported data format for the :value:`data` argument in :ref:`cloudFile.onFileUpload` is <a href='https://developer.mozilla.org/docs/Web/API/File'>File</a>.
    
    
    .. api-member::
@@ -79,14 +79,14 @@ Manifest file properties
       :type: (boolean, optional)
       :annotation: -- [Added in TB 98]
       
-      If a previously uploaded cloud file attachment is reused at a later time in a different message, Thunderbird may use the already known ``url`` and ``templateInfo`` values without triggering the registered :ref:`cloudFile.onFileUpload` listener again. Setting this option to :value:`false` will always trigger the registered listener, providing the already known values through the ``relatedFileInfo`` parameter of the :ref:`cloudFile.onFileUpload` event, to let the provider decide how to handle these cases.
+      If a previously uploaded cloud file attachment is reused at a later time in a different message, Thunderbird may use the already known :value:`url` and :value:`templateInfo` values without triggering the registered :ref:`cloudFile.onFileUpload` listener again. Setting this option to :value:`false` will always trigger the registered listener, providing the already known values through the :value:`relatedFileInfo` parameter of the :ref:`cloudFile.onFileUpload` event, to let the provider decide how to handle these cases.
    
    
    .. api-member::
       :name: [``service_url``]
       :type: (string, optional) **Deprecated.**
       
-      This property is no longer used. The ``service_url`` property of the :ref:`cloudFile.CloudFileTemplateInfo` object returned by the :ref:`cloudFile.onFileUpload` event can be used to add a *Learn more about* link to the footer of the cloud file attachment element.
+      This property is no longer used. The :value:`service_url` property of the :ref:`cloudFile.CloudFileTemplateInfo` object returned by the :ref:`cloudFile.onFileUpload` event can be used to add a *Learn more about* link to the footer of the cloud file attachment element.
    
 
 .. rst-class:: api-permission-info
@@ -107,7 +107,7 @@ getAccount(accountId)
 
 .. api-section-annotation-hack:: 
 
-Retrieve information about a single cloud file account.
+Retrieve information about a single cloud file account, or :value:`undefined` if it does not exists
 
 .. api-header::
    :label: Parameters
@@ -126,6 +126,8 @@ Retrieve information about a single cloud file account.
    
    .. api-member::
       :type: :ref:`cloudFile.CloudFileAccount`
+      
+      This may return undefined
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -215,6 +217,8 @@ Update a cloud file account.
    
    .. api-member::
       :type: :ref:`cloudFile.CloudFileAccount`
+      
+      This may return undefined
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -668,7 +672,7 @@ Defines information to be used in the cloud file entry added to the message.
          :name: [``format``]
          :type: (object, optional)
          
-         A format options object as used by `Intl.DateTimeFormat <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat>`__. Defaults to: 
+         A format options object as used by <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat'>Intl.DateTimeFormat</a>. Defaults to: 
          
          .. literalinclude:: includes/cloudFile/defaultDateFormat.js
            :language: JavaScript
@@ -721,7 +725,7 @@ RelatedCloudFile
 
 .. api-section-annotation-hack:: 
 
-Information about an already uploaded cloud file, which is related to a new upload. For example if the content of a cloud attachment is updated, if a repeatedly used cloud attachment is renamed (and therefore should be re-uploaded to not invalidate existing links) or if the provider has its manifest property ``reuse_uploads`` set to :value:`false`.
+Information about an already uploaded cloud file, which is related to a new upload. For example if the content of a cloud attachment is updated, if a repeatedly used cloud attachment is renamed (and therefore should be re-uploaded to not invalidate existing links) or if the provider has its manifest property :value:`reuse_uploads` set to :value:`false`.
 
 .. api-header::
    :label: object

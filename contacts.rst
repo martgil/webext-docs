@@ -63,7 +63,7 @@ create(parentId, [id], properties)
 
 .. api-section-annotation-hack:: 
 
-Adds a new contact to the address book with the id ``parentId``.
+Adds a new contact to the address book with the id :value:`parentId`.
 
 .. api-header::
    :label: Parameters
@@ -85,7 +85,7 @@ Adds a new contact to the address book with the id ``parentId``.
       :name: ``properties``
       :type: (:ref:`contacts.ContactProperties`)
       
-      The properties object for the new contact. If it includes a ``vCard`` member, all specified `legacy properties <https://searchfox.org/comm-central/rev/8a1ae67088acf237dab2fd704db18589e7bf119e/mailnews/addrbook/modules/VCardUtils.jsm#295-334>`__ are ignored and the new contact will be based on the provided vCard string. If a UID is specified in the vCard string, which is already used by another contact, an exception is thrown. **Note:** Using individual properties is deprecated, use the ``vCard`` member instead.
+      The properties object for the new contact. If it includes a :value:`vCard` member, all specified <a href='https://searchfox.org/comm-central/rev/8a1ae67088acf237dab2fd704db18589e7bf119e/mailnews/addrbook/modules/VCardUtils.jsm#295-334'>legacy properties</a> are ignored and the new contact will be based on the provided vCard string. If a UID is specified in the vCard string, which is already used by another contact, an exception is thrown. **Note:** Using individual properties is deprecated, use the :value:`vCard` member instead.
    
 
 .. api-header::
@@ -168,7 +168,7 @@ getPhoto(id)
 
 .. api-section-annotation-hack:: -- [Added in TB 106]
 
-Gets the photo associated with this contact, if any.
+Gets the photo associated with this contact. Returns :value:`null`, if no photo is available.
 
 .. api-header::
    :label: Parameters
@@ -184,7 +184,7 @@ Gets the photo associated with this contact, if any.
 
    
    .. api-member::
-      :type: `File <https://developer.mozilla.org/en-US/docs/Web/API/File>`__
+      :type: `File <https://developer.mozilla.org/en-US/docs/Web/API/File>`__ or null
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -201,7 +201,7 @@ list(parentId)
 
 .. api-section-annotation-hack:: 
 
-Gets all the contacts in the address book with the id ``parentId``.
+Gets all the contacts in the address book with the id :value:`parentId`.
 
 .. api-header::
    :label: Parameters
@@ -234,7 +234,7 @@ quickSearch([parentId], queryInfo)
 
 .. api-section-annotation-hack:: 
 
-Gets all contacts matching ``queryInfo`` in the address book with the id ``parentId``.
+Gets all contacts matching :value:`queryInfo` in the address book with the id :value:`parentId`.
 
 .. api-header::
    :label: Parameters
@@ -319,7 +319,7 @@ Updates a contact.
       :name: ``properties``
       :type: (:ref:`contacts.ContactProperties`)
       
-      An object with properties to update the specified contact. Individual properties are removed, if they are set to :value:`null`. If the provided object includes a ``vCard`` member, all specified `legacy properties <https://searchfox.org/comm-central/rev/8a1ae67088acf237dab2fd704db18589e7bf119e/mailnews/addrbook/modules/VCardUtils.jsm#295-334>`__ are ignored and the details of the contact will be replaced by the provided vCard. Changes to the UID will be ignored. **Note:** Using individual properties is deprecated, use the ``vCard`` member instead. 
+      An object with properties to update the specified contact. Individual properties are removed, if they are set to :value:`null`. If the provided object includes a :value:`vCard` member, all specified <a href='https://searchfox.org/comm-central/rev/8a1ae67088acf237dab2fd704db18589e7bf119e/mailnews/addrbook/modules/VCardUtils.jsm#295-334'>legacy properties</a> are ignored and the details of the contact will be replaced by the provided vCard. Changes to the UID will be ignored. **Note:** Using individual properties is deprecated, use the :value:`vCard` member instead. 
    
 
 .. api-header::
@@ -483,7 +483,7 @@ A node representing a contact in an address book.
       :name: [``parentId``]
       :type: (string, optional)
       
-      The ``id`` of the parent object.
+      The :value:`id` of the parent object.
    
    
    .. api-member::
@@ -514,25 +514,8 @@ A set of individual properties for a particular contact, and its vCard string. F
 
    
    .. api-member::
-      :name: ``<custom properties>``
-      :type: (string)
-      
-      Custom properties are not saved in the users vCard. Therefore, they are not transferred to the users server, if the contact is stored on a remote CardDAV server. Names of custom properties may include :value:`a-z`, :value:`A-Z`, :value:`1-9` and :value:`_`.
-   
-   
-   .. api-member::
-      :name: ``<legacy properties>``
-      :type: (string)
-      
-      `Legacy properties <https://searchfox.org/comm-central/rev/8a1ae67088acf237dab2fd704db18589e7bf119e/mailnews/addrbook/modules/VCardUtils.jsm#295-334>`__ point to certain fields in the contacts vCard string and provide direct read/write access.
-   
-   
-   .. api-member::
       :name: ``vCard``
-      :type: (string)
       :annotation: -- [Added in TB 102]
-      
-      The contacts vCard string.
    
 
 .. _contacts.PropertyChange:
@@ -542,7 +525,7 @@ PropertyChange
 
 .. api-section-annotation-hack:: -- [Added in TB 83]
 
-A dictionary of changed properties. Keys are the property name that changed, values are an object containing ``oldValue`` and ``newValue``. Values can be either a string or :value:`null`.
+A dictionary of changed properties. Keys are the property name that changed, values are an object containing :value:`oldValue` and :value:`newValue`. Values can be either a string or :value:`null`.
 
 .. api-header::
    :label: object
@@ -564,33 +547,33 @@ Object defining a query for :ref:`contacts.quickSearch`.
       :name: [``includeLocal``]
       :type: (boolean, optional)
       
-      Whether to include results from local address books. Defaults to true.
+      Whether to include results from local address books. Defaults to :value:`true`.
    
    
    .. api-member::
       :name: [``includeReadOnly``]
       :type: (boolean, optional)
       
-      Whether to include results from read-only address books. Defaults to true.
+      Whether to include results from read-only address books. Defaults to :value:`true`.
    
    
    .. api-member::
       :name: [``includeReadWrite``]
       :type: (boolean, optional)
       
-      Whether to include results from read-write address books. Defaults to true.
+      Whether to include results from read-write address books. Defaults to :value:`true`.
    
    
    .. api-member::
       :name: [``includeRemote``]
       :type: (boolean, optional)
       
-      Whether to include results from remote address books. Defaults to true.
+      Whether to include results from remote address books. Defaults to :value:`true`.
    
    
    .. api-member::
       :name: [``searchString``]
       :type: (string, optional)
       
-      One or more space-separated terms to search for.
+      One or more space-separated terms to search for in predefined contact fields (defined by the preference :value:`mail.addr_book.quicksearchquery.format`).
    

@@ -102,7 +102,7 @@ Example:
          :name: [``id``]
          :type: (string, optional)
          
-         The unique ID of the created address book. If several listeners have been added, the ``id`` allows to identify which address book initiated the search request. If not provided, a unique ID will be generated for you.
+         The unique ID of the created address book. If several listeners have been added, the :value:`id` allows to identify which address book initiated the search request. If not provided, a unique ID will be generated for you.
       
       
       .. api-member::

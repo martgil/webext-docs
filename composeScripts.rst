@@ -60,7 +60,7 @@ register(composeScriptOptions)
 
 .. api-section-annotation-hack:: 
 
-Register a compose script programmatically
+Register a compose script programmatically. **Note:** Registered scripts will only be applied to newly opened message composer tabs. To apply the script to already open message composer tab, manually inject your script by calling :ref:`tabs.executeScript` for each of the open :value:`messageCompose` tabs.
 
 .. api-header::
    :label: Parameters
@@ -88,12 +88,12 @@ RegisteredComposeScript
 
 .. api-section-annotation-hack:: 
 
-An object that represents a compose script registered programmatically
+An object that represents a compose script registered programmatically.
 
 .. api-header::
    :label: object
 
-   - ``unregister()`` Unregister a compose script registered programmatically
+   - ``unregister()`` Unregister a compose script registered programmatically.
 
 .. _composeScripts.RegisteredComposeScriptOptions:
 
@@ -102,7 +102,7 @@ RegisteredComposeScriptOptions
 
 .. api-section-annotation-hack:: 
 
-Details of a compose script registered programmatically
+Details of a compose script registered programmatically.
 
 .. api-header::
    :label: object
@@ -112,14 +112,14 @@ Details of a compose script registered programmatically
       :name: [``css``]
       :type: (array of :ref:`composeScripts.extensionTypes.ExtensionFileOrCode`, optional)
       
-      The list of CSS files to inject
+      The list of CSS files to inject.
    
    
    .. api-member::
       :name: [``js``]
       :type: (array of :ref:`composeScripts.extensionTypes.ExtensionFileOrCode`, optional)
       
-      The list of JavaScript files to inject
+      The list of JavaScript files to inject.
    
 
 .. rst-class:: api-main-section

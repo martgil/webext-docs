@@ -42,20 +42,20 @@ Functions
 
 .. _messageDisplay.getDisplayedMessage:
 
-getDisplayedMessage(tabId)
---------------------------
+getDisplayedMessage([tabId])
+----------------------------
 
 .. api-section-annotation-hack:: 
 
-Gets the currently displayed message in the specified tab (even if the tab itself is currently not visible). It returns :value:`null` if no messages are displayed, or if multiple messages are displayed.
+Gets the currently displayed message in the specified tab (even if the tab itself is currently not visible), or the currently active tab. It returns :value:`null` if no messages are displayed, or if multiple messages are displayed.
 
 .. api-header::
    :label: Parameters
 
    
    .. api-member::
-      :name: ``tabId``
-      :type: (integer)
+      :name: [``tabId``]
+      :type: (integer, optional)
    
 
 .. api-header::
@@ -75,20 +75,20 @@ Gets the currently displayed message in the specified tab (even if the tab itsel
 
 .. _messageDisplay.getDisplayedMessages:
 
-getDisplayedMessages(tabId)
----------------------------
+getDisplayedMessages([tabId])
+-----------------------------
 
 .. api-section-annotation-hack:: -- [Added in TB 81, backported to TB 78.4.0]
 
-Gets an array of the currently displayed messages in the specified tab (even if the tab itself is currently not visible). The array is empty if no messages are displayed.
+Gets an array of the currently displayed messages in the specified tab (even if the tab itself is currently not visible), or the currently active tab. The array is empty if no messages are displayed.
 
 .. api-header::
    :label: Parameters
 
    
    .. api-member::
-      :name: ``tabId``
-      :type: (integer)
+      :name: [``tabId``]
+      :type: (integer, optional)
    
 
 .. api-header::
@@ -143,7 +143,7 @@ Opens a message in a new tab or in a new window.
          :name: [``headerMessageId``]
          :type: (string, optional)
          
-         The headerMessageId of a message to be opened. Will throw an *ExtensionError*, if the provided ``headerMessageId`` is unknown or invalid. Not supported for external messages.
+         The headerMessageId of a message to be opened. Will throw an *ExtensionError*, if the provided :value:`headerMessageId` is unknown or invalid. Not supported for external messages.
       
       
       .. api-member::
@@ -165,7 +165,7 @@ Opens a message in a new tab or in a new window.
          :name: [``messageId``]
          :type: (:ref:`messages.MessageId`, optional)
          
-         The id of a message to be opened. Will throw an *ExtensionError*, if the provided ``messageId`` is unknown or invalid.
+         The id of a message to be opened. Will throw an *ExtensionError*, if the provided :value:`messageId` is unknown or invalid.
       
       
       .. api-member::
@@ -222,11 +222,6 @@ Fired when a message is displayed, whether in a 3-pane tab, a message tab, or a 
    .. api-member::
       :name: ``tab``
       :type: (:ref:`tabs.Tab`)
-      
-      .. container:: api-member-inline-changes
-      
-         :Changes in TB 76: previously just the tab's ID
-      
    
    
    .. api-member::

@@ -71,7 +71,7 @@ get(tabId)
 
 .. api-section-annotation-hack:: 
 
-Get the properties of a mail tab.
+Get the :ref:`mailTabs.MailTab` properties of a mail tab.
 
 .. api-header::
    :label: Parameters
@@ -81,7 +81,7 @@ Get the properties of a mail tab.
       :name: ``tabId``
       :type: (integer)
       
-      ID of the requested mail tab. Throws if the requested tab is not a mail tab.
+      ID of the requested mail tab. Throws if the requested :value:`tabId` does not belong to a mail tab.
    
 
 .. api-header::
@@ -101,7 +101,7 @@ getCurrent()
 
 .. api-section-annotation-hack:: 
 
-Get the properties of the active mail tab, if the active tab is a mail tab. Returns undefined otherwise.
+Get the :ref:`mailTabs.MailTab` properties of the active mail tab. Returns :value:`undefined`, if the active tab is not a mail tab.
 
 .. api-header::
    :label: Return type (`Promise`_)
@@ -109,6 +109,8 @@ Get the properties of the active mail tab, if the active tab is a mail tab. Retu
    
    .. api-member::
       :type: :ref:`mailTabs.MailTab`
+      
+      This may return undefined
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -147,6 +149,41 @@ Lists the messages in the current view, honoring sort order and filters.
    :label: Required permissions
 
    - :permission:`messagesRead`
+
+.. _mailTabs.getSelectedFolders:
+
+getSelectedFolders([tabId])
+---------------------------
+
+.. api-section-annotation-hack:: 
+
+Lists the selected folders in the folder pane.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: [``tabId``]
+      :type: (integer, optional)
+      
+      Defaults to the active tab of the current window.
+   
+
+.. api-header::
+   :label: Return type (`Promise`_)
+
+   
+   .. api-member::
+      :type: array of :ref:`folders.MailFolder`
+   
+   
+   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+.. api-header::
+   :label: Required permissions
+
+   - :permission:`accountsRead`
 
 .. _mailTabs.getSelectedMessages:
 
@@ -353,7 +390,7 @@ update([tabId], updateProperties)
 
 .. api-section-annotation-hack:: 
 
-Modifies the properties of a mail tab. Properties that are not specified in ``updateProperties`` are not modified.
+Modifies the properties of a mail tab. Properties that are not specified in :value:`updateProperties` are not modified.
 
 .. api-header::
    :label: Parameters
@@ -479,6 +516,44 @@ Fired when the selected messages change in any mail tab.
 Types
 =====
 
+.. _mailTabs.FolderMode:
+
+FolderMode
+----------
+
+.. api-section-annotation-hack:: 
+
+A supported folder mode in the folder pane.
+
+.. api-header::
+   :label: `string`
+
+   
+   .. container:: api-member-node
+   
+      .. container:: api-member-description-only
+         
+         Supported values:
+         
+         .. api-member::
+            :name: :value:`all`
+         
+         .. api-member::
+            :name: :value:`unified`
+         
+         .. api-member::
+            :name: :value:`tags`
+         
+         .. api-member::
+            :name: :value:`unread`
+         
+         .. api-member::
+            :name: :value:`favorite`
+         
+         .. api-member::
+            :name: :value:`recent`
+   
+
 .. _mailTabs.MailTab:
 
 MailTab
@@ -504,6 +579,8 @@ MailTab
       :name: ``layout``
       :type: (`string`)
       
+      The arrangement of the folder pane, message list pane, and message display pane.
+      
       Supported values:
       
       .. api-member::
@@ -525,24 +602,42 @@ MailTab
       :name: [``displayedFolder``]
       :type: (:ref:`folders.MailFolder`, optional)
       
-      The :permission:`accountsRead` permission is required for this property to be included.
+      The folder displayed in the mail tab. The :permission:`accountsRead` permission is required for this property to be included.
+   
+   
+   .. api-member::
+      :name: [``folderMode``]
+      :type: (:ref:`mailTabs.FolderMode`, optional)
+      
+      The folder mode of the currently displayed folder.
+   
+   
+   .. api-member::
+      :name: [``folderModesEnabled``]
+      :type: (array of :ref:`mailTabs.FolderMode`, optional)
+      
+      The enabled folder modes in the folder pane, and their sort order.
    
    
    .. api-member::
       :name: [``folderPaneVisible``]
       :type: (boolean, optional)
+      
+      Whether the folder pane is visible or not.
    
    
    .. api-member::
       :name: [``messagePaneVisible``]
       :type: (boolean, optional)
+      
+      Whether the message pane is visible or not.
    
    
    .. api-member::
       :name: [``sortOrder``]
       :type: (`string`, optional)
       
-      **Note:** ``sortType`` and ``sortOrder`` depend on each other, so both should be present, or neither.
+      The sort order of the message list.
       
       Supported values:
       
@@ -560,7 +655,7 @@ MailTab
       :name: [``sortType``]
       :type: (`string`, optional)
       
-      **Note:** ``sortType`` and ``sortOrder`` depend on each other, so both should be present, or neither.
+      The primary sort column of the message list.
       
       Supported values:
       
@@ -630,6 +725,8 @@ MailTab
       :type: (`string`, optional)
       :annotation: -- [Added in TB 91]
       
+      Grouping type of the message list.
+      
       Supported values:
       
       .. api-member::
@@ -658,6 +755,20 @@ MailTabProperties
       :type: (:ref:`folders.MailFolderId` or :ref:`folders.MailFolder`, optional)
       
       Sets the folder displayed in the mail tab. Requires the :permission:`accountsRead` permission. The previous message selection in the given folder will be restored, if any. This property is ignored, if :value:`selectedMessages` is specified.
+   
+   
+   .. api-member::
+      :name: [``folderMode``]
+      :type: (:ref:`mailTabs.FolderMode`, optional)
+      
+      Sets the currently used folder mode, enabling it if required. If used without also specifying :value:`displayedFolder`, the currently selected folder is re-selected in the new folder mode, if possible.
+   
+   
+   .. api-member::
+      :name: [``folderModesEnabled``]
+      :type: (array of :ref:`mailTabs.FolderMode`, optional)
+      
+      Set the enabled folder modes in the folder pane, and their sort order.
    
    
    .. api-member::
@@ -696,7 +807,7 @@ MailTabProperties
       :name: [``sortOrder``]
       :type: (`string`, optional)
       
-      Sorts the list of messages. ``sortType`` must also be given.
+      Sorts the list of messages. :value:`sortType` must also be given.
       
       Supported values:
       
@@ -714,7 +825,7 @@ MailTabProperties
       :name: [``sortType``]
       :type: (`string`, optional)
       
-      Sorts the list of messages. ``sortOrder`` must also be given.
+      Sorts the list of messages. :value:`sortOrder` must also be given.
       
       Supported values:
       
@@ -783,6 +894,8 @@ MailTabProperties
       :name: [``viewType``]
       :type: (`string`, optional)
       
+      Sets the grouping type of displayed messages.
+      
       Supported values:
       
       .. api-member::
@@ -810,33 +923,33 @@ QuickFilterTextDetail
       :name: ``text``
       :type: (string)
       
-      String to match against the ``recipients``, ``author``, ``subject``, or ``body``.
+      String to match against the :value:`recipients`, :value:`author`, :value:`subject`, or :value:`body`.
    
    
    .. api-member::
       :name: [``author``]
       :type: (boolean, optional)
       
-      Shows messages where ``text`` matches the author.
+      Shows messages where :value:`text` matches the author.
    
    
    .. api-member::
       :name: [``body``]
       :type: (boolean, optional)
       
-      Shows messages where ``text`` matches the message body.
+      Shows messages where :value:`text` matches the message body.
    
    
    .. api-member::
       :name: [``recipients``]
       :type: (boolean, optional)
       
-      Shows messages where ``text`` matches the recipients.
+      Shows messages where :value:`text` matches the recipients.
    
    
    .. api-member::
       :name: [``subject``]
       :type: (boolean, optional)
       
-      Shows messages where ``text`` matches the subject.
+      Shows messages where :value:`text` matches the subject.
    

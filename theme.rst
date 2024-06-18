@@ -217,13 +217,23 @@ Defines an image resource.
          
          A relative URL for an image bundled with the extension. For example :value:`images/background.png`. The following image formats are supported: 
          
+         
+         
          * JPEG 
+         
+         
          
          * PNG 
          
+         
+         
          * APNG 
          
+         
+         
          * SVG (animated SVG is supported from Thunderbird 59) 
+         
+         
          
          * GIF (animated GIF isn’t supported)
    
@@ -264,13 +274,21 @@ Defines a color value.
    
       .. container:: api-member-description-only
          
-         A string containing a valid `CSS color string <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords>`__, including hexadecimal or functional representations. For example the color *crimson* can be specified as: 
+         A string containing a valid <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_colors/Color_values'>CSS color string</a>, including hexadecimal or functional representations. For example the color *crimson* can be specified as: 
+         
+         
          
          * :value:`crimson` 
          
+         
+         
          * :value:`#dc143c` 
          
+         
+         
          * :value:`rgb(220, 20, 60)` (or :value:`rgba(220, 20, 60, 0.5)` to set 50% opacity) 
+         
+         
          
          * :value:`hsl(348, 83%, 47%)` (or :value:`hsla(348, 83%, 47%, 0.5)` to set 50% opacity)
    
@@ -354,7 +372,7 @@ Defines additional color, image and property keys to be used in :ref:`theme.Them
       :name: [``stylesheet``]
       :type: (:ref:`theme.ExtensionURL`, optional)
       
-      URL to a stylesheet introducing additional CSS variables, extending the theme-able areas of Thunderbird. The `theme_experiment add-on in our example repository <https://github.com/thunderbird/sample-extensions/tree/master/manifest_v2/theme_experiment>`__ is using the stylesheet shown below, to add the :value:`--chat-button-color` CSS color variable: 
+      URL to a stylesheet introducing additional CSS variables, extending the theme-able areas of Thunderbird. The <a href='https://github.com/thunderbird/sample-extensions/tree/master/manifest_v2/theme_experiment'>theme_experiment add-on in our example repository</a> is using the stylesheet shown below, to add the :value:`--chat-button-color` CSS color variable: 
       
       .. literalinclude:: includes/theme/theme_experiment_style.css
         :language: CSS
@@ -418,7 +436,7 @@ Contains the color, image and property settings of a theme.
          :name: [``icons``]
          :type: (:ref:`theme.ThemeColor`, optional)
          
-         The color of the toolbar icons. Defaults to the color specified by ``toolbar_text``.
+         The color of the toolbar icons. Defaults to the color specified by :value:`toolbar_text`.
       
       
       .. api-member::
@@ -538,21 +556,21 @@ Contains the color, image and property settings of a theme.
          :name: [``tab_selected``]
          :type: (:ref:`theme.ThemeColor`, optional)
          
-         Background color of the selected tab. Defaults to the color specified by ``toolbar``.
+         Background color of the selected tab. Defaults to the color specified by :value:`toolbar`.
       
       
       .. api-member::
          :name: [``tab_text``]
          :type: (:ref:`theme.ThemeColor`, optional)
          
-         The text color for the selected tab. Defaults to the color specified by ``toolbar_text``.
+         The text color for the selected tab. Defaults to the color specified by :value:`toolbar_text`.
       
       
       .. api-member::
          :name: [``toolbar``]
          :type: (:ref:`theme.ThemeColor`, optional)
          
-         The background color of the toolbars. Also used as default value for ``tab_selected``.
+         The background color of the toolbars. Also used as default value for :value:`tab_selected`.
       
       
       .. api-member::
@@ -622,7 +640,7 @@ Contains the color, image and property settings of a theme.
          :name: [``toolbar_text``]
          :type: (:ref:`theme.ThemeColor`, optional)
          
-         The text color in the main Thunderbird toolbar. Also used as default value for ``icons`` and ``tab_text``.
+         The text color in the main Thunderbird toolbar. Also used as default value for :value:`icons` and :value:`tab_text`.
       
       
       .. api-member::
@@ -650,7 +668,7 @@ Contains the color, image and property settings of a theme.
          :name: [``additional_backgrounds``]
          :type: (array of :ref:`theme.ImageDataOrExtensionURL`, optional)
          
-         Additional images added to the header area and displayed behind the ``theme_frame`` image.
+         Additional images added to the header area and displayed behind the :value:`theme_frame` image.
       
       
       .. api-member::

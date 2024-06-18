@@ -47,7 +47,7 @@ create([createData])
 
 .. api-section-annotation-hack:: 
 
-Creates (opens) a new window with any optional sizing, position or default URL provided. When loading a page into a popup window, same-site links are opened within the same window, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a `content script <https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3>`__ , capture click events and handle them manually. Same-site links with targets other than :value:`_self` are opened in a new tab in the most recent ``normal`` Thunderbird window.
+Creates (opens) a new window with any optional sizing, position or default URL provided. When loading a page into a popup window, same-site links are opened within the same window, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a <a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3'>content script</a> , capture click events and handle them manually. Same-site links with targets other than :value:`_self` are opened in a new tab in the most recent :value:`normal` Thunderbird window.
 
 .. api-header::
    :label: Parameters
@@ -101,7 +101,7 @@ Creates (opens) a new window with any optional sizing, position or default URL p
          :name: [``state``]
          :type: (:ref:`windows.WindowState`, optional)
          
-         The initial state of the window. The ``minimized``, ``maximized`` and ``fullscreen`` states cannot be combined with ``left``, ``top``, ``width`` or ``height``.
+         The initial state of the window. The :value:`minimized`, :value:`maximized` and :value:`fullscreen` states cannot be combined with :value:`left`, :value:`top`, :value:`width` or :value:`height`.
       
       
       .. api-member::
@@ -136,7 +136,7 @@ Creates (opens) a new window with any optional sizing, position or default URL p
          :name: [``url``]
          :type: (string or array of string, optional)
          
-         A URL or array of URLs to open as tabs in the window. Fully-qualified URLs must include a scheme (i.e. :value:`http://www.google.com`, not :value:`www.google.com`). Relative URLs will be relative to the current page within the extension. Defaults to the New Tab Page.
+         A URL to be opened in a popup window, ignored in all other window types. This may also be an array, but only the first element is used (popup windows may not have multiple tabs). If the URL points to a content page (a web page, an extension page or a registered WebExtension protocol handler page), the popup window will navigate to the requested page. All other URLs will be opened externally after creating an empty popup window. Fully-qualified URLs must include a scheme (i.e. :value:`http://www.google.com`, not :value:`www.google.com`). Relative URLs will be relative to the root of the extension. Defaults to the New Tab Page.
       
       
       .. api-member::
@@ -366,7 +366,7 @@ Updates the properties of a window. Specify only the properties that you want to
          :name: [``state``]
          :type: (:ref:`windows.WindowState`, optional)
          
-         The new state of the window. The ``minimized``, ``maximized`` and ``fullscreen`` states cannot be combined with ``left``, ``top``, ``width`` or ``height``.
+         The new state of the window. The :value:`minimized`, :value:`maximized` and :value:`fullscreen` states cannot be combined with :value:`left`, :value:`top`, :value:`width` or :value:`height`.
       
       
       .. api-member::
@@ -558,7 +558,7 @@ Specifies additional requirements for the returned windows.
       :name: [``populate``]
       :type: (boolean, optional)
       
-      If true, the :ref:`windows.Window` returned will have a ``tabs`` property that contains an array of :ref:`tabs.Tab` objects representing the tabs inside the window. The :ref:`tabs.Tab` objects only contain the ``url``, ``title`` and ``favIconUrl`` properties if the extension's manifest file includes the :permission:`tabs` permission.
+      If true, the :ref:`windows.Window` returned will have a :value:`tabs` property that contains an array of :ref:`tabs.Tab` objects representing the tabs inside the window. The :ref:`tabs.Tab` objects only contain the :value:`url`, :value:`title` and :value:`favIconUrl` properties if the extension's manifest file includes the :permission:`tabs` permission.
    
    
    .. api-member::
@@ -632,7 +632,7 @@ Window
       :name: [``tabs``]
       :type: (array of :ref:`tabs.Tab`, optional)
       
-      Array of :ref:`tabs.Tab` objects representing the current tabs in the window. Only included if requested by :ref:`windows.get`, :ref:`windows.getCurrent`, :ref:`windows.getAll` or :ref:`windows.getLastFocused`, and the optional :ref:`windows.GetInfo` parameter has its ``populate`` member set to :value:`true`.
+      Array of :ref:`tabs.Tab` objects representing the current tabs in the window. Only included if requested by :ref:`windows.get`, :ref:`windows.getCurrent`, :ref:`windows.getAll` or :ref:`windows.getLastFocused`, and the optional :ref:`windows.GetInfo` parameter has its :value:`populate` member set to :value:`true`.
    
    
    .. api-member::

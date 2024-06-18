@@ -54,7 +54,7 @@ Creates a new space and adds its button to the spaces toolbar.
    
    .. api-member::
       :name: [``buttonProperties``]
-      :type: (:ref:`spaces.SpaceButtonProperties`, optional)
+      :type: (:ref:`spaces.SpaceButtonProperties_MV2`, optional)
       
       Properties of the button for the new space.
    
@@ -250,7 +250,7 @@ Updates the specified space. Throws an exception if the requested space does not
    
    .. api-member::
       :name: [``buttonProperties``]
-      :type: (:ref:`spaces.SpaceButtonProperties`, optional)
+      :type: (:ref:`spaces.SpaceButtonProperties_MV2`, optional)
       
       Only specified button properties will be updated.
    
@@ -318,10 +318,10 @@ Space
       The id of the extension which owns the space. The :permission:`management` permission is required to include this property.
    
 
-.. _spaces.SpaceButtonProperties:
+.. _spaces.SpaceButtonProperties_MV2:
 
-SpaceButtonProperties
----------------------
+SpaceButtonProperties_MV2
+-------------------------
 
 .. api-section-annotation-hack:: 
 
@@ -347,21 +347,67 @@ SpaceButtonProperties
       :name: [``defaultIcons``]
       :type: (string or :ref:`spaces.IconPath`, optional)
       
-      The paths to one or more icons for the button in the spaces toolbar. Defaults to the extension icon, if set to an empty string.
+      The paths to one or more icons for the button in the spaces toolbar. Reset to the extension icon, when set to an empty string.
    
    
    .. api-member::
       :name: [``themeIcons``]
       :type: (array of :ref:`spaces.ThemeIcons`, optional)
       
-      Specifies dark and light icons for the button in the spaces toolbar to be used with themes: The ``light`` icons will be used on dark backgrounds and vice versa. At least the set for *16px* icons should be specified. The set for *32px* icons will be used on screens with a very high pixel density, if specified.
+      Specifies dark and light icons for the button in the spaces toolbar to be used with themes: The :value:`light` icons will be used on dark backgrounds and vice versa. At least the set for *16px* icons should be specified. The set for *32px* icons will be used on screens with a very high pixel density, if specified. Reset when set to an empty array.
    
    
    .. api-member::
       :name: [``title``]
       :type: (string, optional)
       
-      The title for the button in the spaces toolbar, used in the tooltip of the button and as the displayed name in the overflow menu. Defaults to the name of the extension, if set to an empty string.
+      The title for the button in the spaces toolbar, used in the tooltip of the button and as the displayed name in the overflow menu. Reset to the name of the extension, when set to an empty string.
+   
+
+.. _spaces.SpaceButtonProperties_MV3:
+
+SpaceButtonProperties_MV3
+-------------------------
+
+.. api-section-annotation-hack:: 
+
+.. api-header::
+   :label: object
+
+   
+   .. api-member::
+      :name: [``badgeBackgroundColor``]
+      :type: (string or :ref:`spaces.ColorArray`, optional)
+      
+      Sets the background color of the badge. Can be specified as an array of four integers in the range [0,255] that make up the RGBA color of the badge. For example, opaque red is :value:`[255, 0, 0, 255]`. Can also be a string with an HTML color name (:value:`red`) or a HEX color value (:value:`#FF0000` or :value:`#F00`). Reset when set to :value:`null`.
+   
+   
+   .. api-member::
+      :name: [``badgeText``]
+      :type: (string, optional)
+      
+      Sets the badge text for the button in the spaces toolbar. The badge is displayed on top of the icon. Any number of characters can be set, but only about four can fit in the space. Removed when set to :value:`null`.
+   
+   
+   .. api-member::
+      :name: [``defaultIcons``]
+      :type: (:ref:`spaces.IconPath`, optional)
+      
+      The paths to one or more icons for the button in the spaces toolbar. Reset to the extension icon, when set to :value:`null`.
+   
+   
+   .. api-member::
+      :name: [``themeIcons``]
+      :type: (array of :ref:`spaces.ThemeIcons`, optional)
+      
+      Specifies dark and light icons for the button in the spaces toolbar to be used with themes: The :value:`light` icons will be used on dark backgrounds and vice versa. At least the set for *16px* icons should be specified. The set for *32px* icons will be used on screens with a very high pixel density, if specified. Reset when set to :value:`null`.
+   
+   
+   .. api-member::
+      :name: [``title``]
+      :type: (string, optional)
+      
+      The title for the button in the spaces toolbar, used in the tooltip of the button and as the displayed name in the overflow menu. Reset to the name of the extension, when set to :value:`null`.
    
 
 .. rst-class:: api-main-section

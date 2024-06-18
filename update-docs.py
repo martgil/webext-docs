@@ -4,12 +4,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import argparse, glob, json, os, re
+import argparse, glob, json, os, re, codecs
 
 DEST_DIR = os.path.dirname(__file__)
 OVERLAY_DIR = os.path.join(DEST_DIR, "overlay")
 EXAMPLE_DIR = os.path.join(DEST_DIR, "examples")
-MV = 2
 
 current_namespace = None
 
@@ -85,43 +84,21 @@ def replace_code(string):
         "</literalinclude>": "\n\n",
         "<lang>": "\n  :language: ",
         "</lang>": "",
-        "<var>": "``",
-        "</var>": "``",
+        "<var>":":value:`",
+        "</var>":"`",
         "<permission>":":permission:`",
         "</permission>":"`",
-        "<value>":":value:`",
-        "</value>":"`",
+        "<val>":":value:`",
+        "</val>":"`",
         "&mdash;": u"—",
         "\n": "\n\n",
         "<li>": "\n\n* ",
-
-        "|link-input-encoding|": "https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings",
-        "|link-ui-elements|": "https://developer.thunderbird.net/add-ons/mailextensions/supported-ui-elements#menu-items",
-        "|link-mdn-icon-size|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action#choosing_icon_sizes",
-        "|link-css-color-string|": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords",
-        "|link-mdn-browser-styles|": "https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles",
-        "|link-legacy-properties|":"https://searchfox.org/comm-central/rev/8a1ae67088acf237dab2fd704db18589e7bf119e/mailnews/addrbook/modules/VCardUtils.jsm#295-334",
-        "|link-user-input-restrictions|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions",
-        "|link-content-type|": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type",
-        "|link-contextmenu-event|": "https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event",
-        "|link-binary-string|": "https://developer.mozilla.org/en-US/docs/Web/API/DOMString/Binary",
-        "|link-content-scripts|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts",
-        "|link-commands-shortcuts|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#shortcut_values",
-        "|link-runtime-last-error|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError",
-        "|link-runtime-on-connect|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onConnect",
-        "|link-runtime-on-message|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage",
-        "|link-match-patterns|": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns",
-        "|link-DOMFile-arrayBuffer|": "https://developer.mozilla.org/en-US/docs/Web/API/Blob/arrayBuffer",
-        "|link-DOMFile-text|": "https://developer.mozilla.org/en-US/docs/Web/API/Blob/text",
-
-        "|DateTimeFormat|": "`Intl.DateTimeFormat <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat>`__",
-        "|File|": "`File <https://developer.mozilla.org/docs/Web/API/File>`__",
-        "|Canvas|": "`canvas <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas>`__",
-        "|ImageData|": "`ImageData <https://developer.mozilla.org/en-US/docs/Web/API/ImageData>`__",
     }
     for [s, r] in replacements.items():
         string = string.replace(s, r)
 
+    string = re.sub(r'\$\(ref:(.*?)\)', ':ref:`\\1`', string)
+    string = re.sub(r'\$\(doc:(.*?)\)', ':doc:`\\1`', string)
     return string
 
 
@@ -136,10 +113,6 @@ def get_type(obj, name):
                 if "choices" in obj["items"]:
                     choices = []
                     for choice in obj["items"]["choices"]:
-                        if "min_manifest_version" in choice and choice["min_manifest_version"] > MV:
-                            continue
-                        if "max_manifest_version" in choice and choice["max_manifest_version"] < MV:
-                            continue
                         choices.append(get_type(choice, name))
                     return "array of %s" % " or ".join(choices)
                 else:
@@ -250,10 +223,6 @@ def get_api_member_parts(name, value):
     elif "choices" in value:
         choices = []
         for choice in value["choices"]:
-            if "min_manifest_version" in choice and choice["min_manifest_version"] > MV:
-                continue
-            if "max_manifest_version" in choice and choice["max_manifest_version"] < MV:
-                continue
             choices.append(get_type(choice, name))
         parts['type'] = type_string % " or ".join(choices)
 
@@ -298,24 +267,14 @@ def format_enum(name, value):
 def format_object(name, obj, print_description_only = False, print_enum_only = False, enumChanges = None):
     global unique_id
     
-    if "min_manifest_version" in obj and obj["min_manifest_version"] > MV:
-        return []
-    if "max_manifest_version" in obj and obj["max_manifest_version"] < MV:
-        return []
-
     # If we have received an enumChanges object and we do not already have one,
     # add it to the object.
     if obj.get("enumChanges") == None and enumChanges != None:
         obj["enumChanges"] = enumChanges
 
-    # Cater for MV2/3 differences, pick the correct one and proceed as normal. We
-    # do not support individual descriptions of the allowed types.
+    # We do not support individual descriptions of the allowed types.
     if "choices" in obj:
         for choice in obj["choices"]:
-            if "min_manifest_version" in choice and choice["min_manifest_version"] > MV:
-                continue
-            if "max_manifest_version" in choice and choice["max_manifest_version"] < MV:
-                continue
             if "type" in choice and "description" in choice:
                 for key in choice:
                     obj[key] = choice[key]
@@ -578,11 +537,6 @@ def format_namespace(manifest, namespace):
         lines.append("")
         lines.extend(header_2("Functions", "api-main-section"))
         for function in sorted(namespace["functions"], key=lambda t: t["sort"] + t["name"] if "sort" in t else "0" + t["name"]):
-            if "min_manifest_version" in function and function["min_manifest_version"] > MV:
-                continue
-            if "max_manifest_version" in function and function["max_manifest_version"] < MV:
-                continue
-
             async = function.get("async")
             lines.extend(header_3(
                 "%s(%s)" % (function["name"], format_params(function, callback=async)),
@@ -628,11 +582,6 @@ def format_namespace(manifest, namespace):
         lines.append("")
         lines.extend(header_2("Events", "api-main-section"))
         for event in sorted(namespace["events"], key=lambda t: t["sort"] + t["name"] if "sort" in t else "0" + t["name"]):
-            if "min_manifest_version" in event and event["min_manifest_version"] > MV:
-                continue
-            if "max_manifest_version" in event and event["max_manifest_version"] < MV:
-                continue
-
             lines.extend(header_3(
                 "%s" % (event["name"]), # , (%s)format_params(event)
                 label="%s.%s" % (namespace["namespace"], event["name"]),
@@ -741,10 +690,6 @@ def format_namespace(manifest, namespace):
             elif "choices" in type_:
                 first = True
                 for choice in type_["choices"]:
-                    if "min_manifest_version" in choice and choice["min_manifest_version"] > MV:
-                        continue
-                    if "max_manifest_version" in choice and choice["max_manifest_version"] < MV:
-                        continue
                     if first:
                         first = False
                     else:
@@ -826,7 +771,7 @@ def format_manifest_namespace(manifest, namespace, sidebartoc):
 
     permission_strings = {}
     for permissions_file in permissions_files:
-        with open(permissions_file) as pf:
+        with codecs.open(permissions_file, encoding="utf-8") as pf:
             for line in pf:
                 if line.startswith("webext-perms-description"):
                     parts = line.split("=", 2)
@@ -847,14 +792,15 @@ def format_manifest_namespace(manifest, namespace, sidebartoc):
             "PermissionNoPrompt"
         ]:
             for choice in type_["choices"]:
-                for value in choice["enum"]:
-                    if "ignore_permissions" not in namespace or value not in namespace["ignore_permissions"]:
-                        description = None
-                        if "permissions" in manifest and value in manifest["permissions"] and "description" in manifest["permissions"][value]:
-                            description = [manifest["permissions"][value]["description"]]
-                        elif map_permission_to_key(value) in permission_strings:
-                            description = [permission_strings[map_permission_to_key(value)]]
-                        permission_lines.extend(api_member(name=":permission:`" + value + "`", description=description))
+                if "enum" in choice:
+                    for value in choice["enum"]:
+                        if "ignore_permissions" not in namespace or value not in namespace["ignore_permissions"]:
+                            description = None
+                            if "permissions" in manifest and value in manifest["permissions"] and "description" in manifest["permissions"][value]:
+                                description = [manifest["permissions"][value]["description"]]
+                            elif map_permission_to_key(value) in permission_strings:
+                                description = [permission_strings[map_permission_to_key(value)]]
+                            permission_lines.extend(api_member(name=":permission:`" + value + "`", description=description))
 
     if len(permission_lines) > 0:
         permission_lines.append("")
@@ -877,16 +823,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Create WebExtensions documentation from schema files"
     )
-    parser.add_argument("path", help="""Path to comm-central""")
+    parser.add_argument("schema", help="""Path to schema files""")
+    parser.add_argument("path", help="""Path to mozilla-central""")
     parser.add_argument("file", nargs="*",
                         help="""The name of an API to document, which corresponds
                         to a .json file in the schemas directory""")
     args = parser.parse_args()
 
-    src_dir = os.path.join(args.path, "mail/components/extensions/schemas")
+    src_dir = args.schema
     permissions_files = [
-        os.path.join(args.path, "../toolkit/locales/en-US/toolkit/global/extensionPermissions.ftl"),
-        os.path.join(args.path, "mail/locales/en-US/messenger/extensionPermissions.ftl")
+        os.path.join(args.path, "toolkit/locales/en-US/toolkit/global/extensionPermissions.ftl"),
+        os.path.join(args.path, "comm/mail/locales/en-US/messenger/extensionPermissions.ftl")
     ]
 
     # read additional type defs
@@ -953,33 +900,11 @@ if __name__ == "__main__":
                 if "manifest" in overlays:
                     merge_objects(overlays["manifest"], namespace)
                 
-                types = namespace.get("types", list())
-                for type in types:
-                    # limit to requested manifests version
-                    if "$extend" in type and "properties" in type and type["$extend"] == "WebExtensionManifest":
-                        properties = type["properties"]
-                        for property in properties:
-                            if "min_manifest_version" in properties[property] and properties[property]["min_manifest_version"] > MV:
-                                types.remove(type)
-                            if "max_manifest_version" in properties[property] and properties[property]["max_manifest_version"] < MV:
-                                types.remove(type)
-                
                 continue
 
             additional_type_used = []
             current_namespace = namespace.copy()
             manifest = namespaces.get("manifest", None)
-
-            # import other namespaces
-            if "$import" in namespace:
-                current_namespace = namespaces[namespace["$import"]].copy()
-                # m-c imports the entire action namespace into the browser_action
-                # namespace, which includes its min_manifest_version = 3, which is
-                # of course wrong
-                for key in ["min_manifest_version", "max_manifest_version"]:
-                    if key in current_namespace:
-                        del current_namespace[key]
-                current_namespace.update(namespace)
 
             # overlay namespace
             if current_namespace["namespace"] in overlays:
@@ -1004,12 +929,6 @@ if __name__ == "__main__":
                     for index, item in enumerate(namespaceTypes):
                         if "$import_from_manifest" in item:
                             namespaceTypes[index] = manifestTypeDict[item["$import_from_manifest"]]
-
-            # limit to requested manifests version
-            if "min_manifest_version" in current_namespace and current_namespace["min_manifest_version"] > MV:
-                continue
-            if "max_manifest_version" in current_namespace and current_namespace["max_manifest_version"] < MV:
-                continue
 
             with open(os.path.join(DEST_DIR, current_namespace["namespace"] + ".rst"), "w") as fp_output:
                 fp_output.write(format_namespace(manifest, current_namespace))

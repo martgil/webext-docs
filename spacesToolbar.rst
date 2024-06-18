@@ -37,7 +37,7 @@ addButton(id, properties)
 
 .. api-section-annotation-hack:: 
 
-Adds a new button to the spaces toolbar. Throws an exception, if the used ``id`` is not unique within the extension.
+Adds a new button to the spaces toolbar. Throws an exception, if the used :value:`id` is not unique within the extension.
 
 .. api-header::
    :label: Parameters
@@ -54,7 +54,7 @@ Adds a new button to the spaces toolbar. Throws an exception, if the used ``id``
       :name: ``properties``
       :type: (:ref:`spacesToolbar.ButtonProperties`)
       
-      Properties of the new button. The ``url`` is mandatory.
+      Properties of the new button. The :value:`url` is mandatory.
    
 
 .. api-header::
@@ -196,7 +196,7 @@ ButtonProperties
       :name: [``themeIcons``]
       :type: (array of :ref:`spacesToolbar.ThemeIcons`, optional)
       
-      Specifies dark and light icons for the spaces toolbar button to be used with themes: The ``light`` icons will be used on dark backgrounds and vice versa. At least the set for *16px* icons should be specified. The set for *32px* icons will be used on screens with a very high pixel density, if specified.
+      Specifies dark and light icons for the spaces toolbar button to be used with themes: The :value:`light` icons will be used on dark backgrounds and vice versa. At least the set for *16px* icons should be specified. The set for *32px* icons will be used on screens with a very high pixel density, if specified.
    
    
    .. api-member::

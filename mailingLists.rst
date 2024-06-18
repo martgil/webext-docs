@@ -63,7 +63,7 @@ addMember(id, contactId)
 
 .. api-section-annotation-hack:: 
 
-Adds a contact to the mailing list with id ``id``. If the contact and mailing list are in different address books, the contact will also be copied to the list's address book.
+Adds a contact to the mailing list with id :value:`id`. If the contact and mailing list are in different address books, the contact will also be copied to the list's address book.
 
 .. api-header::
    :label: Parameters
@@ -91,7 +91,7 @@ create(parentId, properties)
 
 .. api-section-annotation-hack:: 
 
-Creates a new mailing list in the address book with id ``parentId``.
+Creates a new mailing list in the address book with id :value:`parentId`.
 
 .. api-header::
    :label: Parameters
@@ -202,7 +202,7 @@ list(parentId)
 
 .. api-section-annotation-hack:: 
 
-Gets all the mailing lists in the address book with id ``parentId``.
+Gets all the mailing lists in the address book with id :value:`parentId`.
 
 .. api-header::
    :label: Parameters
@@ -235,7 +235,7 @@ listMembers(id)
 
 .. api-section-annotation-hack:: 
 
-Gets all contacts that are members of the mailing list with id ``id``.
+Gets all contacts that are members of the mailing list with id :value:`id`.
 
 .. api-header::
    :label: Parameters
@@ -268,7 +268,7 @@ removeMember(id, contactId)
 
 .. api-section-annotation-hack:: 
 
-Removes a contact from the mailing list with id ``id``. This does not delete the contact from the address book.
+Removes a contact from the mailing list with id :value:`id`. This does not delete the contact from the address book.
 
 .. api-header::
    :label: Parameters
@@ -570,7 +570,7 @@ A node representing a mailing list.
       :name: [``parentId``]
       :type: (string, optional)
       
-      The ``id`` of the parent object.
+      The :value:`id` of the parent object.
    
    
    .. api-member::

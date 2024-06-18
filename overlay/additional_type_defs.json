@@ -19,7 +19,7 @@
       },
       "size": {
         "type": "integer",
-        "description": "The size of the two icons in pixels, for example <value>16</value> or <value>32</value>."
+        "description": "The size of the two icons in pixels, for example <var>16</var> or <var>32</var>."
       }
     }
   },

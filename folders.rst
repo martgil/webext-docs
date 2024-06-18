@@ -94,7 +94,7 @@ create(destination, childName)
 
 .. api-section-annotation-hack:: 
 
-Creates a new subfolder in the specified folder or at the root of the specified account.
+Creates a new subfolder in the specified folder, or at the root of the specified account.
 
 .. api-header::
    :label: Parameters
@@ -153,8 +153,8 @@ Deletes a folder.
 
 .. _folders.get:
 
-get(folder, [includeSubFolders])
---------------------------------
+get(folderId, [includeSubFolders])
+----------------------------------
 
 .. api-section-annotation-hack:: -- [Added in TB 121]
 
@@ -165,7 +165,7 @@ Returns the specified folder.
 
    
    .. api-member::
-      :name: ``folder``
+      :name: ``folderId``
       :type: (:ref:`folders.MailFolderId`)
    
    
@@ -173,7 +173,7 @@ Returns the specified folder.
       :name: [``includeSubFolders``]
       :type: (boolean, optional)
       
-      Specifies whether the returned :ref:`folders.MailFolder` object should include all its nested subfolders . Defaults to :value:`true`.
+      Specifies whether the returned :ref:`folders.MailFolder` should populate its :value:`subFolders` property and include all its (nested!) subfolders. Defaults to :value:`true`.
    
 
 .. api-header::
@@ -279,7 +279,7 @@ Get all parent folders as a flat ordered array. The first array entry is the dir
       :name: [``includeSubFolders``]
       :type: (boolean, optional)
       
-      Specifies whether the returned :ref:`folders.MailFolder` object for each parent folder should include its nested subfolders . Defaults to :value:`false`.
+      Specifies whether each returned parent :ref:`folders.MailFolder` should populate its :value:`subFolders` property and include all its (nested!) subfolders. Defaults to :value:`false`.
    
 
 .. api-header::
@@ -319,7 +319,7 @@ Get the subfolders of the specified folder or account.
       :name: [``includeSubFolders``]
       :type: (boolean, optional)
       
-      Specifies whether the returned :ref:`folders.MailFolder` object for each direct subfolder should also include all its nested subfolders . Defaults to :value:`true`.
+      Specifies whether each returned direct child :ref:`folders.MailFolder` should populate its :value:`subFolders` property and include all its (nested!) subfolders. Defaults to :value:`true`.
    
 
 .. api-header::
@@ -328,6 +328,106 @@ Get the subfolders of the specified folder or account.
    
    .. api-member::
       :type: array of :ref:`folders.MailFolder`
+   
+   
+   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+.. api-header::
+   :label: Required permissions
+
+   - :permission:`accountsRead`
+
+.. _folders.getTagFolder:
+
+getTagFolder(key)
+-----------------
+
+.. api-section-annotation-hack:: 
+
+Get one of the special unified mailbox tag folders, which are virtual search folders and group messages from all mail accounts based on their tags.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: ``key``
+      :type: (string)
+      
+      The tag key of the requested folder. See :ref:`messages.tags.list(`) for the available tags. Throws when specifying an invalid tag key.
+   
+
+.. api-header::
+   :label: Return type (`Promise`_)
+
+   
+   .. api-member::
+      :type: :ref:`folders.MailFolder`
+   
+   
+   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+.. api-header::
+   :label: Required permissions
+
+   - :permission:`accountsRead`
+
+.. _folders.getUnifiedFolder:
+
+getUnifiedFolder(type, [includeSubFolders])
+-------------------------------------------
+
+.. api-section-annotation-hack:: 
+
+Get one of the special unified mailbox folders, which are virtual search folders and return the content from all mail accounts.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: ``type``
+      :type: (`string`)
+      
+      The requested unified mailbox folder type.
+      
+      Supported values:
+      
+      .. api-member::
+         :name: :value:`inbox`
+      
+      .. api-member::
+         :name: :value:`drafts`
+      
+      .. api-member::
+         :name: :value:`sent`
+      
+      .. api-member::
+         :name: :value:`trash`
+      
+      .. api-member::
+         :name: :value:`templates`
+      
+      .. api-member::
+         :name: :value:`archives`
+      
+      .. api-member::
+         :name: :value:`junk`
+   
+   
+   .. api-member::
+      :name: [``includeSubFolders``]
+      :type: (boolean, optional)
+      
+      Specifies whether the returned :ref:`folders.MailFolder` should populate its :value:`subFolders` property and include all its (nested!) subfolders. Defaults to :value:`false`.
+   
+
+.. api-header::
+   :label: Return type (`Promise`_)
+
+   
+   .. api-member::
+      :type: :ref:`folders.MailFolder`
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -509,10 +609,24 @@ Gets folders that match the specified properties, or all folders if no propertie
       
       
       .. api-member::
+         :name: [``isTag``]
+         :type: (boolean, optional)
+         
+         Whether the folder is a virtual tag folder, or not. Note: Virtual tag folders are always skipped, unless this property is set to :value:`true`
+      
+      
+      .. api-member::
+         :name: [``isUnified``]
+         :type: (boolean, optional)
+         
+         Whether the folder is a unified mailbox folder, or not. Note: Unified mailbox folders are always skipped, unless this property is set to :value:`true`
+      
+      
+      .. api-member::
          :name: [``isVirtual``]
          :type: (boolean, optional)
          
-         Whether this folder is a virtual search folder, or not.
+         Whether the folder is a virtual search folder, or not.
       
       
       .. api-member::
@@ -923,24 +1037,24 @@ MailFolder
 
 .. api-section-annotation-hack:: 
 
-An object describing a folder. The ``subFolders`` property is only included if requested.
+An object describing a folder.
 
 .. api-header::
    :label: object
 
    
    .. api-member::
-      :name: ``accountId``
-      :type: (:ref:`accounts.MailAccountId`)
-      
-      The id of the account this folder belongs to.
-   
-   
-   .. api-member::
       :name: ``path``
       :type: (string)
       
       Path to this folder in the account. Although paths look predictable, never guess a folder's path, as there are a number of reasons why it may not be what you think it is. Use :ref:`folders.getParentFolders` or :ref:`folders.getSubFolders` to obtain hierarchy information.
+   
+   
+   .. api-member::
+      :name: [``accountId``]
+      :type: (:ref:`accounts.MailAccountId`, optional)
+      
+      The id of the account this folder belongs to.
    
    
    .. api-member::
@@ -964,6 +1078,20 @@ An object describing a folder. The ``subFolders`` property is only included if r
       :annotation: -- [Added in TB 121]
       
       Whether this folder is a root folder.
+   
+   
+   .. api-member::
+      :name: [``isTag``]
+      :type: (boolean, optional)
+      
+      Whether this folder is a virtual tag folder.
+   
+   
+   .. api-member::
+      :name: [``isUnified``]
+      :type: (boolean, optional)
+      
+      Whether this folder is a unified mailbox folder.
    
    
    .. api-member::
@@ -991,10 +1119,10 @@ An object describing a folder. The ``subFolders`` property is only included if r
    
    .. api-member::
       :name: [``subFolders``]
-      :type: (array of :ref:`folders.MailFolder`, optional)
+      :type: (array of :ref:`folders.MailFolder` or null, optional)
       :annotation: -- [Added in TB 74]
       
-      Subfolders are only included if requested. They will be returned in the same order as used in Thunderbird's folder pane.
+      Subfolders of this folder. The property may be :value:`null`, if inclusion of folders had not been requested. The folders will be returned in the same order as used in Thunderbird's folder pane.
    
    
    .. api-member::

@@ -66,7 +66,7 @@ create(createProperties, [callback])
 
 .. api-section-annotation-hack:: 
 
-Creates a new context menu item. Note that if an error occurs during creation, you may not find out until the creation callback fires (the details will be in `runtime.lastError <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError>`__).
+Creates a new context menu item. Note that if an error occurs during creation, you may not find out until the creation callback fires (the details will be in <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError'>runtime.lastError</a>).
 
 .. api-header::
    :label: Parameters
@@ -101,7 +101,7 @@ Creates a new context menu item. Note that if an error occurs during creation, y
          :name: [``documentUrlPatterns``]
          :type: (array of string, optional)
          
-         Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see `Match Patterns <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns>`__.
+         Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns'>Match Patterns</a>.
       
       
       .. api-member::
@@ -150,7 +150,7 @@ Creates a new context menu item. Note that if an error occurs during creation, y
          :name: [``title``]
          :type: (string, optional)
          
-         The text to be displayed in the item; this is *required* unless ``type`` is :value:`separator`. When the context is :value:`selection`, you can use :value:`%s` within the string to show the selected text. For example, if this parameter's value is :value:`Translate '%s' to Latin` and the user selects the word :value:`cool`, the context menu item for the selection is :value:`Translate 'cool' to Latin`. To specify an access key for the new menu entry, include a :value:`&` before the desired letter in the title. For example :value:`&Help`.
+         The text to be displayed in the item; this is *required* unless :value:`type` is :value:`separator`. When the context is :value:`selection`, you can use :value:`%s` within the string to show the selected text. For example, if this parameter's value is :value:`Translate '%s' to Latin` and the user selects the word :value:`cool`, the context menu item for the selection is :value:`Translate 'cool' to Latin`. To specify an access key for the new menu entry, include a :value:`&` before the desired letter in the title. For example :value:`&Help`.
       
       
       .. api-member::
@@ -179,7 +179,7 @@ Creates a new context menu item. Note that if an error occurs during creation, y
       :name: [``callback``]
       :type: (function, optional)
       
-      Called when the item has been created in the browser. If there were any problems creating the item, details will be available in `runtime.lastError <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError>`__.
+      Called when the item has been created in the browser. If there were any problems creating the item, details will be available in <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError'>runtime.lastError</a>.
    
 
 .. api-header::
@@ -206,7 +206,7 @@ getTargetElement(targetElementId)
 
 .. api-section-annotation-hack:: 
 
-Retrieve the element that was associated with a recent `contextmenu <https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event>`__ event.
+Retrieve the element that was associated with a recent <a href='https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event'>contextmenu</a> event.
 
 .. api-header::
    :label: Parameters
@@ -216,7 +216,7 @@ Retrieve the element that was associated with a recent `contextmenu <https://dev
       :name: ``targetElementId``
       :type: (integer)
       
-      The identifier of the clicked element, available as ``info.targetElementId`` in the :ref:`menus.onShown` and :ref:`menus.onClicked` events.
+      The identifier of the clicked element, available as :value:`info.targetElementId` in the :ref:`menus.onShown` and :ref:`menus.onClicked` events.
    
 
 .. api-header::
@@ -241,7 +241,7 @@ overrideContext(contextOptions)
 
 .. api-section-annotation-hack:: 
 
-Show the matching menu items from this extension instead of the default menu. This should be called during a `contextmenu <https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event>`__ event handler, and only applies to the menu that opens after this event.
+Show the matching menu items from this extension instead of the default menu. This should be called during a <a href='https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event'>contextmenu</a> event handler, and only applies to the menu that opens after this event.
 
 .. api-header::
    :label: Parameters
@@ -255,7 +255,7 @@ Show the matching menu items from this extension instead of the default menu. Th
          :name: [``context``]
          :type: (`string`, optional)
          
-         ContextType to override, to allow menu items from other extensions in the menu. Currently only :value:`tab` is supported. ``contextOptions.showDefaults`` cannot be used with this option.
+         ContextType to override, to allow menu items from other extensions in the menu. Currently only :value:`tab` is supported. :value:`contextOptions.showDefaults` cannot be used with this option.
          
          Supported values:
          
@@ -445,7 +445,7 @@ onClicked
 
 .. api-section-annotation-hack:: 
 
-Fired when a context menu item is clicked. This is a user input event handler. For asynchronous listeners some `restrictions <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions>`__ apply.
+Fired when a context menu item is clicked. This is a user input event handler. For asynchronous listeners some <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions'>restrictions</a> apply.
 
 .. api-header::
    :label: Parameters for onClicked.addListener(listener)
@@ -558,7 +558,7 @@ ContextType
 
 .. api-section-annotation-hack:: 
 
-The different contexts a menu can appear in. More information about each context can be found in the `Supported UI Elements <https://developer.thunderbird.net/add-ons/mailextensions/supported-ui-elements#menu-items>`__ article on developer.thunderbird.net.
+The different contexts a menu can appear in. Specifying :value:`all` is equivalent to the combination of all other contexts excluding :value:`tab` and :value:`tools_menu`. More information about each context can be found in the <a href='https://developer.thunderbird.net/add-ons/mailextensions/supported-ui-elements#menu-items'>Supported UI Elements</a> article on developer.thunderbird.net.
 
 .. api-header::
    :label: `string`
@@ -584,6 +584,17 @@ The different contexts a menu can appear in. More information about each context
             :name: :value:`audio`
          
             Applies when the user context-clicks an audio element.
+         
+         .. api-member::
+            :name: :value:`browser_action`
+         
+            Applies when the user context-clicks a browserAction button.
+         
+         .. api-member::
+            :name: :value:`browser_action_menu`
+            :annotation: -- [Added in TB 115]
+         
+            Applies when the user opened a browserAction button of type :value:`menu`.
          
          .. api-member::
             :name: :value:`compose_action`
@@ -688,30 +699,6 @@ The different contexts a menu can appear in. More information about each context
             Applies when the user context-clicks a video element.
    
 
-OR
-
-.. api-header::
-   :label: `string`
-
-   
-   .. container:: api-member-node
-   
-      .. container:: api-member-description-only
-         
-         Supported values:
-         
-         .. api-member::
-            :name: :value:`browser_action`
-         
-            Applies when the user context-clicks a browserAction button.
-         
-         .. api-member::
-            :name: :value:`browser_action_menu`
-            :annotation: -- [Added in TB 115]
-         
-            Applies when the user opened a browserAction button of type :value:`menu`.
-   
-
 .. _menus.ItemType:
 
 ItemType
@@ -756,7 +743,7 @@ A *dictionary object* to specify paths for multiple icons in different sizes, so
 .. literalinclude:: includes/IconPath.json
   :language: JSON
 
-See the `MDN documentation about choosing icon sizes <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action#choosing_icon_sizes>`__ for more information on this. 
+See the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action#choosing_icon_sizes'>MDN documentation about choosing icon sizes</a> for more information on this. 
 
 .. api-header::
    :label: object
@@ -768,10 +755,7 @@ MenuIconPath
 
 .. api-section-annotation-hack:: 
 
-The path for a menu icon may be a relative path to an icon file or a :value:`moz-extension:` URL. Support for dynamic :value:`blob:` URLs and dynamic image :value:`data:` URLs was added in Thunderbird Beta 123. A :value:`data:` URL a or :value:`blob:` URL can be retrieved as follows: 
-
-.. literalinclude:: includes/DataBlobUrls.js
-  :language: JavaScript
+The path for a menu icon may be a relative path to an icon file, a :value:`moz-extension:` URL, an image :value:`data:` URL, a :value:`blob:` URL, or a remote :value:`http(s):` URL.
 
 .. api-header::
    :label: string
@@ -853,7 +837,7 @@ Information sent when a context menu item is clicked.
       :name: [``displayedFolder``]
       :type: (:ref:`folders.MailFolder`, optional)
       
-      The displayed folder, if the context menu was opened in the message list. The :permission:`accountsRead` permission is required.
+      The displayed folder. Only available for the :value:`message_list` context. The :permission:`accountsRead` permission is required.
    
    
    .. api-member::
@@ -935,24 +919,30 @@ Information sent when a context menu item is clicked.
    
    .. api-member::
       :name: [``selectedAccount``]
-      :type: (:ref:`accounts.MailAccount`, optional)
-      :annotation: -- [Added in TB 88]
+      :type: (:ref:`accounts.MailAccount`, optional) **Deprecated.**
       
-      The selected account, if the context menu was opened on an account entry in the folder pane. The :permission:`accountsRead` permission is required.
+      The selected account in the folder pane, if the context menu was opened on an account entry. Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required.
    
    
    .. api-member::
       :name: [``selectedFolder``]
-      :type: (:ref:`folders.MailFolder`, optional)
+      :type: (:ref:`folders.MailFolder`, optional) **Deprecated.**
       
-      The selected folder, if the context menu was opened in the folder pane. The :permission:`accountsRead` permission is required.
+      The selected folder in the folder pane (where the context menu was opened). Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required.
+   
+   
+   .. api-member::
+      :name: [``selectedFolders``]
+      :type: (array of :ref:`folders.MailFolder`, optional)
+      
+      The selected folders in the folder pane. Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required. The returned selection includes the folders which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected folders. For example, if the user has multiple folders selected and opens the context menu for a folder outside that selection, only the folder for which the context menu was opened, is returned.
    
    
    .. api-member::
       :name: [``selectedMessages``]
       :type: (:ref:`messages.MessageList`, optional)
       
-      The selected messages, if the context menu was opened in the message list. The :permission:`messagesRead` permission is required.
+      The selected message(s) in the message list (a.k.a. the thread pane). Only available for the :value:`message_list` context. The :permission:`messagesRead` permission is required. The returned selection includes the messages which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected messages. For example, if the user has multiple messages selected and opens the context menu for a message outside that selection, only the message for which the context menu was opened, is returned.
    
    
    .. api-member::
@@ -1036,7 +1026,7 @@ Information sent when a context menu is being shown. Some properties are only in
       :name: [``displayedFolder``]
       :type: (:ref:`folders.MailFolder`, optional)
       
-      The displayed folder, if the context menu was opened in the message list. The :permission:`accountsRead` permission is required.
+      The displayed folder. Only available for the :value:`message_list` context. The :permission:`accountsRead` permission is required.
    
    
    .. api-member::
@@ -1104,24 +1094,30 @@ Information sent when a context menu is being shown. Some properties are only in
    
    .. api-member::
       :name: [``selectedAccount``]
-      :type: (:ref:`accounts.MailAccount`, optional)
-      :annotation: -- [Added in TB 88]
+      :type: (:ref:`accounts.MailAccount`, optional) **Deprecated.**
       
-      The selected account, if the context menu was opened on an account entry in the folder pane. The :permission:`accountsRead` permission is required.
+      The selected account in the folder pane, if the context menu was opened on an account entry. Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required.
    
    
    .. api-member::
       :name: [``selectedFolder``]
-      :type: (:ref:`folders.MailFolder`, optional)
+      :type: (:ref:`folders.MailFolder`, optional) **Deprecated.**
       
-      The selected folder, if the context menu was opened in the folder pane. The :permission:`accountsRead` permission is required.
+      The selected folder in the folder pane (where the context menu was opened). Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required.
+   
+   
+   .. api-member::
+      :name: [``selectedFolders``]
+      :type: (array of :ref:`folders.MailFolder`, optional)
+      
+      The selected folders in the folder pane. Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required. The returned selection includes the folders which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected folders. For example, if the user has multiple folders selected and opens the context menu for a folder outside that selection, only the folder for which the context menu was opened, is returned.
    
    
    .. api-member::
       :name: [``selectedMessages``]
       :type: (:ref:`messages.MessageList`, optional)
       
-      The selected messages, if the context menu was opened in the message list. The :permission:`messagesRead` permission is required.
+      The selected message(s) in the message list (a.k.a. the thread pane). Only available for the :value:`message_list` context. The :permission:`messagesRead` permission is required. The returned selection includes the messages which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected messages. For example, if the user has multiple messages selected and opens the context menu for a message outside that selection, only the message for which the context menu was opened, is returned.
    
    
    .. api-member::

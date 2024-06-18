@@ -43,7 +43,7 @@ Manifest file properties
       :name: [``browser_style``]
       :type: (boolean, optional)
       
-      Enable browser styles. See the `MDN documentation on browser styles <https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles>`__ for more information.
+      Enable browser styles. See the <a href='https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles'>MDN documentation on browser styles</a> for more information.
    
    
    .. api-member::
@@ -94,7 +94,7 @@ Manifest file properties
       :name: [``theme_icons``]
       :type: (array of :ref:`composeAction.ThemeIcons`, optional)
       
-      Specifies dark and light icons to be used with themes. The ``light`` icon is used on dark backgrounds and vice versa. **Note:** The default theme uses the ``default_icon`` for light backgrounds (if specified).
+      Specifies dark and light icons to be used with themes. The :value:`light` icon is used on dark backgrounds and vice versa. **Note:** The default theme uses the :value:`default_icon` for light backgrounds (if specified).
    
    
    .. api-member::
@@ -130,7 +130,7 @@ disable([tabId])
 
 .. api-section-annotation-hack:: 
 
-Disables the composeAction button for a specific tab (if a ``tabId`` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well.
+Disables the composeAction button for a specific tab (if a :value:`tabId` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well.
 
 .. api-header::
    :label: Parameters
@@ -150,7 +150,7 @@ enable([tabId])
 
 .. api-section-annotation-hack:: 
 
-Enables the composeAction button for a specific tab (if a ``tabId`` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well. By default, a composeAction button is enabled.
+Enables the composeAction button for a specific tab (if a :value:`tabId` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well. By default, a composeAction button is enabled.
 
 .. api-header::
    :label: Parameters
@@ -184,7 +184,7 @@ Gets the badge background color of the composeAction button.
          :name: [``tabId``]
          :type: (integer, optional)
          
-         Specifies for which tab the badge background color should be retrieved. If no tab is specified, the global label is retrieved.
+         Specifies for which tab the badge background color should be retrieved. If no tab is specified, the global value is retrieved.
       
       
       .. api-member::
@@ -226,7 +226,7 @@ Gets the badge text of the composeAction button.
          :name: [``tabId``]
          :type: (integer, optional)
          
-         Specifies for which tab the badge text should be retrieved. If no tab is specified, the global label is retrieved.
+         Specifies for which tab the badge text should be retrieved. If no tab is specified, the global value is retrieved.
       
       
       .. api-member::
@@ -247,14 +247,14 @@ Gets the badge text of the composeAction button.
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-.. _composeAction.getLabel:
+.. _composeAction.getBadgeTextColor:
 
-getLabel(details)
------------------
+getBadgeTextColor(details)
+--------------------------
 
-.. api-section-annotation-hack:: -- [Added in TB 84.0b3, backported to TB 78.6.1]
+.. api-section-annotation-hack:: 
 
-Gets the label of the composeAction button.
+Gets the text color of the badge.
 
 .. api-header::
    :label: Parameters
@@ -268,7 +268,7 @@ Gets the label of the composeAction button.
          :name: [``tabId``]
          :type: (integer, optional)
          
-         Specifies for which tab the label should be retrieved. If no tab is specified, the global label is retrieved.
+         Specifies for which tab the badge text color should be retrieved. If no tab is specified, the global value is retrieved.
       
       
       .. api-member::
@@ -284,7 +284,49 @@ Gets the label of the composeAction button.
 
    
    .. api-member::
-      :type: string
+      :type: :ref:`composeAction.ColorArray`
+   
+   
+   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+.. _composeAction.getLabel:
+
+getLabel(details)
+-----------------
+
+.. api-section-annotation-hack:: -- [Added in TB 84.0b3, backported to TB 78.6.1]
+
+Gets the label of the composeAction button. Returns :value:`null`, if no label has been set and the title is used.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: ``details``
+      :type: (object)
+      
+      .. api-member::
+         :name: [``tabId``]
+         :type: (integer, optional)
+         
+         Specifies for which tab the label should be retrieved. If no tab is specified, the global value is retrieved.
+      
+      
+      .. api-member::
+         :name: [``windowId``]
+         :type: (integer, optional) **Unsupported.**
+         
+         Will throw an error if used.
+      
+   
+
+.. api-header::
+   :label: Return type (`Promise`_)
+
+   
+   .. api-member::
+      :type: string or null
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -473,7 +515,7 @@ Sets the background color for the badge.
          :name: ``color``
          :type: (string or :ref:`composeAction.ColorArray` or null)
          
-         The color to use as background in the badge. Cleared by setting it to :value:`null` or an empty string.
+         The color to use as background in the badge. Cleared by setting it to :value:`null`.
       
       
       .. api-member::
@@ -530,6 +572,45 @@ Sets the badge text for the composeAction button. The badge is displayed on top 
       
    
 
+.. _composeAction.setBadgeTextColor:
+
+setBadgeTextColor(details)
+--------------------------
+
+.. api-section-annotation-hack:: 
+
+Sets the text color for the badge.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: ``details``
+      :type: (object)
+      
+      .. api-member::
+         :name: ``color``
+         :type: (string or :ref:`composeAction.ColorArray` or null)
+         
+         The color to use as text color in the badge. Cleared by setting it to :value:`null`.
+      
+      
+      .. api-member::
+         :name: [``tabId``]
+         :type: (integer, optional)
+         
+         Sets the text color for the badge only for the given tab.
+      
+      
+      .. api-member::
+         :name: [``windowId``]
+         :type: (integer, optional) **Unsupported.**
+         
+         Will throw an error if used.
+      
+   
+
 .. _composeAction.setIcon:
 
 setIcon(details)
@@ -537,7 +618,7 @@ setIcon(details)
 
 .. api-section-annotation-hack:: 
 
-Sets the icon for the composeAction button. Either the ``path`` or the ``imageData`` property must be specified.
+Sets the icon for the composeAction button. Either the :value:`path` or the :value:`imageData` property must be specified.
 
 .. api-header::
    :label: Parameters
@@ -705,7 +786,7 @@ onClicked
 
 .. api-section-annotation-hack:: 
 
-Fired when a composeAction button is clicked. This event will not fire if the composeAction has a popup. This is a user input event handler. For asynchronous listeners some `restrictions <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions>`__ apply.
+Fired when a composeAction button is clicked. This event will not fire if the composeAction has a popup. This is a user input event handler. For asynchronous listeners some <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions'>restrictions</a> apply.
 
 .. api-header::
    :label: Parameters for onClicked.addListener(listener)
@@ -757,12 +838,12 @@ ImageDataDictionary
 
 .. api-section-annotation-hack:: 
 
-A *dictionary object* to specify multiple `ImageData <https://developer.mozilla.org/en-US/docs/Web/API/ImageData>`__ objects in different sizes, so the icon does not have to be scaled for a device with a different pixel density. Each entry is a *name-value* pair with *value* being an `ImageData <https://developer.mozilla.org/en-US/docs/Web/API/ImageData>`__ object, and *name* its size. Example: 
+A *dictionary object* to specify multiple <a href='https://developer.mozilla.org/en-US/docs/Web/API/ImageData'>ImageData</a> objects in different sizes, so the icon does not have to be scaled for a device with a different pixel density. Each entry is a *name-value* pair with *value* being an <a href='https://developer.mozilla.org/en-US/docs/Web/API/ImageData'>ImageData</a> object, and *name* its size. Example: 
 
 .. literalinclude:: includes/ImageDataDictionary.json
   :language: JavaScript
 
-See the `MDN documentation about choosing icon sizes <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action#choosing_icon_sizes>`__ for more information on this.
+See the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action#choosing_icon_sizes'>MDN documentation about choosing icon sizes</a> for more information on this.
 
 .. api-header::
    :label: object
@@ -774,7 +855,7 @@ ImageDataType
 
 .. api-section-annotation-hack:: 
 
-Pixel data for an image. Must be an `ImageData <https://developer.mozilla.org/en-US/docs/Web/API/ImageData>`__ object (for example, from a `canvas <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas>`__ element).
+Pixel data for an image. Must be an <a href='https://developer.mozilla.org/en-US/docs/Web/API/ImageData'>ImageData</a> object (for example, from a <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas'>canvas</a> element).
 
 .. api-header::
    :label: `ImageData <https://developer.mozilla.org/en-US/docs/Web/API/ImageData>`__

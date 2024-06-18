@@ -14,21 +14,12 @@
     ],
     "functions": [
       {
-        "name": "setDefaultIdentity",
-        "added": "76"
-      },
-      {
-        "name": "getDefaultIdentity",
-        "added": "85",
-        "backported": "78.7.0"
-      },
-      {
         "name": "getDefault",
         "added": "85",
         "backported": "78.7.0",
         "parameters": [
           {
-            "name": "includeFolders",
+            "name": "includeSubFolders",
             "added": "91"
           }
         ]
@@ -37,7 +28,7 @@
         "name": "get",
         "parameters": [
           {
-            "name": "includeFolders",
+            "name": "includeSubFolders",
             "added": "91"
           }
         ]
@@ -46,7 +37,7 @@
         "name": "list",
         "parameters": [
           {
-            "name": "includeFolders",
+            "name": "includeSubFolders",
             "added": "91"
           }
         ]

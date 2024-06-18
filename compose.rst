@@ -101,9 +101,9 @@ beginForward(messageId, [forwardType], [details])
 
 Open a new message compose window forwarding a given message.
 
-**Note:** The compose format can be set by ``details.isPlainText`` or by specifying only one of ``details.body`` or ``details.plainTextBody``. Otherwise the default compose format of the selected identity is used.
+**Note:** The compose format can be set by :value:`details.isPlainText` or by specifying only one of :value:`details.body` or :value:`details.plainTextBody`. Otherwise the default compose format of the selected identity is used.
 
-**Note:** Specifying ``details.body`` and ``details.plainTextBody`` without also specifying ``details.isPlainText`` threw an exception in Thunderbird up to version 97. Since Thunderbird 98, this combination creates a compose window with the compose format of the selected identity, using the matching ``details.body`` or ``details.plainTextBody`` value.
+**Note:** Specifying :value:`details.body` and :value:`details.plainTextBody` without also specifying :value:`details.isPlainText` threw an exception in Thunderbird up to version 97. Since Thunderbird 98, this combination creates a compose window with the compose format of the selected identity, using the matching :value:`details.body` or :value:`details.plainTextBody` value.
 
 **Note:** If no identity is specified, this function is using the default identity and not the identity of the referenced message.
 
@@ -156,9 +156,9 @@ beginNew([messageId], [details])
 
 Open a new message compose window.
 
-**Note:** The compose format can be set by ``details.isPlainText`` or by specifying only one of ``details.body`` or ``details.plainTextBody``. Otherwise the default compose format of the selected identity is used.
+**Note:** The compose format can be set by :value:`details.isPlainText` or by specifying only one of :value:`details.body` or :value:`details.plainTextBody`. Otherwise the default compose format of the selected identity is used.
 
-**Note:** Specifying ``details.body`` and ``details.plainTextBody`` without also specifying ``details.isPlainText`` threw an exception in Thunderbird up to version 97. Since Thunderbird 98, this combination creates a compose window with the compose format of the selected identity, using the matching ``details.body`` or ``details.plainTextBody`` value.
+**Note:** Specifying :value:`details.body` and :value:`details.plainTextBody` without also specifying :value:`details.isPlainText` threw an exception in Thunderbird up to version 97. Since Thunderbird 98, this combination creates a compose window with the compose format of the selected identity, using the matching :value:`details.body` or :value:`details.plainTextBody` value.
 
 **Note:** If no identity is specified, this function is using the default identity and not the identity of the referenced message.
 
@@ -199,9 +199,9 @@ beginReply(messageId, [replyType], [details])
 
 Open a new message compose window replying to a given message.
 
-**Note:** The compose format can be set by ``details.isPlainText`` or by specifying only one of ``details.body`` or ``details.plainTextBody``. Otherwise the default compose format of the selected identity is used.
+**Note:** The compose format can be set by :value:`details.isPlainText` or by specifying only one of :value:`details.body` or :value:`details.plainTextBody`. Otherwise the default compose format of the selected identity is used.
 
-**Note:** Specifying ``details.body`` and ``details.plainTextBody`` without also specifying ``details.isPlainText`` threw an exception in Thunderbird up to version 97. Since Thunderbird 98, this combination creates a compose window with the compose format of the selected identity, using the matching ``details.body`` or ``details.plainTextBody`` value.
+**Note:** Specifying :value:`details.body` and :value:`details.plainTextBody` without also specifying :value:`details.isPlainText` threw an exception in Thunderbird up to version 97. Since Thunderbird 98, this combination creates a compose window with the compose format of the selected identity, using the matching :value:`details.body` or :value:`details.plainTextBody` value.
 
 **Note:** If no identity is specified, this function is using the default identity and not the identity of the referenced message.
 
@@ -289,7 +289,7 @@ getAttachmentFile(id)
 
 .. api-section-annotation-hack:: -- [Added in TB 98]
 
-Gets the content of a :ref:`compose.ComposeAttachment` as a `File <https://developer.mozilla.org/docs/Web/API/File>`__ object.
+Gets the content of a :ref:`compose.ComposeAttachment` as a <a href='https://developer.mozilla.org/docs/Web/API/File'>File</a> object.
 
 .. api-header::
    :label: Parameters
@@ -598,7 +598,7 @@ setActiveDictionaries(tabId, activeDictionaries)
 
 .. api-section-annotation-hack:: -- [Added in TB 102]
 
-Updates the active dictionaries. Throws if the ``activeDictionaries`` array contains unknown or invalid language identifiers.
+Updates the active dictionaries. Throws if the :value:`activeDictionaries` array contains unknown or invalid language identifiers.
 
 .. api-header::
    :label: Parameters
@@ -626,11 +626,11 @@ setComposeDetails(tabId, details)
 
 .. api-section-annotation-hack:: -- [Added in TB 74]
 
-Updates the compose window. The properties of the given :ref:`compose.ComposeDetails` object will be used to overwrite the current values of the specified compose window, so only properties that are to be changed should be included.
+Updates the compose window. The properties of the given :ref:`compose.ComposeDetails` object will be used to overwrite the current values of the specified compose window, so only properties that are to be changed should be included. Modified settings will be treated as user initiated, and turn off further automatic changes on these settings.
 
-When updating any of the array properties (``customHeaders`` and most address fields), make sure to first get the current values to not accidentally remove all existing entries when setting the new value.
+When updating any of the array properties (:value:`customHeaders` and most address fields), make sure to first get the current values to not accidentally remove all existing entries when setting the new value.
 
-**Note:** The compose format of an existing compose window cannot be changed. Since Thunderbird 98, setting conflicting values for ``details.body``, ``details.plainTextBody`` or ``details.isPlaintext`` no longer throws an exception, instead the compose window chooses the matching ``details.body`` or ``details.plainTextBody`` value and ignores the other.
+**Note:** The compose format of an existing compose window cannot be changed. Since Thunderbird 98, setting conflicting values for :value:`details.body`, :value:`details.plainTextBody` or :value:`details.isPlaintext` no longer throws an exception, instead the compose window chooses the matching :value:`details.body` or :value:`details.plainTextBody` value and ignores the other.
 
 .. api-header::
    :label: Parameters
@@ -778,6 +778,9 @@ Fired when saving a message as draft or template succeeded or failed.
          The used save mode.
          
          Supported values:
+         
+         .. api-member::
+            :name: :value:`autoSave`
          
          .. api-member::
             :name: :value:`draft`
@@ -956,7 +959,7 @@ onBeforeSend
 
 .. api-section-annotation-hack:: -- [Added in TB 74]
 
-Fired when a message is about to be sent from the compose window. This is a user input event handler. For asynchronous listeners some `restrictions <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions>`__ apply.
+Fired when a message is about to be sent from the compose window. This is a user input event handler. For asynchronous listeners some <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions'>restrictions</a> apply.
 
 .. api-header::
    :label: Parameters for onBeforeSend.addListener(listener)
@@ -1102,18 +1105,6 @@ Represents an attachment in a message being composed.
 
    
    .. api-member::
-      :name: ``getFile()``
-      :type: (function) **Deprecated.**
-      
-      Use :ref:`compose.getAttachmentFile` instead, for example in a backward-compatible drop-in wrapper function: 
-      
-      .. literalinclude:: includes/compose/getFile.js
-        :language: JavaScript
-      
-      
-   
-   
-   .. api-member::
       :name: ``id``
       :type: (integer)
       
@@ -1151,9 +1142,15 @@ Used by various functions to represent the state of a message being composed. No
    .. api-member::
       :name: [``additionalFccFolder``]
       :type: (:ref:`folders.MailFolderId` or :ref:`folders.MailFolder` or `string`, optional)
-      :annotation: -- [Added in TB 102]
       
       An additional fcc folder which can be selected while composing the message, an empty string if not used.
+   
+   
+   .. api-member::
+      :name: [``attachPublicPGPKey``]
+      :type: (boolean, optional)
+      
+      Whether the public OpenPGP key of the sending identity should be attached to the message.
    
    
    .. api-member::
@@ -1202,7 +1199,7 @@ Used by various functions to represent the state of a message being composed. No
       :type: (`string`, optional)
       :annotation: -- [Added in TB 102]
       
-      Defines the mime format of the sent message (ignored on plain text messages). Defaults to :value:`auto`, which will send html messages as plain text, if they do not include any formatting, and as :value:`both` otherwise (a multipart/mixed message).
+      Defines the MIME format of the sent message (ignored on plain text messages). Defaults to :value:`auto`, which will send html messages as plain text, if they do not include any formatting, and as :value:`both` otherwise (a multipart/mixed message).
       
       Supported values:
       
@@ -1238,7 +1235,7 @@ Used by various functions to represent the state of a message being composed. No
       :type: (:ref:`compose.ComposeRecipient`, optional)
       :annotation: -- [Added in TB 88]
       
-      *Caution*: Setting a value for ``from`` does not change the used identity, it overrides the FROM header. Many email servers do not accept emails where the FROM header does not match the sender identity. Must be set to exactly one valid email address.
+      *Caution*: Setting a value for :value:`from` does not change the used identity, it overrides the *From* header. Many email servers do not accept emails where the *From* header does not match the sender identity. Must be set to exactly one valid email address.
    
    
    .. api-member::
@@ -1246,7 +1243,14 @@ Used by various functions to represent the state of a message being composed. No
       :type: (string, optional)
       :annotation: -- [Added in TB 76]
       
-      The ID of an identity from the :doc:`accounts`. The settings from the identity will be used in the composed message. If ``replyTo`` is also specified, the ``replyTo`` property of the identity is overridden. The permission :permission:`accountsRead` is required to include the ``identityId``.
+      The ID of an identity from the :doc:`accounts`. The settings from the identity will be used in the composed message. If :value:`replyTo` is also specified, the :value:`replyTo` property of the identity is overridden. The permission :permission:`accountsRead` is required to include the :value:`identityId`.
+   
+   
+   .. api-member::
+      :name: [``isModified``]
+      :type: (boolean, optional)
+      
+      Whether the composer is considered modified by the user. A modified composer asks for confirmation, when it is closed.
    
    
    .. api-member::
@@ -1268,15 +1272,13 @@ Used by various functions to represent the state of a message being composed. No
    .. api-member::
       :name: [``overrideDefaultFcc``]
       :type: (boolean, optional)
-      :annotation: -- [Added in TB 102]
       
-      Indicates whether the default fcc setting (defined by the used identity) is being overridden for this message. Setting :value:`false` will clear the override. Setting :value:`true` will throw an *ExtensionError*, if ``overrideDefaultFccFolder`` is not set as well.
+      Indicates whether the default fcc setting (defined by the used identity) is being overridden for this message. Setting :value:`false` will clear the override. Setting :value:`true` will throw an *ExtensionError*, if :value:`overrideDefaultFccFolder` is not set as well.
    
    
    .. api-member::
       :name: [``overrideDefaultFccFolder``]
       :type: (:ref:`folders.MailFolderId` or :ref:`folders.MailFolder` or `string`, optional)
-      :annotation: -- [Added in TB 102]
       
        This value overrides the default fcc setting (defined by the used identity) for this message only. Either a :ref:`folders.MailFolder` specifying the folder for the copy of the sent message, or an empty string to not save a copy at all.
    
@@ -1333,6 +1335,13 @@ Used by various functions to represent the state of a message being composed. No
       :annotation: -- [Added in TB 102]
       
       Add the *Disposition-Notification-To* header to the message to requests the recipients email client to send a reply once the message has been received. Recipient server may strip the header and the recipient might ignore the request.
+   
+   
+   .. api-member::
+      :name: [``selectedEncryptionTechnology``]
+      :type: (:ref:`compose.EncryptionPropertiesSMIME` or :ref:`compose.EncryptionPropertiesOpenPGP`, optional)
+      
+      The selected encryption technology (:value:`OpenPGP` or :value:`S/MIME`) which is to be used to sign and/or encrypt the message. If the sending identity does not support encryption at all, this will be :value:`undefined`.
    
    
    .. api-member::
@@ -1421,7 +1430,7 @@ OR
             :name: ``id``
             :type: (string)
             
-            The ID of a contact or mailing list from the :doc:`contacts` and :doc:`mailingLists`.
+            The ID of a contact or mailing list from the :doc:`contacts` or :doc:`mailingLists`.
          
          
          .. api-member::
@@ -1499,12 +1508,79 @@ A custom header definition.
       :name: ``name``
       :type: (string)
       
-      Name of a custom header, must have a :value:`X-` prefix.
+      Name of a custom header, must be prefixed by :value:`X-` (but not by :value:`X-Mozilla-`) or be one of the explicitly allowed headers (:value:`MSIP_Labels`)
    
    
    .. api-member::
       :name: ``value``
       :type: (string)
+   
+
+.. _compose.EncryptionPropertiesOpenPGP:
+
+EncryptionPropertiesOpenPGP
+---------------------------
+
+.. api-section-annotation-hack:: 
+
+.. api-header::
+   :label: object
+
+   
+   .. api-member::
+      :name: ``encryptBody``
+      :type: (boolean)
+      
+      Whether encryption of the message body using the OpenPGP technology is enabled. **Note:** If encryption is enabled, but the <a href='https://support.mozilla.org/en-US/kb/thunderbird-help-cannot-encrypt'>preconditions</a> for sending an encrypted message are not met, the message cannot be sent.
+   
+   
+   .. api-member::
+      :name: ``encryptSubject``
+      :type: (boolean)
+      
+      Whether encryption of the message subject using the OpenPGP technology is enabled (only supported if encryption of the body is enabled a well).
+   
+   
+   .. api-member::
+      :name: ``name``
+      :type: (string)
+   
+   
+   .. api-member::
+      :name: ``signMessage``
+      :type: (boolean)
+      
+      Whether the message will be signed using the OpenPGP technology.
+   
+
+.. _compose.EncryptionPropertiesSMIME:
+
+EncryptionPropertiesSMIME
+-------------------------
+
+.. api-section-annotation-hack:: 
+
+.. api-header::
+   :label: object
+
+   
+   .. api-member::
+      :name: ``encryptBody``
+      :type: (boolean)
+      
+      Whether encryption of the message body using the S/MIME technology is enabled. **Note:** If encryption is enabled, but the <a href='https://support.mozilla.org/en-US/kb/thunderbird-help-cannot-encrypt'>preconditions</a> for sending an encrypted message are not met, the message cannot be sent.
+   
+   
+   .. api-member::
+      :name: ``name``
+      :type: (string)
+   
+   
+   .. api-member::
+      :name: ``signMessage``
+      :type: (boolean)
+      
+      Whether the message will be signed using the S/MIME technology
    
 
 .. _compose.FileAttachment:
@@ -1531,5 +1607,5 @@ Object used to add, update or rename an attachment in a message being composed.
       :name: [``name``]
       :type: (string, optional)
       
-      The new name for the attachment, as displayed to the user. If not specified, the name of the provided ``file`` object is used.
+      The new name for the attachment, as displayed to the user. If not specified, the name of the provided :value:`file` object is used.
    
