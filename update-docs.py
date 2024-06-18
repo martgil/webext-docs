@@ -11,6 +11,7 @@ OVERLAY_DIR = os.path.join(DEST_DIR, "overlay")
 EXAMPLE_DIR = os.path.join(DEST_DIR, "examples")
 
 current_namespace = None
+all_namespaces = []
 
 # enums have been moved inline and are no longer referenced
 # unique_id is no longer needed
@@ -902,6 +903,7 @@ if __name__ == "__main__":
                 
                 continue
 
+            all_namespaces.append(namespace["namespace"])
             additional_type_used = []
             current_namespace = namespace.copy()
             manifest = namespaces.get("manifest", None)
@@ -932,3 +934,8 @@ if __name__ == "__main__":
 
             with open(os.path.join(DEST_DIR, current_namespace["namespace"] + ".rst"), "w") as fp_output:
                 fp_output.write(format_namespace(manifest, current_namespace))
+
+    print ""
+    print "Found namespaces"
+    for x in range(len(all_namespaces)):
+        print all_namespaces[x]
