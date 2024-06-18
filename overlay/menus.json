@@ -7,7 +7,7 @@
         "description": "The different contexts a menu can appear in. More information about each context can be found in the `Supported UI Elements <|link-ui-elements|>`__ article on developer.thunderbird.net.",
         "enumChanges": {
           "all": {
-            "description": "Equivalent to the combination of all other contexts except for <value>tab</value> and <value>tools_menu</value>."
+            "description": "Equivalent to the combination of all other contexts except for <var>tab</var> and <var>tools_menu</var>."
           },
           "all_message_attachments": {
             "description": "Applies when the user context-clicks the summary of the message attachments of a displayed message with more than one attachment."
@@ -17,7 +17,7 @@
           },
           "action_menu": {
             "added": "115",
-            "description": "Applies when the user opened a browserAction button of type <value>menu</value> in a Manifest V3 extension."
+            "description": "Applies when the user opened a browserAction button of type <var>menu</var> in a Manifest V3 extension."
           },
           "audio": {
             "description": "Applies when the user context-clicks an audio element."
@@ -27,11 +27,11 @@
           },
           "browser_action_menu": {
             "added": "115",
-            "description": "Applies when the user opened a browserAction button of type <value>menu</value>."
+            "description": "Applies when the user opened a browserAction button of type <var>menu</var>."
           },
           "compose_action_menu": {
             "added": "115",
-            "description": "Applies when the user opened a composeAction button of type <value>menu</value>."
+            "description": "Applies when the user opened a composeAction button of type <var>menu</var>."
           },
           "compose_body": {
             "added": "115",
@@ -57,7 +57,7 @@
           },
           "message_display_action_menu": {
             "added": "115",
-            "description": "Applies when the user opened a messageDisplayAction button of type <value>menu</value>."
+            "description": "Applies when the user opened a messageDisplayAction button of type <var>menu</var>."
           },
           "message_list": {
             "description": "Applies when the user context-clicks in the message list (a.k.a. thread pane) of the main Thunderbird window."
@@ -92,7 +92,7 @@
           },
           "tools_menu": {
             "added": "88",
-            "description": "Applies when the user opens the <value>Tools</value> menu of Thunderbird's main menu."
+            "description": "Applies when the user opens the <var>Tools</var> menu of Thunderbird's main menu."
           }
         }
       },
@@ -101,9 +101,6 @@
         "properties": {
           "attachments": {
             "added": "83"
-          },
-          "selectedAccount": {
-            "added": "88"
           },
           "fieldId": {
             "added": "89"
@@ -115,9 +112,6 @@
         "properties": {
           "attachments": {
             "added": "83"
-          },
-          "selectedAccount": {
-            "added": "88"
           },
           "fieldId": {
             "added": "89"

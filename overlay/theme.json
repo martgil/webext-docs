@@ -84,7 +84,7 @@
         "choices": [
           {
             "type": "string",
-            "description": "A relative URL for an image bundled with the extension. For example <value>images/background.png</value>. The following image formats are supported: <li>JPEG <li>PNG <li>APNG <li>SVG (animated SVG is supported from Thunderbird 59) <li>GIF (animated GIF isn’t supported)"
+            "description": "A relative URL for an image bundled with the extension. For example <var>images/background.png</var>. The following image formats are supported: <li>JPEG <li>PNG <li>APNG <li>SVG (animated SVG is supported from Thunderbird 59) <li>GIF (animated GIF isn’t supported)"
           },
           {
             "type": "string",

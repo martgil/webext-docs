@@ -49,8 +49,8 @@ Functions
 
 .. _accounts.get:
 
-get(accountId, [includeFolders])
---------------------------------
+get(accountId, [includeSubFolders])
+-----------------------------------
 
 .. api-section-annotation-hack:: 
 
@@ -66,11 +66,11 @@ Returns details of the requested account, or :value:`null` if it doesn't exist.
    
    
    .. api-member::
-      :name: [``includeFolders``]
+      :name: [``includeSubFolders``]
       :type: (boolean, optional)
       :annotation: -- [Added in TB 91]
       
-      Specifies whether the returned :ref:`accounts.MailAccount` object should included the account's folders. Defaults to :value:`true`.
+      Specifies whether the :ref:`folders.MailFolder` in the :value:`rootFolder` property of the returned :ref:`accounts.MailAccount` should populate its :value:`subFolders` property, and include all (nested!) subfolders. Defaults to :value:`false`.
    
 
 .. api-header::
@@ -90,8 +90,8 @@ Returns details of the requested account, or :value:`null` if it doesn't exist.
 
 .. _accounts.getDefault:
 
-getDefault([includeFolders])
-----------------------------
+getDefault([includeSubFolders])
+-------------------------------
 
 .. api-section-annotation-hack:: -- [Added in TB 85, backported to TB 78.7.0]
 
@@ -102,11 +102,11 @@ Returns the default account, or :value:`null` if it is not defined.
 
    
    .. api-member::
-      :name: [``includeFolders``]
+      :name: [``includeSubFolders``]
       :type: (boolean, optional)
       :annotation: -- [Added in TB 91]
       
-      Specifies whether the returned :ref:`accounts.MailAccount` object should included the account's folders. Defaults to :value:`true`.
+      Specifies whether the :ref:`folders.MailFolder` in the :value:`rootFolder` property of the default :ref:`accounts.MailAccount` should populate its :value:`subFolders` property, and include all (nested!) subfolders. Defaults to :value:`false`
    
 
 .. api-header::
@@ -114,7 +114,7 @@ Returns the default account, or :value:`null` if it is not defined.
 
    
    .. api-member::
-      :type: :ref:`accounts.MailAccount`
+      :type: :ref:`accounts.MailAccount` or null
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -126,8 +126,8 @@ Returns the default account, or :value:`null` if it is not defined.
 
 .. _accounts.list:
 
-list([includeFolders])
-----------------------
+list([includeSubFolders])
+-------------------------
 
 .. api-section-annotation-hack:: 
 
@@ -138,11 +138,11 @@ Returns all mail accounts. They will be returned in the same order as used in Th
 
    
    .. api-member::
-      :name: [``includeFolders``]
+      :name: [``includeSubFolders``]
       :type: (boolean, optional)
       :annotation: -- [Added in TB 91]
       
-      Specifies whether the returned :ref:`accounts.MailAccount` objects should included their account's folders. Defaults to :value:`true`.
+      Specifies whether the :ref:`folders.MailFolder` in the :value:`rootFolder` property of each found :ref:`accounts.MailAccount` should populate its :value:`subFolders` property, and include all (nested!) subfolders. Defaults to :value:`false`.
    
 
 .. api-header::
@@ -243,7 +243,7 @@ onUpdated
 
 .. api-section-annotation-hack:: -- [Added in TB 98]
 
-Fired when a property of an account has been modified. Folders and identities of accounts are not monitored by this event, use the dedicated folder and identity events instead. A changed ``defaultIdentity`` is reported only after a different identity has been assigned as default identity, but not after a property of the default identity has been changed.
+Fired when a property of an account has been modified. Folders and identities of accounts are not monitored by this event, use the dedicated folder and identity events instead. A changed :value:`defaultIdentity` is reported only after a different identity has been assigned as default identity, but not after a property of the default identity has been changed.
 
 .. api-header::
    :label: Parameters for onUpdated.addListener(listener)
@@ -300,7 +300,7 @@ MailAccount
 
 .. api-section-annotation-hack:: 
 
-An object describing a mail account, as returned for example by the :ref:`accounts.list` and :ref:`accounts.get` methods. The ``folders`` property is only included if requested.
+An object describing a mail account, as returned for example by the :ref:`accounts.list` and :ref:`accounts.get` methods.
 
 .. api-header::
    :label: object
@@ -329,17 +329,17 @@ An object describing a mail account, as returned for example by the :ref:`accoun
    
    
    .. api-member::
+      :name: ``rootFolder``
+      :type: (:ref:`folders.MailFolder`)
+      
+      The root folder associated with this account.
+   
+   
+   .. api-member::
       :name: ``type``
       :type: (string)
       
       What sort of account this is, e.g. :value:`imap`, :value:`nntp`, or :value:`pop3`.
-   
-   
-   .. api-member::
-      :name: [``rootFolder``]
-      :type: (:ref:`folders.MailFolder`, optional)
-      
-      The root folder associated with this account.
    
 
 .. _accounts.MailAccountId:
@@ -353,6 +353,38 @@ A unique id representing a :ref:`accounts.MailAccount`.
 
 .. api-header::
    :label: string
+
+.. _accounts.MailAccountType:
+
+MailAccountType
+---------------
+
+.. api-section-annotation-hack:: 
+
+The type of an account.
+
+.. api-header::
+   :label: `string`
+
+   
+   .. container:: api-member-node
+   
+      .. container:: api-member-description-only
+         
+         Supported values:
+         
+         .. api-member::
+            :name: :value:`imap`
+         
+         .. api-member::
+            :name: :value:`local`
+         
+         .. api-member::
+            :name: :value:`nntp`
+         
+         .. api-member::
+            :name: :value:`pop3`
+   
 
 
 .. rst-class:: examples

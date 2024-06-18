@@ -30,7 +30,7 @@ getTabValue(tabId, key)
 
 .. api-section-annotation-hack:: 
 
-Retrieve a previously stored value for a given tab, given its key.
+Retrieve a previously stored value for a given tab, given its key. Returns :value:`undefined` if the key does not exist.
 
 .. api-header::
    :label: Parameters
@@ -56,6 +56,8 @@ Retrieve a previously stored value for a given tab, given its key.
    
    .. api-member::
       :type: string
+      
+      This may return undefined
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise

@@ -40,55 +40,22 @@ tab, which has limited functionality compared to tabs from the main window.
 Functions
 =========
 
-.. _messageDisplay.getDisplayedMessage:
-
-getDisplayedMessage(tabId)
---------------------------
-
-.. api-section-annotation-hack:: 
-
-Gets the currently displayed message in the specified tab (even if the tab itself is currently not visible). It returns :value:`null` if no messages are displayed, or if multiple messages are displayed.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: ``tabId``
-      :type: (integer)
-   
-
-.. api-header::
-   :label: Return type (`Promise`_)
-
-   
-   .. api-member::
-      :type: :ref:`messages.MessageHeader` or null
-   
-   
-   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
-.. api-header::
-   :label: Required permissions
-
-   - :permission:`messagesRead`
-
 .. _messageDisplay.getDisplayedMessages:
 
-getDisplayedMessages(tabId)
----------------------------
+getDisplayedMessages([tabId])
+-----------------------------
 
 .. api-section-annotation-hack:: -- [Added in TB 81, backported to TB 78.4.0]
 
-Gets an array of the currently displayed messages in the specified tab (even if the tab itself is currently not visible). The array is empty if no messages are displayed.
+Gets an array of the currently displayed messages in the specified tab (even if the tab itself is currently not visible), or the currently active tab. The array is empty if no messages are displayed.
 
 .. api-header::
    :label: Parameters
 
    
    .. api-member::
-      :name: ``tabId``
-      :type: (integer)
+      :name: [``tabId``]
+      :type: (integer, optional)
    
 
 .. api-header::
@@ -96,7 +63,7 @@ Gets an array of the currently displayed messages in the specified tab (even if 
 
    
    .. api-member::
-      :type: array of :ref:`messages.MessageHeader`
+      :type: :ref:`messages.MessageList`
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -143,7 +110,7 @@ Opens a message in a new tab or in a new window.
          :name: [``headerMessageId``]
          :type: (string, optional)
          
-         The headerMessageId of a message to be opened. Will throw an *ExtensionError*, if the provided ``headerMessageId`` is unknown or invalid. Not supported for external messages.
+         The headerMessageId of a message to be opened. Will throw an *ExtensionError*, if the provided :value:`headerMessageId` is unknown or invalid. Not supported for external messages.
       
       
       .. api-member::
@@ -165,7 +132,7 @@ Opens a message in a new tab or in a new window.
          :name: [``messageId``]
          :type: (:ref:`messages.MessageId`, optional)
          
-         The id of a message to be opened. Will throw an *ExtensionError*, if the provided ``messageId`` is unknown or invalid.
+         The id of a message to be opened. Will throw an *ExtensionError*, if the provided :value:`messageId` is unknown or invalid.
       
       
       .. api-member::
@@ -196,49 +163,6 @@ Opens a message in a new tab or in a new window.
 Events
 ======
 
-.. _messageDisplay.onMessageDisplayed:
-
-onMessageDisplayed
-------------------
-
-.. api-section-annotation-hack:: 
-
-Fired when a message is displayed, whether in a 3-pane tab, a message tab, or a message window.
-
-.. api-header::
-   :label: Parameters for onMessageDisplayed.addListener(listener)
-
-   
-   .. api-member::
-      :name: ``listener(tab, message)``
-      
-      A function that will be called when this event occurs.
-   
-
-.. api-header::
-   :label: Parameters passed to the listener function
-
-   
-   .. api-member::
-      :name: ``tab``
-      :type: (:ref:`tabs.Tab`)
-      
-      .. container:: api-member-inline-changes
-      
-         :Changes in TB 76: previously just the tab's ID
-      
-   
-   
-   .. api-member::
-      :name: ``message``
-      :type: (:ref:`messages.MessageHeader`)
-   
-
-.. api-header::
-   :label: Required permissions
-
-   - :permission:`messagesRead`
-
 .. _messageDisplay.onMessagesDisplayed:
 
 onMessagesDisplayed
@@ -253,7 +177,7 @@ Fired when either a single message is displayed or when multiple messages are di
 
    
    .. api-member::
-      :name: ``listener(tab, messages)``
+      :name: ``listener(tab, displayedMessages)``
       
       A function that will be called when this event occurs.
    
@@ -268,8 +192,8 @@ Fired when either a single message is displayed or when multiple messages are di
    
    
    .. api-member::
-      :name: ``messages``
-      :type: (array of :ref:`messages.MessageHeader`)
+      :name: ``displayedMessages``
+      :type: (:ref:`messages.MessageList`)
    
 
 .. api-header::

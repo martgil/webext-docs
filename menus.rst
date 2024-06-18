@@ -150,7 +150,7 @@ Creates a new context menu item. Note that if an error occurs during creation, y
          :name: [``title``]
          :type: (string, optional)
          
-         The text to be displayed in the item; this is *required* unless ``type`` is :value:`separator`. When the context is :value:`selection`, you can use :value:`%s` within the string to show the selected text. For example, if this parameter's value is :value:`Translate '%s' to Latin` and the user selects the word :value:`cool`, the context menu item for the selection is :value:`Translate 'cool' to Latin`. To specify an access key for the new menu entry, include a :value:`&` before the desired letter in the title. For example :value:`&Help`.
+         The text to be displayed in the item; this is *required* unless :value:`type` is :value:`separator`. When the context is :value:`selection`, you can use :value:`%s` within the string to show the selected text. For example, if this parameter's value is :value:`Translate '%s' to Latin` and the user selects the word :value:`cool`, the context menu item for the selection is :value:`Translate 'cool' to Latin`. To specify an access key for the new menu entry, include a :value:`&` before the desired letter in the title. For example :value:`&Help`.
       
       
       .. api-member::
@@ -216,7 +216,7 @@ Retrieve the element that was associated with a recent `contextmenu <https://dev
       :name: ``targetElementId``
       :type: (integer)
       
-      The identifier of the clicked element, available as ``info.targetElementId`` in the :ref:`menus.onShown` and :ref:`menus.onClicked` events.
+      The identifier of the clicked element, available as :value:`info.targetElementId` in the :ref:`menus.onShown` and :ref:`menus.onClicked` events.
    
 
 .. api-header::
@@ -255,7 +255,7 @@ Show the matching menu items from this extension instead of the default menu. Th
          :name: [``context``]
          :type: (`string`, optional)
          
-         ContextType to override, to allow menu items from other extensions in the menu. Currently only :value:`tab` is supported. ``contextOptions.showDefaults`` cannot be used with this option.
+         ContextType to override, to allow menu items from other extensions in the menu. Currently only :value:`tab` is supported. :value:`contextOptions.showDefaults` cannot be used with this option.
          
          Supported values:
          
@@ -558,7 +558,7 @@ ContextType
 
 .. api-section-annotation-hack:: 
 
-The different contexts a menu can appear in. More information about each context can be found in the `Supported UI Elements <https://developer.thunderbird.net/add-ons/mailextensions/supported-ui-elements#menu-items>`__ article on developer.thunderbird.net.
+The different contexts a menu can appear in. More information about each context can be found in the `Supported UI Elements <|link-ui-elements|>`__ article on developer.thunderbird.net.
 
 .. api-header::
    :label: `string`
@@ -569,6 +569,17 @@ The different contexts a menu can appear in. More information about each context
       .. container:: api-member-description-only
          
          Supported values:
+         
+         .. api-member::
+            :name: :value:`action`
+         
+            Applies when the user context-clicks a browserAction button in a Manifest V3 extension.
+         
+         .. api-member::
+            :name: :value:`action_menu`
+            :annotation: -- [Added in TB 115]
+         
+            Applies when the user opened a browserAction button of type :value:`menu` in a Manifest V3 extension.
          
          .. api-member::
             :name: :value:`all`
@@ -686,30 +697,6 @@ The different contexts a menu can appear in. More information about each context
             :name: :value:`video`
          
             Applies when the user context-clicks a video element.
-   
-
-OR
-
-.. api-header::
-   :label: `string`
-
-   
-   .. container:: api-member-node
-   
-      .. container:: api-member-description-only
-         
-         Supported values:
-         
-         .. api-member::
-            :name: :value:`action`
-         
-            Applies when the user context-clicks a browserAction button in a Manifest V3 extension.
-         
-         .. api-member::
-            :name: :value:`action_menu`
-            :annotation: -- [Added in TB 115]
-         
-            Applies when the user opened a browserAction button of type :value:`menu` in a Manifest V3 extension.
    
 
 .. _menus.ItemType:
@@ -850,7 +837,7 @@ Information sent when a context menu item is clicked.
       :name: [``displayedFolder``]
       :type: (:ref:`folders.MailFolder`, optional)
       
-      The displayed folder, if the context menu was opened in the message list. The :permission:`accountsRead` permission is required.
+      The displayed folder. Only available for the :value:`message_list` context. The :permission:`accountsRead` permission is required.
    
    
    .. api-member::
@@ -931,25 +918,17 @@ Information sent when a context menu item is clicked.
    
    
    .. api-member::
-      :name: [``selectedAccount``]
-      :type: (:ref:`accounts.MailAccount`, optional)
-      :annotation: -- [Added in TB 88]
+      :name: [``selectedFolders``]
+      :type: (array of :ref:`folders.MailFolder`, optional)
       
-      The selected account, if the context menu was opened on an account entry in the folder pane. The :permission:`accountsRead` permission is required.
-   
-   
-   .. api-member::
-      :name: [``selectedFolder``]
-      :type: (:ref:`folders.MailFolder`, optional)
-      
-      The selected folder, if the context menu was opened in the folder pane. The :permission:`accountsRead` permission is required.
+      The selected folders in the folder pane. Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required. The returned selection includes the folders which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected folders. For example, if the user has multiple folders selected and opens the context menu for a folder outside that selection, only the folder for which the context menu was opened, is returned.
    
    
    .. api-member::
       :name: [``selectedMessages``]
       :type: (:ref:`messages.MessageList`, optional)
       
-      The selected messages, if the context menu was opened in the message list. The :permission:`messagesRead` permission is required.
+      The selected message(s) in the message list (a.k.a. the thread pane). Only available for the :value:`message_list` context. The :permission:`messagesRead` permission is required. The returned selection includes the messages which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected messages. For example, if the user has multiple messages selected and opens the context menu for a message outside that selection, only the message for which the context menu was opened, is returned.
    
    
    .. api-member::
@@ -1033,7 +1012,7 @@ Information sent when a context menu is being shown. Some properties are only in
       :name: [``displayedFolder``]
       :type: (:ref:`folders.MailFolder`, optional)
       
-      The displayed folder, if the context menu was opened in the message list. The :permission:`accountsRead` permission is required.
+      The displayed folder. Only available for the :value:`message_list` context. The :permission:`accountsRead` permission is required.
    
    
    .. api-member::
@@ -1100,25 +1079,17 @@ Information sent when a context menu is being shown. Some properties are only in
    
    
    .. api-member::
-      :name: [``selectedAccount``]
-      :type: (:ref:`accounts.MailAccount`, optional)
-      :annotation: -- [Added in TB 88]
+      :name: [``selectedFolders``]
+      :type: (array of :ref:`folders.MailFolder`, optional)
       
-      The selected account, if the context menu was opened on an account entry in the folder pane. The :permission:`accountsRead` permission is required.
-   
-   
-   .. api-member::
-      :name: [``selectedFolder``]
-      :type: (:ref:`folders.MailFolder`, optional)
-      
-      The selected folder, if the context menu was opened in the folder pane. The :permission:`accountsRead` permission is required.
+      The selected folders in the folder pane. Only available for the :value:`folder_pane` context. The :permission:`accountsRead` permission is required. The returned selection includes the folders which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected folders. For example, if the user has multiple folders selected and opens the context menu for a folder outside that selection, only the folder for which the context menu was opened, is returned.
    
    
    .. api-member::
       :name: [``selectedMessages``]
       :type: (:ref:`messages.MessageList`, optional)
       
-      The selected messages, if the context menu was opened in the message list. The :permission:`messagesRead` permission is required.
+      The selected message(s) in the message list (a.k.a. the thread pane). Only available for the :value:`message_list` context. The :permission:`messagesRead` permission is required. The returned selection includes the messages which would be affected by a context action through Thunderbirds UI, which may not be the actuall selected messages. For example, if the user has multiple messages selected and opens the context menu for a message outside that selection, only the message for which the context menu was opened, is returned.
    
    
    .. api-member::

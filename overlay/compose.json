@@ -46,8 +46,8 @@
           "customHeaders": {
             "added": "100"
           },
-          "additionalFccFolder": {
-            "added": "102"
+          "additionalFccFolderId": {
+            "added": "125"
           },
           "attachVCard": {
             "added": "102"
@@ -58,11 +58,8 @@
           "deliveryStatusNotification": {
             "added": "102"
           },
-          "overrideDefaultFcc": {
-            "added": "102"
-          },
-          "overrideDefaultFccFolder": {
-            "added": "102"
+          "overrideDefaultFccFolderId": {
+            "added": "125"
           },
           "priority": {
             "added": "102"
@@ -87,11 +84,6 @@
           "size": {
             "added": "83",
             "backported": "78.5.0"
-          },
-          "getFile()": {
-            "deprecated": true,
-            "type": "function",
-            "description": "Use :ref:`compose.getAttachmentFile` instead, for example in a backward-compatible drop-in wrapper function: <literalinclude>includes/compose/getFile.js<lang>JavaScript</lang></literalinclude>"
           }
         }
       },

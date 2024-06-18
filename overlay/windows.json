@@ -40,10 +40,10 @@
             "description": "A non-modal stand-alone popup window."
           },
           "panel": {
-            "description": "Not supported, same as <value>popup</value>"
+            "description": "Not supported, same as <var>popup</var>"
           },
           "detached_panel": {
-            "description": "Not supported, same as <value>popup</value>"
+            "description": "Not supported, same as <var>popup</var>"
           }
         }
       }

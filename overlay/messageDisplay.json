@@ -3,9 +3,6 @@
     "namespace": "messageDisplay",
     "functions": [
       {
-        "name": "getDisplayedMessage"
-      },
-      {
         "name": "getDisplayedMessages",
         "added": "81",
         "backported": "78.4.0"
@@ -16,17 +13,6 @@
       }
     ],
     "events": [
-      {
-        "name": "onMessageDisplayed",
-        "parameters": [
-          {
-            "name": "tab",
-            "changed": {
-              "76": "previously just the tab's ID"
-            }
-          }
-        ]
-      },
       {
         "name": "onMessagesDisplayed",
         "added": "81",

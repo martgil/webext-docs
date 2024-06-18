@@ -80,6 +80,13 @@ Manifest file properties
    
    
    .. api-member::
+      :name: [``default_area``]
+      :type: (string, optional) **Deprecated.**
+      
+      Defines the location the action button will appear. Deprecated and ignored. Replaced by :value:`allowed_spaces`
+   
+   
+   .. api-member::
       :name: [``default_icon``]
       :type: (:ref:`action.IconPath`, optional)
       
@@ -126,7 +133,7 @@ Manifest file properties
       :name: [``theme_icons``]
       :type: (array of :ref:`action.ThemeIcons`, optional)
       
-      Specifies dark and light icons to be used with themes. The ``light`` icon is used on dark backgrounds and vice versa. **Note:** The default theme uses the ``default_icon`` for light backgrounds (if specified).
+      Specifies dark and light icons to be used with themes. The :value:`light` icon is used on dark backgrounds and vice versa. **Note:** The default theme uses the :value:`default_icon` for light backgrounds (if specified).
    
    
    .. api-member::
@@ -162,7 +169,7 @@ disable([tabId])
 
 .. api-section-annotation-hack:: 
 
-Disables the action button for a specific tab (if a ``tabId`` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well.
+Disables the action button for a specific tab (if a :value:`tabId` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well.
 
 .. api-header::
    :label: Parameters
@@ -182,7 +189,7 @@ enable([tabId])
 
 .. api-section-annotation-hack:: 
 
-Enables the action button for a specific tab (if a ``tabId`` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well. By default, an action button is enabled.
+Enables the action button for a specific tab (if a :value:`tabId` is provided), or for all tabs which do not have a custom enable state. Once the enable state of a tab has been updated individually, all further changes to its state have to be done individually as well. By default, an action button is enabled.
 
 .. api-header::
    :label: Parameters
@@ -216,7 +223,7 @@ Gets the badge background color of the action button.
          :name: [``tabId``]
          :type: (integer, optional)
          
-         Specifies for which tab the badge background color should be retrieved. If no tab is specified, the global label is retrieved.
+         Specifies for which tab the badge background color should be retrieved. If no tab is specified, the global value is retrieved.
       
       
       .. api-member::
@@ -258,7 +265,7 @@ Gets the badge text of the action button.
          :name: [``tabId``]
          :type: (integer, optional)
          
-         Specifies for which tab the badge text should be retrieved. If no tab is specified, the global label is retrieved.
+         Specifies for which tab the badge text should be retrieved. If no tab is specified, the global value is retrieved.
       
       
       .. api-member::
@@ -279,14 +286,14 @@ Gets the badge text of the action button.
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-.. _action.getLabel:
+.. _action.getBadgeTextColor:
 
-getLabel(details)
------------------
+getBadgeTextColor(details)
+--------------------------
 
-.. api-section-annotation-hack:: -- [Added in TB 84.0b3, backported to TB 78.6.1]
+.. api-section-annotation-hack:: 
 
-Gets the label of the action button.
+Gets the text color of the badge.
 
 .. api-header::
    :label: Parameters
@@ -300,7 +307,7 @@ Gets the label of the action button.
          :name: [``tabId``]
          :type: (integer, optional)
          
-         Specifies for which tab the label should be retrieved. If no tab is specified, the global label is retrieved.
+         Specifies for which tab the badge text color should be retrieved. If no tab is specified, the global value is retrieved.
       
       
       .. api-member::
@@ -316,7 +323,49 @@ Gets the label of the action button.
 
    
    .. api-member::
-      :type: string
+      :type: :ref:`action.ColorArray`
+   
+   
+   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+.. _action.getLabel:
+
+getLabel(details)
+-----------------
+
+.. api-section-annotation-hack:: -- [Added in TB 84.0b3, backported to TB 78.6.1]
+
+Gets the label of the action button. Returns :value:`null`, if no label has been set and the title is used.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: ``details``
+      :type: (object)
+      
+      .. api-member::
+         :name: [``tabId``]
+         :type: (integer, optional)
+         
+         Specifies for which tab the label should be retrieved. If no tab is specified, the global value is retrieved.
+      
+      
+      .. api-member::
+         :name: [``windowId``]
+         :type: (integer, optional) **Unsupported.**
+         
+         Will throw an error if used.
+      
+   
+
+.. api-header::
+   :label: Return type (`Promise`_)
+
+   
+   .. api-member::
+      :type: string or null
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -505,7 +554,7 @@ Sets the background color for the badge.
          :name: ``color``
          :type: (string or :ref:`action.ColorArray` or null)
          
-         The color to use as background in the badge. Cleared by setting it to :value:`null` or an empty string.
+         The color to use as background in the badge. Cleared by setting it to :value:`null`.
       
       
       .. api-member::
@@ -562,6 +611,45 @@ Sets the badge text for the action button. The badge is displayed on top of the 
       
    
 
+.. _action.setBadgeTextColor:
+
+setBadgeTextColor(details)
+--------------------------
+
+.. api-section-annotation-hack:: 
+
+Sets the text color for the badge.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: ``details``
+      :type: (object)
+      
+      .. api-member::
+         :name: ``color``
+         :type: (string or :ref:`action.ColorArray` or null)
+         
+         The color to use as text color in the badge. Cleared by setting it to :value:`null`.
+      
+      
+      .. api-member::
+         :name: [``tabId``]
+         :type: (integer, optional)
+         
+         Sets the text color for the badge only for the given tab.
+      
+      
+      .. api-member::
+         :name: [``windowId``]
+         :type: (integer, optional) **Unsupported.**
+         
+         Will throw an error if used.
+      
+   
+
 .. _action.setIcon:
 
 setIcon(details)
@@ -569,7 +657,7 @@ setIcon(details)
 
 .. api-section-annotation-hack:: 
 
-Sets the icon for the action button. Either the ``path`` or the ``imageData`` property must be specified.
+Sets the icon for the action button. Either the :value:`path` or the :value:`imageData` property must be specified.
 
 .. api-header::
    :label: Parameters

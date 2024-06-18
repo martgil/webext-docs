@@ -133,7 +133,7 @@ Returns details of the requested identity, or :value:`null` if it doesn't exist.
 
    
    .. api-member::
-      :type: :ref:`identities.MailIdentity`
+      :type: :ref:`identities.MailIdentity` or null
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -166,7 +166,7 @@ Returns the default identity for the requested account, or :value:`null` if it i
 
    
    .. api-member::
-      :type: :ref:`identities.MailIdentity`
+      :type: :ref:`identities.MailIdentity` or null
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -395,6 +395,31 @@ Fired when one or more properties of an identity have been modified. The returne
 Types
 =====
 
+.. _identities.EncryptionCapabilities:
+
+EncryptionCapabilities
+----------------------
+
+.. api-section-annotation-hack:: 
+
+.. api-header::
+   :label: object
+
+   
+   .. api-member::
+      :name: ``canEncrypt``
+      :type: (boolean)
+      
+      Whether the encryption technology is configured to support message encryption.
+   
+   
+   .. api-member::
+      :name: ``canSign``
+      :type: (boolean)
+      
+      Whether the encryption technology is configured to support message signing.
+   
+
 .. _identities.MailIdentity:
 
 MailIdentity
@@ -410,7 +435,7 @@ MailIdentity
       :name: [``accountId``]
       :type: (:ref:`accounts.MailAccountId`, optional)
       
-      The id of the :ref:`accounts.MailAccount` this identity belongs to. The ``accountId`` property is read-only.
+      The id of the :ref:`accounts.MailAccount` this identity belongs to. The :value:`accountId` property is read-only.
    
    
    .. api-member::
@@ -429,10 +454,31 @@ MailIdentity
    
    
    .. api-member::
+      :name: [``encryptionCapabilities``]
+      :type: (object, optional)
+      
+      The encryption capabilities of this identity. Read only.
+      
+      .. api-member::
+         :name: ``OpenPGP``
+         :type: (:ref:`identities.EncryptionCapabilities`)
+         
+         The capabilities of this identity for the OpenPGP encryption technology.
+      
+      
+      .. api-member::
+         :name: ``S/MIME``
+         :type: (:ref:`identities.EncryptionCapabilities`)
+         
+         The capabilities of this identity for the S/MIME encryption technology.
+      
+   
+   
+   .. api-member::
       :name: [``id``]
       :type: (string, optional)
       
-      A unique identifier for this identity. The ``id`` property is read-only.
+      A unique identifier for this identity. The :value:`id` property is read-only.
    
    
    .. api-member::

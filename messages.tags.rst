@@ -35,6 +35,11 @@ Permissions
 
    List message tags
 
+.. api-member::
+   :name: :permission:`messagesModifyPermanent`
+
+   Permanently modify the source of your messages (including headers, body and attachments)
+
 .. rst-class:: api-main-section
 
 Functions

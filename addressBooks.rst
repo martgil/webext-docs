@@ -431,7 +431,7 @@ A node representing an address book.
       :name: [``parentId``]
       :type: (string, optional)
       
-      The ``id`` of the parent object.
+      The :value:`id` of the parent object.
    
    
    .. api-member::

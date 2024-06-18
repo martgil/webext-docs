@@ -18,25 +18,6 @@
     ],
     "functions": [
       {
-        "name": "createTag",
-        "added": "102",
-        "sort": "3"
-      },
-      {
-        "name": "deleteTag",
-        "added": "102",
-        "sort": "3"
-      },
-      {
-        "name": "listTags",
-        "sort": "3"
-      },
-      {
-        "name": "updateTag",
-        "added": "102",
-        "sort": "3"
-      },
-      {
         "name": "getRaw",
         "added": "72",
         "backported": "68.7"

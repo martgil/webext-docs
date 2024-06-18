@@ -39,11 +39,6 @@ Permissions
 
    Access browser tabs
 
-.. api-member::
-   :name: :permission:`tabHide`
-
-   Hide and show browser tabs
-
 .. rst-class:: api-main-section
 
 Functions
@@ -75,7 +70,7 @@ Connects to the content script(s) in the specified tab. The `runtime.onConnect <
          :name: [``frameId``]
          :type: (integer, optional)
          
-         Open a port to a specific frame identified by ``frameId`` instead of all frames in the tab.
+         Open a port to a specific frame identified by :value:`frameId` instead of all frames in the tab.
       
       
       .. api-member::
@@ -105,7 +100,7 @@ create(createProperties)
 
 .. api-section-annotation-hack:: 
 
-Creates a new content tab. Use the :ref:`messageDisplay_api` to open messages. Only supported in :value:`normal` windows. Same-site links in the loaded page are opened within Thunderbird, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a `content script <https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3>`__ , capture click events and handle them manually.
+Creates a new content tab. Use the :doc:`messageDisplay` to open messages. Only supported in :value:`normal` windows. Same-site links in the loaded page are opened within Thunderbird, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a `content script <https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3>`__ , capture click events and handle them manually.
 
 .. api-header::
    :label: Parameters
@@ -115,7 +110,7 @@ Creates a new content tab. Use the :ref:`messageDisplay_api` to open messages. O
       :name: ``createProperties``
       :type: (object)
       
-      Properties for the new tab. Defaults to an empty tab, if no ``url`` is provided.
+      Properties for the new tab. Defaults to an empty tab, if no :value:`url` is provided.
       
       .. api-member::
          :name: [``active``]
@@ -128,7 +123,7 @@ Creates a new content tab. Use the :ref:`messageDisplay_api` to open messages. O
          :name: [``cookieStoreId``]
          :type: (string, optional)
          
-         The `CookieStore <|link-cookieStore|>`__ id the new tab should use. Either a custom id created using the `contextualIdentities API <|link-contextualIdentity|>`__, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
+         The `CookieStore <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid>`__ id the new tab should use. Either a custom id created using the `contextualIdentities API <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities>`__, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
       
       
       .. api-member::
@@ -199,53 +194,7 @@ Duplicates a tab.
    .. api-member::
       :type: :ref:`tabs.Tab`
       
-      Details about the duplicated tab. The :ref:`tabs.Tab` object doesn't contain ``url``, ``title`` and ``favIconUrl`` if the :permission:`tabs` permission has not been requested.
-   
-   
-   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
-.. _tabs.executeScript:
-
-executeScript([tabId], details)
--------------------------------
-
-.. api-section-annotation-hack:: 
-
-Injects JavaScript code into a page. For details, see the `programmatic injection <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts>`__ section of the content scripts doc.
-
-.. api-header::
-   :label: Changes in Thunderbird 77
-
-   
-   .. api-member::
-      :name: With the :permission:`compose` permission, this now works in the document of email messages during composition.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: [``tabId``]
-      :type: (integer, optional)
-      
-      The ID of the tab in which to run the script; defaults to the active tab of the current window.
-   
-   
-   .. api-member::
-      :name: ``details``
-      :type: (`InjectDetails <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/extensionTypes/InjectDetails>`__)
-      
-      Details of the script to run.
-   
-
-.. api-header::
-   :label: Return type (`Promise`_)
-
-   
-   .. api-member::
-      :type: array of any
-      
-      The result of the script in every injected frame.
+      Details about the duplicated tab. The :ref:`tabs.Tab` object doesn't contain :value:`url`, :value:`title` and :value:`favIconUrl` if the :permission:`tabs` permission has not been requested.
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -285,7 +234,7 @@ getCurrent()
 
 .. api-section-annotation-hack:: 
 
-Gets the tab that this script call is being made from. May be undefined if called from a non-tab context (for example: a background page or popup view).
+Gets the tab that this script call is being made from. May be :value:`undefined` if called from a non-tab context (for example: a background page or popup view).
 
 .. api-header::
    :label: Return type (`Promise`_)
@@ -293,43 +242,11 @@ Gets the tab that this script call is being made from. May be undefined if calle
    
    .. api-member::
       :type: :ref:`tabs.Tab`
+      
+      This may return undefined
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
-.. _tabs.insertCSS:
-
-insertCSS([tabId], details)
----------------------------
-
-.. api-section-annotation-hack:: 
-
-Injects CSS into a page. For details, see the `programmatic injection <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts>`__ section of the content scripts doc.
-
-.. api-header::
-   :label: Changes in Thunderbird 77
-
-   
-   .. api-member::
-      :name: With the :permission:`compose` permission, this now works in the document of email messages during composition.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: [``tabId``]
-      :type: (integer, optional)
-      
-      The ID of the tab in which to insert the CSS; defaults to the active tab of the current window.
-   
-   
-   .. api-member::
-      :name: ``details``
-      :type: (`InjectDetails <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/extensionTypes/InjectDetails>`__)
-      
-      Details of the CSS text to insert.
-   
 
 .. _tabs.move:
 
@@ -410,7 +327,7 @@ Gets all tabs that have the specified properties, or all tabs if no properties a
          :name: [``cookieStoreId``]
          :type: (array of string or string, optional)
          
-         The `CookieStore <|link-cookieStore|>`__ id(s) used by the tabs. Either custom ids created using the `contextualIdentities API <|link-contextualIdentity|>`__, or built-in ones: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
+         The `CookieStore <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid>`__ id(s) used by the tabs. Either custom ids created using the `contextualIdentities API <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities>`__, or built-in ones: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
       
       
       .. api-member::
@@ -442,13 +359,6 @@ Gets all tabs that have the specified properties, or all tabs if no properties a
       
       
       .. api-member::
-         :name: [``mailTab``]
-         :type: (boolean, optional)
-         
-         Whether the tab is a Thunderbird 3-pane tab.
-      
-      
-      .. api-member::
          :name: [``spaceId``]
          :type: (integer, optional)
          
@@ -474,7 +384,7 @@ Gets all tabs that have the specified properties, or all tabs if no properties a
          :type: (:ref:`tabs.TabType` or array of :ref:`tabs.TabType`, optional)
          :annotation: -- [Added in TB 91]
          
-         Match tabs against the given tab type or types. Ignored if ``queryInfo.mailTab`` is specified.
+         Match tabs against the given tab type or types.
       
       
       .. api-member::
@@ -561,40 +471,6 @@ Closes one or more tabs.
       The tab or list of tabs to close.
    
 
-.. _tabs.removeCSS:
-
-removeCSS([tabId], details)
----------------------------
-
-.. api-section-annotation-hack:: 
-
-Removes injected CSS from a page. For details, see the `programmatic injection <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts>`__ section of the content scripts doc.
-
-.. api-header::
-   :label: Changes in Thunderbird 77
-
-   
-   .. api-member::
-      :name: With the :permission:`compose` permission, this now works in the document of email messages during composition.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: [``tabId``]
-      :type: (integer, optional)
-      
-      The ID of the tab from which to remove the injected CSS; defaults to the active tab of the current window.
-   
-   
-   .. api-member::
-      :name: ``details``
-      :type: (`InjectDetails <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/extensionTypes/InjectDetails>`__)
-      
-      Details of the CSS text to remove.
-   
-
 .. _tabs.sendMessage:
 
 sendMessage(tabId, message, [options])
@@ -626,7 +502,7 @@ Sends a single message to the content script(s) in the specified tab, with an op
          :name: [``frameId``]
          :type: (integer, optional)
          
-         Send a message to a specific frame identified by ``frameId`` instead of all frames in the tab.
+         Send a message to a specific frame identified by :value:`frameId` instead of all frames in the tab.
       
    
 
@@ -649,7 +525,7 @@ update([tabId], updateProperties)
 
 .. api-section-annotation-hack:: 
 
-Modifies the properties of a tab. Properties that are not specified in ``updateProperties`` are not modified.
+Modifies the properties of a tab. Properties that are not specified in :value:`updateProperties` are not modified.
 
 .. api-header::
    :label: Parameters
@@ -690,7 +566,7 @@ Modifies the properties of a tab. Properties that are not specified in ``updateP
    .. api-member::
       :type: :ref:`tabs.Tab`
       
-      Details about the updated tab. The :ref:`tabs.Tab` object doesn't contain ``url``, ``title`` and ``favIconUrl`` if the :permission:`tabs` permission has not been requested.
+      Details about the updated tab. The :ref:`tabs.Tab` object doesn't contain :value:`url`, :value:`title` and :value:`favIconUrl` if the :permission:`tabs` permission has not been requested.
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -1078,7 +954,7 @@ Tab
       :name: [``cookieStoreId``]
       :type: (string, optional)
       
-      The `CookieStore <|link-cookieStore|>`__ id used by the tab. Either a custom id created using the `contextualIdentities API <|link-contextualIdentity|>`__, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
+      The `CookieStore <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid>`__ id used by the tab. Either a custom id created using the `contextualIdentities API <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities>`__, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
    
    
    .. api-member::
@@ -1100,13 +976,6 @@ Tab
       :type: (integer, optional)
       
       The ID of the tab. Tab IDs are unique within a session. Under some circumstances a Tab may not be assigned an ID. Tab ID can also be set to :ref:`tabs.TAB_ID_NONE` for apps and devtools windows.
-   
-   
-   .. api-member::
-      :name: [``mailTab``]
-      :type: (boolean, optional)
-      
-      Whether the tab is a 3-pane tab.
    
    
    .. api-member::

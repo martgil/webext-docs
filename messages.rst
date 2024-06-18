@@ -116,8 +116,8 @@ Archives messages using the current settings. Archiving external messages will t
 
 .. _messages.copy:
 
-copy(messageIds, destination)
------------------------------
+copy(messageIds, folderId)
+--------------------------
 
 .. api-section-annotation-hack:: 
 
@@ -135,7 +135,7 @@ Copies messages to a specified folder.
    
    
    .. api-member::
-      :name: ``destination``
+      :name: ``folderId``
       :type: (:ref:`folders.MailFolderId`)
       
       The folder to copy the messages to.
@@ -155,12 +155,7 @@ delete(messageIds, [skipTrash])
 
 .. api-section-annotation-hack:: 
 
-Deletes messages permanently, or moves them to the trash folder (honoring the account's deletion behavior settings). Deleting external messages will throw an *ExtensionError*. The ``skipTrash`` parameter allows immediate permanent deletion, bypassing the trash folder.
-
-**Note**: Consider using :ref:`messages.move` to manually move messages to the account's trash folder, instead of requesting the overly powerful permission to actually delete messages. The account's trash folder can be extracted as follows: 
-
-.. literalinclude:: includes/messages/getTrash.js
-  :language: JavaScript
+Deletes messages permanently, or moves them to the trash folder (honoring the account's deletion behavior settings). Deleting external messages will throw an *ExtensionError*. The :value:`skipTrash` parameter allows immediate permanent deletion, bypassing the trash folder.
 
 .. api-header::
    :label: Parameters
@@ -221,8 +216,8 @@ Returns the specified message.
 
 .. _messages.getFull:
 
-getFull(messageId)
-------------------
+getFull(messageId, [options])
+-----------------------------
 
 .. api-section-annotation-hack:: 
 
@@ -235,6 +230,18 @@ Returns the specified message, including all headers and MIME parts. Throws if t
    .. api-member::
       :name: ``messageId``
       :type: (:ref:`messages.MessageId`)
+   
+   
+   .. api-member::
+      :name: [``options``]
+      :type: (object, optional)
+      
+      .. api-member::
+         :name: [``decrypt``]
+         :type: (boolean, optional)
+         
+         Whether the message should be decrypted. If the message could not be decrypted, its parts are omitted. Defaults to true.
+      
    
 
 .. api-header::
@@ -275,10 +282,10 @@ Returns the unmodified source of a message. Throws if the message could not be r
       :type: (object, optional)
       
       .. api-member::
-         :name: ``data_format``
-         :type: (`string`)
+         :name: [``data_format``]
+         :type: (`string`, optional)
          
-         The message can either be returned as a DOM File (default) or as a `binary string <https://developer.mozilla.org/en-US/docs/Web/API/DOMString/Binary>`__. It is recommended to use the ``File`` format, because the DOM File object can be used as-is with the downloads API and has useful methods to access the content, like `File.text() <https://developer.mozilla.org/en-US/docs/Web/API/Blob/text>`__ and `File.arrayBuffer() <https://developer.mozilla.org/en-US/docs/Web/API/Blob/arrayBuffer>`__. Working with binary strings is error prone and needs special handling: 
+         The message can either be returned as a DOM File (default) or as a `binary string <https://developer.mozilla.org/en-US/docs/Web/API/DOMString/Binary>`__. It is recommended to use the :value:`File` format, because the DOM File object can be used as-is with the downloads API and has useful methods to access the content, like `File.text() <https://developer.mozilla.org/en-US/docs/Web/API/Blob/text>`__ and `File.arrayBuffer() <https://developer.mozilla.org/en-US/docs/Web/API/Blob/arrayBuffer>`__. Working with binary strings is error prone and needs special handling: 
          
          .. literalinclude:: includes/messages/decodeBinaryString.js
            :language: JavaScript
@@ -290,10 +297,17 @@ Returns the unmodified source of a message. Throws if the message could not be r
          Supported values:
          
          .. api-member::
-            :name: :value:`File`
+            :name: :value:`BinaryString`
          
          .. api-member::
-            :name: :value:`BinaryString`
+            :name: :value:`File`
+      
+      
+      .. api-member::
+         :name: [``decrypt``]
+         :type: (boolean, optional)
+         
+         Whether the message should be decrypted. Throws, if the message could not be decrypted.
       
    
 
@@ -314,8 +328,8 @@ Returns the unmodified source of a message. Throws if the message could not be r
 
 .. _messages.import:
 
-import(file, destination, [properties])
----------------------------------------
+import(file, folderId, [properties])
+------------------------------------
 
 .. api-section-annotation-hack:: -- [Added in TB 106]
 
@@ -331,7 +345,7 @@ Imports a message into a local Thunderbird folder. To import a message into an I
    
    
    .. api-member::
-      :name: ``destination``
+      :name: ``folderId``
       :type: (:ref:`folders.MailFolderId`)
       
       The folder to import the messages into.
@@ -361,8 +375,8 @@ Imports a message into a local Thunderbird folder. To import a message into an I
 
 .. _messages.list:
 
-list(folder)
-------------
+list(folderId)
+--------------
 
 .. api-section-annotation-hack:: 
 
@@ -373,7 +387,7 @@ Gets all messages in a folder.
 
    
    .. api-member::
-      :name: ``folder``
+      :name: ``folderId``
       :type: (:ref:`folders.MailFolderId`)
    
 
@@ -393,10 +407,45 @@ Gets all messages in a folder.
    - :permission:`messagesRead`
    - :permission:`accountsRead`
 
+.. _messages.listInlineTextParts:
+
+listInlineTextParts(messageId)
+------------------------------
+
+.. api-section-annotation-hack:: 
+
+Lists all inline text parts of a message. These parts are not returned by :ref:`messages.listAttachments` and usually make up the readable content of the message, mostly with content type :value:`text/plain` or :value:`text/html`. If a message only includes a part with content type :value:`text/html`, the method :ref:`messengerUtilities.convertToPlainText` can be used to retreive a plain text version. 
+
+**Note:** A message usually contains only one inline text part per subtype, but technically messages can contain multiple inline text parts per subtype.
+
+.. api-header::
+   :label: Parameters
+
+   
+   .. api-member::
+      :name: ``messageId``
+      :type: (:ref:`messages.MessageId`)
+   
+
+.. api-header::
+   :label: Return type (`Promise`_)
+
+   
+   .. api-member::
+      :type: array of :ref:`messages.InlineTextPart`
+   
+   
+   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+.. api-header::
+   :label: Required permissions
+
+   - :permission:`messagesRead`
+
 .. _messages.move:
 
-move(messageIds, destination)
------------------------------
+move(messageIds, folderId)
+--------------------------
 
 .. api-section-annotation-hack:: 
 
@@ -414,7 +463,7 @@ Moves messages to a specified folder. If the messages cannot be removed from the
    
    
    .. api-member::
-      :name: ``destination``
+      :name: ``folderId``
       :type: (:ref:`folders.MailFolderId`)
       
       The folder to move the messages to.
@@ -434,7 +483,7 @@ query([queryInfo])
 
 .. api-section-annotation-hack:: -- [Added in TB 69, backported to TB 68.2]
 
-Gets all messages that have the specified properties, or all messages if no properties are specified.
+Gets all messages that have the specified properties, or all messages if no properties are specified. Messages of unified mailbox folders are not included by default (as that could double the amount of returned messages), but explicitly specifying a unified mailbox folder is supported.
 
 .. api-header::
    :label: Parameters
@@ -838,7 +887,7 @@ openAttachment(messageId, partName, tabId)
 
 .. api-section-annotation-hack:: -- [Added in TB 114]
 
-Opens the specified attachment
+Opens the specified attachment.
 
 .. api-header::
    :label: Parameters
@@ -1073,6 +1122,33 @@ Fired when one or more properties of a message have been updated.
 Types
 =====
 
+.. _messages.InlineTextPart:
+
+InlineTextPart
+--------------
+
+.. api-section-annotation-hack:: 
+
+An inline part with content type :value:`text/*`. These parts are not returned by :ref:`messages.listAttachments` and usually make up the readable content of the message, mostly with content type :value:`text/plain` or :value:`text/html`
+
+.. api-header::
+   :label: object
+
+   
+   .. api-member::
+      :name: ``content``
+      :type: (string)
+      
+      The content of this inline text part.
+   
+   
+   .. api-member::
+      :name: ``contentType``
+      :type: (string)
+      
+      The content type of the part. Most common types for inline text parts are :value:`text/plain` and :value:`text/html`. Possible other (deprecated) types are :value:`text/richtext` and :value:`text/enriched`. Some calendaring services include an inline text part with type :value:`text/calendar`.
+   
+
 .. _messages.MessageAttachment:
 
 MessageAttachment
@@ -1080,7 +1156,7 @@ MessageAttachment
 
 .. api-section-annotation-hack:: 
 
-Represents an attachment in a message.
+Represents an attachment in a message. This includes all MIME parts with a *content-disposition* header set to :value:`attachment`, but also related parts like inline images.
 
 .. api-header::
    :label: object
@@ -1112,6 +1188,13 @@ Represents an attachment in a message.
       :type: (integer)
       
       The size in bytes of this attachment.
+   
+   
+   .. api-member::
+      :name: [``contentId``]
+      :type: (string, optional)
+      
+      The content-id of this part. Available for related parts, which are referenced from other places inside the same message (e.g. inline images).
    
    
    .. api-member::
@@ -1287,13 +1370,15 @@ See :doc:`examples/messageLists` for more information.
 
    
    .. api-member::
-      :name: ``messages``
-      :type: (array of :ref:`messages.MessageHeader`)
+      :name: ``id``
+      :type: (string or null)
+      
+      Id of the message list, to be used with :ref:`messages.continueList` or :ref:`messages.abortList`.
    
    
    .. api-member::
-      :name: [``id``]
-      :type: (string, optional)
+      :name: ``messages``
+      :type: (array of :ref:`messages.MessageHeader`)
    
 
 .. _messages.MessagePart:
@@ -1303,7 +1388,7 @@ MessagePart
 
 .. api-section-annotation-hack:: 
 
-Represents an email message "part", which could be the whole message
+Represents an email message "part", which could be the whole message.
 
 .. api-header::
    :label: object
@@ -1313,7 +1398,7 @@ Represents an email message "part", which could be the whole message
       :name: [``body``]
       :type: (string, optional)
       
-      The content of the part
+      The content of the part.
    
    
    .. api-member::
@@ -1322,38 +1407,59 @@ Represents an email message "part", which could be the whole message
    
    
    .. api-member::
+      :name: [``decryptionStatus``]
+      :type: (`string`, optional)
+      
+      The decryption status, only available for the root part.
+      
+      Supported values:
+      
+      .. api-member::
+         :name: :value:`none`
+      
+      .. api-member::
+         :name: :value:`skipped`
+      
+      .. api-member::
+         :name: :value:`success`
+      
+      .. api-member::
+         :name: :value:`fail`
+   
+   
+   .. api-member::
       :name: [``headers``]
       :type: (object, optional)
       
-      A *dictionary object* of part headers as *key-value* pairs, with the header name as *key*, and an array of headers as *value*
+      A *dictionary object* of part headers as *key-value* pairs, with the header name as *key*, and an array of headers as *value*.
    
    
    .. api-member::
       :name: [``name``]
       :type: (string, optional)
       
-      Name of the part, if it is a file
+      Name of the part, if it is a file.
    
    
    .. api-member::
       :name: [``partName``]
       :type: (string, optional)
       
-      The identifier of this part, used in :ref:`messages.getAttachmentFile`
+      The identifier of this part, used in :ref:`messages.getAttachmentFile`.
    
    
    .. api-member::
       :name: [``parts``]
       :type: (array of :ref:`messages.MessagePart`, optional)
       
-      Any sub-parts of this part
+      Any sub-parts of this part.
    
    
    .. api-member::
       :name: [``size``]
       :type: (integer, optional)
       
-      The size of this part. The size of *message/** parts is not the actual message size (on disc), but the total size of its decoded body parts, excluding headers.
+      The size of this part. The size of parts with content type *message/rfc822* is not the actual message size (on disc), but the total size of its decoded body parts, excluding headers.
    
 
 .. _messages.MessageProperties:
@@ -1380,7 +1486,7 @@ Message properties used in :ref:`messages.update` and :ref:`messages.import`. Th
       :name: [``junk``]
       :type: (boolean, optional)
       
-      Whether the message is marked as junk. Only supported in :ref:`messages.update`
+      Whether the message is marked as junk. Only supported in :ref:`messages.update`.
    
    
    .. api-member::
@@ -1388,7 +1494,7 @@ Message properties used in :ref:`messages.update` and :ref:`messages.import`. Th
       :type: (boolean, optional)
       :annotation: -- [Added in TB 106]
       
-      Whether the message is marked as new. Only supported in :ref:`messages.import`
+      Whether the message is marked as new. Only supported in :ref:`messages.import`.
    
    
    .. api-member::
