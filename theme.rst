@@ -274,7 +274,7 @@ Defines a color value.
    
       .. container:: api-member-description-only
          
-         A string containing a valid <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_colors/Color_values'>CSS color string</a>, including hexadecimal or functional representations. For example the color *crimson* can be specified as: 
+         A string containing a valid `CSS color string <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_colors/Color_values>`__, including hexadecimal or functional representations. For example the color *crimson* can be specified as: 
          
          
          
@@ -372,7 +372,7 @@ Defines additional color, image and property keys to be used in :ref:`theme.Them
       :name: [``stylesheet``]
       :type: (:ref:`theme.ExtensionURL`, optional)
       
-      URL to a stylesheet introducing additional CSS variables, extending the theme-able areas of Thunderbird. The <a href='https://github.com/thunderbird/sample-extensions/tree/master/manifest_v2/theme_experiment'>theme_experiment add-on in our example repository</a> is using the stylesheet shown below, to add the :value:`--chat-button-color` CSS color variable: 
+      URL to a stylesheet introducing additional CSS variables, extending the theme-able areas of Thunderbird. The `theme_experiment add-on in our example repository <https://github.com/thunderbird/sample-extensions/tree/master/manifest_v2/theme_experiment>`__ is using the stylesheet shown below, to add the :value:`--chat-button-color` CSS color variable: 
       
       .. literalinclude:: includes/theme/theme_experiment_style.css
         :language: CSS

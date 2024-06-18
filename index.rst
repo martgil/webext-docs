@@ -53,7 +53,7 @@ definitions at:
 * `/browser/components/extensions/schemas <https://hg.mozilla.org/mozilla-central/file/tip/browser/components/extensions/schemas/>`__.
 * `/toolkit/components/extensions/schemas <https://hg.mozilla.org/mozilla-central/file/tip/toolkit/components/extensions/schemas/>`__.
 
-Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>__` repository can be used to obtain a copy of the relevant files.
+Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__ repository can be used to obtain a copy of the relevant files.
 
 .. toctree::
   :hidden:

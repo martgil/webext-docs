@@ -105,7 +105,7 @@ download(options)
 
 .. api-section-annotation-hack:: 
 
-Download a URL. If the URL uses the HTTP[S] protocol, then the request will include all cookies currently set for its hostname. If both :code:`filename` and :code:`saveAs` are specified, then the Save As dialog will be displayed, pre-populated with the specified :code:`filename`. If the download started successfully, :code:`callback` will be called with the new <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`downloadId`. If there was an error starting the download, then :code:`callback` will be called with :code:`downloadId=undefined` and <a href='extension.html#property-lastError'>chrome.extension.lastError</a> will contain a descriptive string. The error strings are not guaranteed to remain backwards compatible between releases. You must not parse it.
+Download a URL. If the URL uses the HTTP[S] protocol, then the request will include all cookies currently set for its hostname. If both :code:`filename` and :code:`saveAs` are specified, then the Save As dialog will be displayed, pre-populated with the specified :code:`filename`. If the download started successfully, :code:`callback` will be called with the new `DownloadItem <#type-DownloadItem>`__'s :code:`downloadId`. If there was an error starting the download, then :code:`callback` will be called with :code:`downloadId=undefined` and `chrome.extension.lastError <extension.html#property-lastError>`__ will contain a descriptive string. The error strings are not guaranteed to remain backwards compatible between releases. You must not parse it.
 
 .. api-header::
    :label: Parameters
@@ -239,7 +239,7 @@ erase(query)
 
 .. api-section-annotation-hack:: 
 
-Erase matching <a href='#type-DownloadItem'>DownloadItems</a> from history
+Erase matching `DownloadItems <#type-DownloadItem>`__ from history
 
 .. api-header::
    :label: Parameters
@@ -272,7 +272,7 @@ getFileIcon(downloadId, [options])
 
 .. api-section-annotation-hack:: 
 
-Retrieve an icon for the specified download. For new downloads, file icons are available after the <a href='#event-onCreated'>onCreated</a> event has been received. The image returned by this function while a download is in progress may be different from the image returned after the download is complete. Icon retrieval is done by querying the underlying operating system or toolkit depending on the platform. The icon that is returned will therefore depend on a number of factors including state of the download, platform, registered file types and visual theme. If a file icon cannot be determined, <a href='extension.html#property-lastError'>chrome.extension.lastError</a> will contain an error message.
+Retrieve an icon for the specified download. For new downloads, file icons are available after the `onCreated <#event-onCreated>`__ event has been received. The image returned by this function while a download is in progress may be different from the image returned after the download is complete. Icon retrieval is done by querying the underlying operating system or toolkit depending on the platform. The icon that is returned will therefore depend on a number of factors including state of the download, platform, registered file types and visual theme. If a file icon cannot be determined, `chrome.extension.lastError <extension.html#property-lastError>`__ will contain an error message.
 
 .. api-header::
    :label: Parameters
@@ -343,7 +343,7 @@ pause(downloadId)
 
 .. api-section-annotation-hack:: 
 
-Pause the download. If the request was successful the download is in a paused state. Otherwise <a href='extension.html#property-lastError'>chrome.extension.lastError</a> contains an error message. The request will fail if the download is not active.
+Pause the download. If the request was successful the download is in a paused state. Otherwise `chrome.extension.lastError <extension.html#property-lastError>`__ contains an error message. The request will fail if the download is not active.
 
 .. api-header::
    :label: Parameters
@@ -389,7 +389,7 @@ resume(downloadId)
 
 .. api-section-annotation-hack:: 
 
-Resume a paused download. If the request was successful the download is in progress and unpaused. Otherwise <a href='extension.html#property-lastError'>chrome.extension.lastError</a> contains an error message. The request will fail if the download is not active.
+Resume a paused download. If the request was successful the download is in progress and unpaused. Otherwise `chrome.extension.lastError <extension.html#property-lastError>`__ contains an error message. The request will fail if the download is not active.
 
 .. api-header::
    :label: Parameters
@@ -414,7 +414,7 @@ search(query)
 
 .. api-section-annotation-hack:: 
 
-Find <a href='#type-DownloadItem'>DownloadItems</a>. Set :code:`query` to the empty object to get all <a href='#type-DownloadItem'>DownloadItems</a>. To get a specific <a href='#type-DownloadItem'>DownloadItem</a>, set only the :code:`id` field.
+Find `DownloadItems <#type-DownloadItem>`__. Set :code:`query` to the empty object to get all `DownloadItems <#type-DownloadItem>`__. To get a specific `DownloadItem <#type-DownloadItem>`__, set only the :code:`id` field.
 
 .. api-header::
    :label: Parameters
@@ -518,7 +518,7 @@ onChanged
 
 .. api-section-annotation-hack:: 
 
-When any of a <a href='#type-DownloadItem'>DownloadItem</a>'s properties except :code:`bytesReceived` changes, this event fires with the :code:`downloadId` and an object containing the properties that changed.
+When any of a `DownloadItem <#type-DownloadItem>`__'s properties except :code:`bytesReceived` changes, this event fires with the :code:`downloadId` and an object containing the properties that changed.
 
 .. api-header::
    :label: Parameters for onChanged.addListener(listener)
@@ -542,7 +542,7 @@ When any of a <a href='#type-DownloadItem'>DownloadItem</a>'s properties except 
          :name: ``id``
          :type: (integer)
          
-         The :code:`id` of the <a href='#type-DownloadItem'>DownloadItem</a> that changed.
+         The :code:`id` of the `DownloadItem <#type-DownloadItem>`__ that changed.
       
       
       .. api-member::
@@ -554,21 +554,21 @@ When any of a <a href='#type-DownloadItem'>DownloadItem</a>'s properties except 
          :name: [``danger``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`danger`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`danger`.
       
       
       .. api-member::
          :name: [``endTime``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`endTime`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`endTime`.
       
       
       .. api-member::
          :name: [``error``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`error`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`error`.
       
       
       .. api-member::
@@ -580,56 +580,56 @@ When any of a <a href='#type-DownloadItem'>DownloadItem</a>'s properties except 
          :name: [``fileSize``]
          :type: (:ref:`downloads.DoubleDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`fileSize`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`fileSize`.
       
       
       .. api-member::
          :name: [``filename``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`filename`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`filename`.
       
       
       .. api-member::
          :name: [``mime``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`mime`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`mime`.
       
       
       .. api-member::
          :name: [``paused``]
          :type: (:ref:`downloads.BooleanDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`paused`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`paused`.
       
       
       .. api-member::
          :name: [``startTime``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`startTime`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`startTime`.
       
       
       .. api-member::
          :name: [``state``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`state`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`state`.
       
       
       .. api-member::
          :name: [``totalBytes``]
          :type: (:ref:`downloads.DoubleDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`totalBytes`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`totalBytes`.
       
       
       .. api-member::
          :name: [``url``]
          :type: (:ref:`downloads.StringDelta`, optional)
          
-         Describes a change in a <a href='#type-DownloadItem'>DownloadItem</a>'s :code:`url`.
+         Describes a change in a `DownloadItem <#type-DownloadItem>`__'s :code:`url`.
       
    
 
@@ -645,7 +645,7 @@ onCreated
 
 .. api-section-annotation-hack:: 
 
-This event fires with the <a href='#type-DownloadItem'>DownloadItem</a> object when a download begins.
+This event fires with the `DownloadItem <#type-DownloadItem>`__ object when a download begins.
 
 .. api-header::
    :label: Parameters for onCreated.addListener(listener)
@@ -698,7 +698,7 @@ Fires with the :code:`downloadId` when a download is erased from history.
       :name: ``downloadId``
       :type: (integer)
       
-      The :code:`id` of the <a href='#type-DownloadItem'>DownloadItem</a> that was erased.
+      The :code:`id` of the `DownloadItem <#type-DownloadItem>`__ that was erased.
    
 
 .. api-header::
@@ -1026,7 +1026,7 @@ Parameters that combine to specify a predicate that can be used to select a set 
       :name: [``filenameRegex``]
       :type: (string, optional)
       
-      Limits results to <a href='#type-DownloadItem'>DownloadItems</a> whose :code:`filename` matches the given regular expression.
+      Limits results to `DownloadItems <#type-DownloadItem>`__ whose :code:`filename` matches the given regular expression.
    
    
    .. api-member::
@@ -1038,7 +1038,7 @@ Parameters that combine to specify a predicate that can be used to select a set 
       :name: [``limit``]
       :type: (integer, optional)
       
-      Setting this integer limits the number of results. Otherwise, all matching <a href='#type-DownloadItem'>DownloadItems</a> will be returned.
+      Setting this integer limits the number of results. Otherwise, all matching `DownloadItems <#type-DownloadItem>`__ will be returned.
    
    
    .. api-member::
@@ -1052,7 +1052,7 @@ Parameters that combine to specify a predicate that can be used to select a set 
       :name: [``orderBy``]
       :type: (array of string, optional)
       
-      Setting elements of this array to <a href='#type-DownloadItem'>DownloadItem</a> properties in order to sort the search results. For example, setting :code:`orderBy='startTime'` sorts the <a href='#type-DownloadItem'>DownloadItems</a> by their start time in ascending order. To specify descending order, prefix :code:`orderBy` with a hyphen: '-startTime'.
+      Setting elements of this array to `DownloadItem <#type-DownloadItem>`__ properties in order to sort the search results. For example, setting :code:`orderBy='startTime'` sorts the `DownloadItems <#type-DownloadItem>`__ by their start time in ascending order. To specify descending order, prefix :code:`orderBy` with a hyphen: '-startTime'.
    
    
    .. api-member::
@@ -1066,7 +1066,7 @@ Parameters that combine to specify a predicate that can be used to select a set 
       :name: [``query``]
       :type: (array of string, optional)
       
-      This array of search terms limits results to <a href='#type-DownloadItem'>DownloadItems</a> whose :code:`filename` or :code:`url` contain all of the search terms that do not begin with a dash '-' and none of the search terms that do begin with a dash.
+      This array of search terms limits results to `DownloadItems <#type-DownloadItem>`__ whose :code:`filename` or :code:`url` contain all of the search terms that do not begin with a dash '-' and none of the search terms that do begin with a dash.
    
    
    .. api-member::
@@ -1127,7 +1127,7 @@ Parameters that combine to specify a predicate that can be used to select a set 
       :name: [``urlRegex``]
       :type: (string, optional)
       
-      Limits results to <a href='#type-DownloadItem'>DownloadItems</a> whose :code:`url` matches the given regular expression.
+      Limits results to `DownloadItems <#type-DownloadItem>`__ whose :code:`url` matches the given regular expression.
    
 
 .. _downloads.DownloadTime:

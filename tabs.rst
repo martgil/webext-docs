@@ -51,7 +51,7 @@ connect(tabId, [connectInfo])
 
 .. api-section-annotation-hack:: -- [Added in TB 82, backported to TB 78.4.0]
 
-Connects to the content script(s) in the specified tab. The <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onConnect'>runtime.onConnect</a> event is fired in each content script running in the specified tab for the current extension. For more details, see <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts'>Content Script Messaging</a>.
+Connects to the content script(s) in the specified tab. The `runtime.onConnect <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onConnect>`__ event is fired in each content script running in the specified tab for the current extension. For more details, see `Content Script Messaging <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts>`__.
 
 .. api-header::
    :label: Parameters
@@ -100,7 +100,7 @@ create(createProperties)
 
 .. api-section-annotation-hack:: 
 
-Creates a new content tab. Use the :doc:`messageDisplay` to open messages. Only supported in :value:`normal` windows. Same-site links in the loaded page are opened within Thunderbird, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a <a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3'>content script</a> , capture click events and handle them manually.
+Creates a new content tab. Use the :doc:`messageDisplay` to open messages. Only supported in :value:`normal` windows. Same-site links in the loaded page are opened within Thunderbird, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a `content script <https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3>`__ , capture click events and handle them manually.
 
 .. api-header::
    :label: Parameters
@@ -123,7 +123,7 @@ Creates a new content tab. Use the :doc:`messageDisplay` to open messages. Only 
          :name: [``cookieStoreId``]
          :type: (string, optional)
          
-         The <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid'>CookieStore</a> id the new tab should use. Either a custom id created using the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities'>contextualIdentities API</a>, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
+         The `CookieStore <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid>`__ id the new tab should use. Either a custom id created using the `contextualIdentities API <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities>`__, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
       
       
       .. api-member::
@@ -206,7 +206,7 @@ executeScript([tabId], details)
 
 .. api-section-annotation-hack:: 
 
-Injects JavaScript code into a page. For details, see the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts'>programmatic injection</a> section of the content scripts doc.
+Injects JavaScript code into a page. For details, see the `programmatic injection <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts>`__ section of the content scripts doc.
 
 .. api-header::
    :label: Changes in Thunderbird 77
@@ -301,7 +301,7 @@ insertCSS([tabId], details)
 
 .. api-section-annotation-hack:: 
 
-Injects CSS into a page. For details, see the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts'>programmatic injection</a> section of the content scripts doc.
+Injects CSS into a page. For details, see the `programmatic injection <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts>`__ section of the content scripts doc.
 
 .. api-header::
    :label: Changes in Thunderbird 77
@@ -407,7 +407,7 @@ Gets all tabs that have the specified properties, or all tabs if no properties a
          :name: [``cookieStoreId``]
          :type: (array of string or string, optional)
          
-         The <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid'>CookieStore</a> id(s) used by the tabs. Either custom ids created using the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities'>contextualIdentities API</a>, or built-in ones: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
+         The `CookieStore <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid>`__ id(s) used by the tabs. Either custom ids created using the `contextualIdentities API <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities>`__, or built-in ones: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
       
       
       .. api-member::
@@ -478,7 +478,7 @@ Gets all tabs that have the specified properties, or all tabs if no properties a
          :name: [``url``]
          :type: (string or array of string, optional)
          
-         Match tabs against one or more <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns'>URL Patterns</a>. Note that fragment identifiers are not matched.
+         Match tabs against one or more `URL Patterns <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns>`__. Note that fragment identifiers are not matched.
       
       
       .. api-member::
@@ -565,7 +565,7 @@ removeCSS([tabId], details)
 
 .. api-section-annotation-hack:: 
 
-Removes injected CSS from a page. For details, see the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts'>programmatic injection</a> section of the content scripts doc.
+Removes injected CSS from a page. For details, see the `programmatic injection <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts>`__ section of the content scripts doc.
 
 .. api-header::
    :label: Changes in Thunderbird 77
@@ -599,7 +599,7 @@ sendMessage(tabId, message, [options])
 
 .. api-section-annotation-hack:: -- [Added in TB 82, backported to TB 78.4.0]
 
-Sends a single message to the content script(s) in the specified tab, with an optional callback to run when a response is sent back. The <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage'>runtime.onMessage</a> event is fired in each content script running in the specified tab for the current extension.
+Sends a single message to the content script(s) in the specified tab, with an optional callback to run when a response is sent back. The `runtime.onMessage <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage>`__ event is fired in each content script running in the specified tab for the current extension.
 
 .. api-header::
    :label: Parameters
@@ -634,7 +634,7 @@ Sends a single message to the content script(s) in the specified tab, with an op
    .. api-member::
       :type: any
       
-      The JSON response object sent by the handler of the message. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError'>runtime.lastError</a> will be set to the error message.
+      The JSON response object sent by the handler of the message. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and `runtime.lastError <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError>`__ will be set to the error message.
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -1075,7 +1075,7 @@ Tab
       :name: [``cookieStoreId``]
       :type: (string, optional)
       
-      The <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid'>CookieStore</a> id used by the tab. Either a custom id created using the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities'>contextualIdentities API</a>, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
+      The `CookieStore <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities/ContextualIdentity#cookiestoreid>`__ id used by the tab. Either a custom id created using the `contextualIdentities API <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextualIdentities>`__, or a built-in one: :value:`firefox-default`, :value:`firefox-container-1`, :value:`firefox-container-2`, :value:`firefox-container-3`, :value:`firefox-container-4`, :value:`firefox-container-5`. **Note:** The naming pattern was deliberately not changed for Thunderbird, but kept for compatibility reasons.
    
    
    .. api-member::

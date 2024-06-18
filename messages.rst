@@ -285,14 +285,14 @@ Returns the unmodified source of a message. Throws if the message could not be r
          :name: [``data_format``]
          :type: (`string`, optional)
          
-         The message can either be returned as a DOM File or as a <a href='https://developer.mozilla.org/en-US/docs/Web/API/DOMString/Binary'>binary string</a>. The historic default is to return a binary string (kept for backward compatibility). However, it is now recommended to use the :value:`File` format, because the DOM File object can be used as-is with the downloads API and has useful methods to access the content, like <a href='https://developer.mozilla.org/en-US/docs/Web/API/Blob/text'>File.text()</a> and <a href='https://developer.mozilla.org/en-US/docs/Web/API/Blob/arrayBuffer'>File.arrayBuffer()</a>. Working with binary strings is error prone and needs special handling: 
+         The message can either be returned as a DOM File or as a `binary string <https://developer.mozilla.org/en-US/docs/Web/API/DOMString/Binary>`__. The historic default is to return a binary string (kept for backward compatibility). However, it is now recommended to use the :value:`File` format, because the DOM File object can be used as-is with the downloads API and has useful methods to access the content, like `File.text() <https://developer.mozilla.org/en-US/docs/Web/API/Blob/text>`__ and `File.arrayBuffer() <https://developer.mozilla.org/en-US/docs/Web/API/Blob/arrayBuffer>`__. Working with binary strings is error prone and needs special handling: 
          
          .. literalinclude:: includes/messages/decodeBinaryString.js
            :language: JavaScript
          
          
          
-         (see MDN for <a href='https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings'>supported input encodings</a>).
+         (see MDN for `supported input encodings <https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings>`__).
          
          Supported values:
          
@@ -818,7 +818,7 @@ getAttachmentFile(messageId, partName)
 
 .. api-section-annotation-hack:: -- [Added in TB 88]
 
-Gets the content of a :ref:`messages.MessageAttachment` as a <a href='https://developer.mozilla.org/docs/Web/API/File'>File</a> object.
+Gets the content of a :ref:`messages.MessageAttachment` as a `File <https://developer.mozilla.org/docs/Web/API/File>`__ object.
 
 .. api-header::
    :label: Parameters

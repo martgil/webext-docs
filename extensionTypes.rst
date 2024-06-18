@@ -251,7 +251,7 @@ Details of the script or CSS to inject. Either the code or the file property mus
       :name: [``code``]
       :type: (string, optional)
       
-      JavaScript or CSS code to inject.<br><br>**Warning:**<br>Be careful using the :code:`code` parameter. Incorrect use of it may open your extension to <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">cross site scripting</a> attacks.
+      JavaScript or CSS code to inject.<br><br>**Warning:**<br>Be careful using the :code:`code` parameter. Incorrect use of it may open your extension to `cross site scripting <https://en.wikipedia.org/wiki/Cross-site_scripting>`__ attacks.
    
    
    .. api-member::

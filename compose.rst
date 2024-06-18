@@ -289,7 +289,7 @@ getAttachmentFile(id)
 
 .. api-section-annotation-hack:: -- [Added in TB 98]
 
-Gets the content of a :ref:`compose.ComposeAttachment` as a <a href='https://developer.mozilla.org/docs/Web/API/File'>File</a> object.
+Gets the content of a :ref:`compose.ComposeAttachment` as a `File <https://developer.mozilla.org/docs/Web/API/File>`__ object.
 
 .. api-header::
    :label: Parameters
@@ -959,7 +959,7 @@ onBeforeSend
 
 .. api-section-annotation-hack:: -- [Added in TB 74]
 
-Fired when a message is about to be sent from the compose window. This is a user input event handler. For asynchronous listeners some <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions'>restrictions</a> apply.
+Fired when a message is about to be sent from the compose window. This is a user input event handler. For asynchronous listeners some `restrictions <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions>`__ apply.
 
 .. api-header::
    :label: Parameters for onBeforeSend.addListener(listener)
@@ -1531,7 +1531,7 @@ EncryptionPropertiesOpenPGP
       :name: ``encryptBody``
       :type: (boolean)
       
-      Whether encryption of the message body using the OpenPGP technology is enabled. **Note:** If encryption is enabled, but the <a href='https://support.mozilla.org/en-US/kb/thunderbird-help-cannot-encrypt'>preconditions</a> for sending an encrypted message are not met, the message cannot be sent.
+      Whether encryption of the message body using the OpenPGP technology is enabled. **Note:** If encryption is enabled, but the `preconditions <https://support.mozilla.org/en-US/kb/thunderbird-help-cannot-encrypt>`__ for sending an encrypted message are not met, the message cannot be sent.
    
    
    .. api-member::
@@ -1568,7 +1568,7 @@ EncryptionPropertiesSMIME
       :name: ``encryptBody``
       :type: (boolean)
       
-      Whether encryption of the message body using the S/MIME technology is enabled. **Note:** If encryption is enabled, but the <a href='https://support.mozilla.org/en-US/kb/thunderbird-help-cannot-encrypt'>preconditions</a> for sending an encrypted message are not met, the message cannot be sent.
+      Whether encryption of the message body using the S/MIME technology is enabled. **Note:** If encryption is enabled, but the `preconditions <https://support.mozilla.org/en-US/kb/thunderbird-help-cannot-encrypt>`__ for sending an encrypted message are not met, the message cannot be sent.
    
    
    .. api-member::

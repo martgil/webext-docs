@@ -57,14 +57,14 @@ Manifest file properties
       :type: (boolean, optional)
       :annotation: -- [Added in TB 90]
       
-      Enable browser styles in the :value:`management_url` page. See the <a href='https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles'>MDN documentation on browser styles</a> for more information.
+      Enable browser styles in the :value:`management_url` page. See the `MDN documentation on browser styles <https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles>`__ for more information.
    
    
    .. api-member::
       :name: [``data_format``]
       :type: (string, optional) **Deprecated.**
       
-      This property is no longer used. The only supported data format for the :value:`data` argument in :ref:`cloudFile.onFileUpload` is <a href='https://developer.mozilla.org/docs/Web/API/File'>File</a>.
+      This property is no longer used. The only supported data format for the :value:`data` argument in :ref:`cloudFile.onFileUpload` is `File <https://developer.mozilla.org/docs/Web/API/File>`__.
    
    
    .. api-member::
@@ -672,7 +672,7 @@ Defines information to be used in the cloud file entry added to the message.
          :name: [``format``]
          :type: (object, optional)
          
-         A format options object as used by <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat'>Intl.DateTimeFormat</a>. Defaults to: 
+         A format options object as used by `Intl.DateTimeFormat <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat>`__. Defaults to: 
          
          .. literalinclude:: includes/cloudFile/defaultDateFormat.js
            :language: JavaScript

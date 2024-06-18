@@ -471,7 +471,7 @@ Information about an installed extension.
       :name: ``version``
       :type: (string)
       
-      The <a href='manifest/version'>version</a> of this extension.
+      The `version <manifest/version>`__ of this extension.
    
    
    .. api-member::
@@ -499,7 +499,7 @@ Information about an installed extension.
       :name: [``icons``]
       :type: (array of :ref:`management.IconInfo`, optional)
       
-      A list of icon information. Note that this just reflects what was declared in the manifest, and the actual image at that url may be larger or smaller than what was declared, so you might consider using explicit width and height attributes on img tags referencing these images. See the <a href='manifest/icons'>manifest documentation on icons</a> for more details.
+      A list of icon information. Note that this just reflects what was declared in the manifest, and the actual image at that url may be larger or smaller than what was declared, so you might consider using explicit width and height attributes on img tags referencing these images. See the `manifest documentation on icons <manifest/icons>`__ for more details.
    
    
    .. api-member::
@@ -527,7 +527,7 @@ Information about an installed extension.
       :name: [``versionName``]
       :type: (string, optional)
       
-      The <a href='manifest/version#version_name'>version name</a> of this extension if the manifest specified one.
+      The `version name <manifest/version#version_name>`__ of this extension if the manifest specified one.
    
 
 .. _management.ExtensionInstallType:

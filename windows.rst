@@ -47,7 +47,7 @@ create([createData])
 
 .. api-section-annotation-hack:: 
 
-Creates (opens) a new window with any optional sizing, position or default URL provided. When loading a page into a popup window, same-site links are opened within the same window, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a <a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3'>content script</a> , capture click events and handle them manually. Same-site links with targets other than :value:`_self` are opened in a new tab in the most recent :value:`normal` Thunderbird window.
+Creates (opens) a new window with any optional sizing, position or default URL provided. When loading a page into a popup window, same-site links are opened within the same window, all other links are opened in the user's default browser. To override this behavior, add-ons have to register a `content script <https://bugzilla.mozilla.org/show_bug.cgi?id=1618828#c3>`__ , capture click events and handle them manually. Same-site links with targets other than :value:`_self` are opened in a new tab in the most recent :value:`normal` Thunderbird window.
 
 .. api-header::
    :label: Parameters

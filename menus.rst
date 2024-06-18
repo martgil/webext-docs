@@ -66,7 +66,7 @@ create(createProperties, [callback])
 
 .. api-section-annotation-hack:: 
 
-Creates a new context menu item. Note that if an error occurs during creation, you may not find out until the creation callback fires (the details will be in <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError'>runtime.lastError</a>).
+Creates a new context menu item. Note that if an error occurs during creation, you may not find out until the creation callback fires (the details will be in `runtime.lastError <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError>`__).
 
 .. api-header::
    :label: Parameters
@@ -101,7 +101,7 @@ Creates a new context menu item. Note that if an error occurs during creation, y
          :name: [``documentUrlPatterns``]
          :type: (array of string, optional)
          
-         Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns'>Match Patterns</a>.
+         Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see `Match Patterns <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns>`__.
       
       
       .. api-member::
@@ -179,7 +179,7 @@ Creates a new context menu item. Note that if an error occurs during creation, y
       :name: [``callback``]
       :type: (function, optional)
       
-      Called when the item has been created in the browser. If there were any problems creating the item, details will be available in <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError'>runtime.lastError</a>.
+      Called when the item has been created in the browser. If there were any problems creating the item, details will be available in `runtime.lastError <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/lastError>`__.
    
 
 .. api-header::
@@ -206,7 +206,7 @@ getTargetElement(targetElementId)
 
 .. api-section-annotation-hack:: 
 
-Retrieve the element that was associated with a recent <a href='https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event'>contextmenu</a> event.
+Retrieve the element that was associated with a recent `contextmenu <https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event>`__ event.
 
 .. api-header::
    :label: Parameters
@@ -241,7 +241,7 @@ overrideContext(contextOptions)
 
 .. api-section-annotation-hack:: 
 
-Show the matching menu items from this extension instead of the default menu. This should be called during a <a href='https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event'>contextmenu</a> event handler, and only applies to the menu that opens after this event.
+Show the matching menu items from this extension instead of the default menu. This should be called during a `contextmenu <https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event>`__ event handler, and only applies to the menu that opens after this event.
 
 .. api-header::
    :label: Parameters
@@ -445,7 +445,7 @@ onClicked
 
 .. api-section-annotation-hack:: 
 
-Fired when a context menu item is clicked. This is a user input event handler. For asynchronous listeners some <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions'>restrictions</a> apply.
+Fired when a context menu item is clicked. This is a user input event handler. For asynchronous listeners some `restrictions <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/User_actions>`__ apply.
 
 .. api-header::
    :label: Parameters for onClicked.addListener(listener)
@@ -558,7 +558,7 @@ ContextType
 
 .. api-section-annotation-hack:: 
 
-The different contexts a menu can appear in. Specifying :value:`all` is equivalent to the combination of all other contexts excluding :value:`tab` and :value:`tools_menu`. More information about each context can be found in the <a href='https://developer.thunderbird.net/add-ons/mailextensions/supported-ui-elements#menu-items'>Supported UI Elements</a> article on developer.thunderbird.net.
+The different contexts a menu can appear in. Specifying :value:`all` is equivalent to the combination of all other contexts excluding :value:`tab` and :value:`tools_menu`. More information about each context can be found in the `Supported UI Elements <https://developer.thunderbird.net/add-ons/mailextensions/supported-ui-elements#menu-items>`__ article on developer.thunderbird.net.
 
 .. api-header::
    :label: `string`
@@ -743,7 +743,7 @@ A *dictionary object* to specify paths for multiple icons in different sizes, so
 .. literalinclude:: includes/IconPath.json
   :language: JSON
 
-See the <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action#choosing_icon_sizes'>MDN documentation about choosing icon sizes</a> for more information on this. 
+See the `MDN documentation about choosing icon sizes <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action#choosing_icon_sizes>`__ for more information on this. 
 
 .. api-header::
    :label: object

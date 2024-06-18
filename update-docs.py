@@ -100,6 +100,8 @@ def replace_code(string):
 
     string = re.sub(r'\$\(ref:(.*?)\)', ':ref:`\\1`', string)
     string = re.sub(r'\$\(doc:(.*?)\)', ':doc:`\\1`', string)
+    string = re.sub(r'<a href="(.*?)">(.*?)</a>', '`\\2 <\\1>`__', string)
+    string = re.sub(r"<a href='(.*?)'>(.*?)</a>", '`\\2 <\\1>`__', string)
     return string
 
 

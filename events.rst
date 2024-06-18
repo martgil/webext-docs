@@ -98,7 +98,7 @@ UrlFilter
 
 .. api-section-annotation-hack:: 
 
-Filters URLs for various criteria. See <a href='events#filtered'>event filtering</a>. All criteria are case sensitive.
+Filters URLs for various criteria. See `event filtering <events#filtered>`__. All criteria are case sensitive.
 
 .. api-header::
    :label: object
@@ -136,7 +136,7 @@ Filters URLs for various criteria. See <a href='events#filtered'>event filtering
       :name: [``originAndPathMatches``]
       :type: (string, optional)
       
-      Matches if the URL without query segment and fragment identifier matches a specified regular expression. Port numbers are stripped from the URL if they match the default port number. The regular expressions use the <a href="https://github.com/google/re2/blob/master/doc/syntax.txt">RE2 syntax</a>.
+      Matches if the URL without query segment and fragment identifier matches a specified regular expression. Port numbers are stripped from the URL if they match the default port number. The regular expressions use the `RE2 syntax <https://github.com/google/re2/blob/master/doc/syntax.txt>`__.
    
    
    .. api-member::
@@ -227,7 +227,7 @@ Filters URLs for various criteria. See <a href='events#filtered'>event filtering
       :name: [``urlMatches``]
       :type: (string, optional)
       
-      Matches if the URL (without fragment identifier) matches a specified regular expression. Port numbers are stripped from the URL if they match the default port number. The regular expressions use the <a href="https://github.com/google/re2/blob/master/doc/syntax.txt">RE2 syntax</a>.
+      Matches if the URL (without fragment identifier) matches a specified regular expression. Port numbers are stripped from the URL if they match the default port number. The regular expressions use the `RE2 syntax <https://github.com/google/re2/blob/master/doc/syntax.txt>`__.
    
    
    .. api-member::
