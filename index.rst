@@ -61,7 +61,6 @@ Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__
   :caption: API reference
   
   accounts
-  activityLog
   addressBooks
   addressBooks.provider
   addressBooks.contacts
@@ -84,7 +83,6 @@ Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__
   downloads
   extension
   folders
-  geckoProfiler
   i18n
   identities
   identity
