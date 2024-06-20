@@ -38,7 +38,7 @@ getLinkInfo()
 
 .. api-section-annotation-hack:: 
 
-Returns the $(ref:NetworkLinkInfo} of the current network connection.
+Returns the :ref:`NetworkLinkInfo` of the current network connection.
 
 .. api-header::
    :label: Required permissions
