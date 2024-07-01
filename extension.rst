@@ -138,112 +138,10 @@ Retrieves the state of the extension's access to Incognito-mode (as determined b
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-.. _extension.setUpdateUrlData:
-
-setUpdateUrlData(data)
-----------------------
-
-.. api-section-annotation-hack:: 
-
-Sets the value of the ap CGI parameter used in the extension's update URL.  This value is ignored for extensions that are hosted in the browser vendor's store.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: ``data``
-      :type: (string)
-   
-
 .. rst-class:: api-main-section
 
 Events
 ======
-
-.. _extension.onRequest:
-
-onRequest
----------
-
-.. api-section-annotation-hack:: 
-
-Fired when a request is sent from either an extension process or a content script.
-
-.. api-header::
-   :label: Parameters for onRequest.addListener(listener)
-
-   
-   .. api-member::
-      :name: ``listener(request, sender, sendResponse)``
-      
-      A function that will be called when this event occurs.
-   
-
-.. api-header::
-   :label: Parameters passed to the listener function
-
-   
-   .. api-member::
-      :name: [``request``]
-      :type: (any, optional)
-      
-      The request sent by the calling script.
-   
-   
-   .. api-member::
-      :name: ``sender``
-      :type: (:ref:`runtime.MessageSender`)
-   
-   
-   .. api-member::
-      :name: ``sendResponse``
-      :type: (function)
-      
-      Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object, or undefined if there is no response. If you have more than one :code:`onRequest` listener in the same document, then only one may send a response.
-   
-
-.. _extension.onRequestExternal:
-
-onRequestExternal
------------------
-
-.. api-section-annotation-hack:: 
-
-Fired when a request is sent from another extension.
-
-.. api-header::
-   :label: Parameters for onRequestExternal.addListener(listener)
-
-   
-   .. api-member::
-      :name: ``listener(request, sender, sendResponse)``
-      
-      A function that will be called when this event occurs.
-   
-
-.. api-header::
-   :label: Parameters passed to the listener function
-
-   
-   .. api-member::
-      :name: [``request``]
-      :type: (any, optional)
-      
-      The request sent by the calling script.
-   
-   
-   .. api-member::
-      :name: ``sender``
-      :type: (:ref:`runtime.MessageSender`)
-   
-   
-   .. api-member::
-      :name: ``sendResponse``
-      :type: (function)
-      
-      Function to call when you have a response. The argument should be any JSON-ifiable object, or undefined if there is no response.
-   
 
 .. rst-class:: api-main-section
 
@@ -292,3 +190,12 @@ inIncognitoContext
 .. api-section-annotation-hack:: 
 
 True for content scripts running inside incognito tabs, and for extension pages running inside an incognito process. The latter only applies to extensions with 'split' incognito_behavior.
+
+.. _extension.lastError:
+
+lastError
+---------
+
+.. api-section-annotation-hack:: 
+
+Set for the lifetime of a callback if an ansychronous extension api has resulted in an error. If no error has occured lastError will be :value:`undefined`.

@@ -55,7 +55,6 @@ definitions at:
 
 Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__ repository can be used to obtain a copy of the relevant files.
 
-
 .. toctree::
   :hidden:
   :caption: API reference
@@ -70,18 +69,20 @@ Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__
   browserSettings
   browserSettings.colorManagement
   browsingData
-  captivePortal
   clipboard
   cloudFile
   commands
   compose
   composeAction
+  contentScripts
   contextualIdentities
   cookies
   declarativeNetRequest
   dns
   downloads
   extension
+  composeScripts
+  messageDisplayScripts
   folders
   i18n
   identities
@@ -94,7 +95,6 @@ Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__
   messageDisplayAction
   messages
   messages.tags
-  networkStatus
   notifications
   permissions
   pkcs11
@@ -102,7 +102,6 @@ Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__
   privacy.network
   privacy.services
   privacy.websites
-  proxy
   runtime
   scripting
   scripting.compose
@@ -112,7 +111,7 @@ Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__
   storage
   tabs
   theme
-  types
+  userScripts
   messengerUtilities
   webNavigation
   webRequest

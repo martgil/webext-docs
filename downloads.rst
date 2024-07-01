@@ -45,34 +45,6 @@ Permissions
 Functions
 =========
 
-.. _downloads.acceptDanger:
-
-acceptDanger(downloadId, [callback])
-------------------------------------
-
-.. api-section-annotation-hack:: 
-
-Prompt the user to either accept or cancel a dangerous download. :code:`acceptDanger()` does not automatically accept dangerous downloads.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: ``downloadId``
-      :type: (integer)
-   
-   
-   .. api-member::
-      :name: [``callback``]
-      :type: (function, optional)
-   
-
-.. api-header::
-   :label: Required permissions
-
-   - :permission:`downloads`
-
 .. _downloads.cancel:
 
 cancel(downloadId)
@@ -434,27 +406,6 @@ Find `DownloadItems <#type-DownloadItem>`__. Set :code:`query` to the empty obje
    
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
-.. api-header::
-   :label: Required permissions
-
-   - :permission:`downloads`
-
-.. _downloads.setShelfEnabled:
-
-setShelfEnabled(enabled)
-------------------------
-
-.. api-section-annotation-hack:: 
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: ``enabled``
-      :type: (boolean)
-   
 
 .. api-header::
    :label: Required permissions

@@ -250,25 +250,6 @@ Returns details about the app or extension from the manifest. The object returne
    
    .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-.. _runtime.getPackageDirectoryEntry:
-
-getPackageDirectoryEntry()
---------------------------
-
-.. api-section-annotation-hack:: 
-
-Returns a DirectoryEntry for the package directory.
-
-.. api-header::
-   :label: Return type (`Promise`_)
-
-   
-   .. api-member::
-      :type: `DirectoryEntry <https://developer.mozilla.org/en-US/docs/Web/API/DirectoryEntry>`__
-   
-   
-   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
 .. _runtime.getPlatformInfo:
 
 getPlatformInfo()
@@ -337,27 +318,6 @@ reload()
 .. api-section-annotation-hack:: 
 
 Reloads the app or extension.
-
-.. _runtime.requestUpdateCheck:
-
-requestUpdateCheck()
---------------------
-
-.. api-section-annotation-hack:: 
-
-Requests an update check for this app/extension.
-
-.. api-header::
-   :label: Return type (`Promise`_)
-
-   
-   .. api-member::
-      :type: :ref:`runtime.RequestUpdateCheckStatus`
-      
-      Result of the update check.
-   
-   
-   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
 .. _runtime.restart:
 
@@ -461,49 +421,10 @@ Send a single message to a native application.
 
    - :permission:`nativeMessaging`
 
-.. _runtime.setUninstallURL:
-
-setUninstallURL([url])
-----------------------
-
-.. api-section-annotation-hack:: 
-
-Sets the URL to be visited upon uninstallation. This may be used to clean up server-side data, do analytics, and implement surveys. Maximum 1023 characters.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: [``url``]
-      :type: (string, optional)
-      
-      URL to be opened after the extension is uninstalled. This URL must have an http: or https: scheme. Set an empty string to not open a new tab upon uninstallation.
-   
-
 .. rst-class:: api-main-section
 
 Events
 ======
-
-.. _runtime.onBrowserUpdateAvailable:
-
-onBrowserUpdateAvailable
-------------------------
-
-.. api-section-annotation-hack:: 
-
-Fired when an update for the browser is available, but isn't installed immediately because a browser restart is required.
-
-.. api-header::
-   :label: Parameters for onBrowserUpdateAvailable.addListener(listener)
-
-   
-   .. api-member::
-      :name: ``listener()``
-      
-      A function that will be called when this event occurs.
-   
 
 .. _runtime.onConnect:
 
@@ -775,36 +696,6 @@ Fired when a runtime performance issue is detected with the extension. Observe t
          
          The :ref:`tabs.Tab` that the performance warning relates to, if any.
       
-   
-
-.. _runtime.onRestartRequired:
-
-onRestartRequired
------------------
-
-.. api-section-annotation-hack:: 
-
-Fired when an app or the device that it runs on needs to be restarted. The app should close all its windows at its earliest convenient time to let the restart to happen. If the app does nothing, a restart will be enforced after a 24-hour grace period has passed. Currently, this event is only fired for Chrome OS kiosk apps.
-
-.. api-header::
-   :label: Parameters for onRestartRequired.addListener(listener)
-
-   
-   .. api-member::
-      :name: ``listener(reason)``
-      
-      A function that will be called when this event occurs.
-   
-
-.. api-header::
-   :label: Parameters passed to the listener function
-
-   
-   .. api-member::
-      :name: ``reason``
-      :type: (:ref:`runtime.OnRestartRequiredReason`)
-      
-      The reason that the event is being dispatched.
    
 
 .. _runtime.onStartup:
