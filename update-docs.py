@@ -540,6 +540,11 @@ def format_namespace(manifest, namespace):
         lines.append("")
         lines.extend(header_2("Functions", "api-main-section"))
         for function in sorted(namespace["functions"], key=lambda t: t["sort"] + t["name"] if "sort" in t else "0" + t["name"]):
+            support = function.get("support")
+            if support and "version_added" in support:
+                if support.get("version_added") == False:
+                    continue
+
             async = function.get("async")
             lines.extend(header_3(
                 "%s(%s)" % (function["name"], format_params(function, callback=async)),
@@ -585,6 +590,10 @@ def format_namespace(manifest, namespace):
         lines.append("")
         lines.extend(header_2("Events", "api-main-section"))
         for event in sorted(namespace["events"], key=lambda t: t["sort"] + t["name"] if "sort" in t else "0" + t["name"]):
+            support = event.get("support")
+            if support and "version_added" in support:
+                if support.get("version_added") == False:
+                    continue
             lines.extend(header_3(
                 "%s" % (event["name"]), # , (%s)format_params(event)
                 label="%s.%s" % (namespace["namespace"], event["name"]),
@@ -719,6 +728,10 @@ def format_namespace(manifest, namespace):
         lines.extend(header_2("Properties", "api-main-section"))
 
         for key in sorted(namespace["properties"].iterkeys()):
+            support = namespace["properties"][key].get("support")
+            if support and "version_added" in support:
+                if support.get("version_added") == False:
+                    continue
             lines.extend(header_3(key, label="%s.%s" % (namespace["namespace"], key)))
             lines.extend(replace_code(namespace["properties"][key].get("description")).split("\n"))
             lines.append("")

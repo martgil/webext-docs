@@ -148,15 +148,6 @@ cacheEnabled
 
 Enables or disables the browser cache.
 
-.. _browserSettings.closeTabsByDoubleClick:
-
-closeTabsByDoubleClick
-----------------------
-
-.. api-section-annotation-hack:: 
-
-This boolean setting controls whether the selected tab can be closed with a double click.
-
 .. _browserSettings.contextMenuShowEvent:
 
 contextMenuShowEvent
@@ -175,15 +166,6 @@ ftpProtocolEnabled
 
 Returns whether the FTP protocol is enabled. Read-only.
 
-.. _browserSettings.homepageOverride:
-
-homepageOverride
-----------------
-
-.. api-section-annotation-hack:: 
-
-Returns the value of the overridden home page. Read-only.
-
 .. _browserSettings.imageAnimationBehavior:
 
 imageAnimationBehavior
@@ -192,51 +174,6 @@ imageAnimationBehavior
 .. api-section-annotation-hack:: 
 
 Controls the behaviour of image animation in the browser. This setting's value is of type ImageAnimationBehavior, defaulting to :code:`normal`.
-
-.. _browserSettings.newTabPageOverride:
-
-newTabPageOverride
-------------------
-
-.. api-section-annotation-hack:: 
-
-Returns the value of the overridden new tab page. Read-only.
-
-.. _browserSettings.newTabPosition:
-
-newTabPosition
---------------
-
-.. api-section-annotation-hack:: 
-
-Controls where new tabs are opened. :value:`afterCurrent` will open all new tabs next to the current tab, :value:`relatedAfterCurrent` will open only related tabs next to the current tab, and :value:`atEnd` will open all tabs at the end of the tab strip. The default is :value:`relatedAfterCurrent`.
-
-.. _browserSettings.openBookmarksInNewTabs:
-
-openBookmarksInNewTabs
-----------------------
-
-.. api-section-annotation-hack:: 
-
-This boolean setting controls whether bookmarks are opened in the current tab or in a new tab.
-
-.. _browserSettings.openSearchResultsInNewTabs:
-
-openSearchResultsInNewTabs
---------------------------
-
-.. api-section-annotation-hack:: 
-
-This boolean setting controls whether search results are opened in the current tab or in a new tab.
-
-.. _browserSettings.openUrlbarResultsInNewTabs:
-
-openUrlbarResultsInNewTabs
---------------------------
-
-.. api-section-annotation-hack:: 
-
-This boolean setting controls whether urlbar results are opened in the current tab or in a new tab.
 
 .. _browserSettings.overrideContentColorScheme:
 
@@ -282,12 +219,3 @@ zoomFullPage
 .. api-section-annotation-hack:: 
 
 This boolean setting controls whether zoom is applied to the full page or to text only.
-
-.. _browserSettings.zoomSiteSpecific:
-
-zoomSiteSpecific
-----------------
-
-.. api-section-annotation-hack:: 
-
-This boolean setting controls whether zoom is applied on a per-site basis or to the current tab only. If privacy.resistFingerprinting is true, this setting has no effect and zoom is applied to the current tab only.

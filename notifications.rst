@@ -162,96 +162,10 @@ Retrieves whether the user has enabled notifications from this app or extension.
 
    - :permission:`notifications`
 
-.. _notifications.update:
-
-update(notificationId, options)
--------------------------------
-
-.. api-section-annotation-hack:: 
-
-Updates an existing notification.
-
-.. api-header::
-   :label: Parameters
-
-   
-   .. api-member::
-      :name: ``notificationId``
-      :type: (string)
-      
-      The id of the notification to be updated.
-   
-   
-   .. api-member::
-      :name: ``options``
-      :type: (:ref:`notifications.UpdateNotificationOptions`)
-      
-      Contents of the notification to update to.
-   
-
-.. api-header::
-   :label: Return type (`Promise`_)
-
-   
-   .. api-member::
-      :type: boolean
-      
-      Indicates whether a matching notification existed.
-   
-   
-   .. _Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
-.. api-header::
-   :label: Required permissions
-
-   - :permission:`notifications`
-
 .. rst-class:: api-main-section
 
 Events
 ======
-
-.. _notifications.onButtonClicked:
-
-onButtonClicked
----------------
-
-.. api-section-annotation-hack:: 
-
-Fired when the  user pressed a button in the notification.
-
-.. api-header::
-   :label: Parameters for onButtonClicked.addListener(listener)
-
-   
-   .. api-member::
-      :name: ``listener(notificationId, buttonIndex)``
-      
-      A function that will be called when this event occurs.
-   
-
-.. api-header::
-   :label: Parameters passed to the listener function
-
-   
-   .. api-member::
-      :name: ``notificationId``
-      :type: (string)
-      
-      The notificationId of the clicked notification.
-   
-   
-   .. api-member::
-      :name: ``buttonIndex``
-      :type: (number)
-      
-      The index of the button clicked by the user.
-   
-
-.. api-header::
-   :label: Required permissions
-
-   - :permission:`notifications`
 
 .. _notifications.onClicked:
 
