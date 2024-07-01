@@ -46,14 +46,9 @@ __ https://bugzilla.mozilla.org/enter_bug.cgi?product=Thunderbird&component=Add-
 __ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 __ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 
-The documentation for the APIs listed in the left side panel is generated automatically from the schema
-definitions at:
-
-* `/comm/mail/components/extensions/schemas <https://hg.mozilla.org/comm-central/file/tip/mail/components/extensions/schemas/>`__.
-* `/browser/components/extensions/schemas <https://hg.mozilla.org/mozilla-central/file/tip/browser/components/extensions/schemas/>`__.
-* `/toolkit/components/extensions/schemas <https://hg.mozilla.org/mozilla-central/file/tip/toolkit/components/extensions/schemas/>`__.
-
-Thunderbird's `webext-schemas <https://github.com/thunderbird/webext-schemas>`__ repository can be used to obtain a copy of the relevant files.
+The documentation for the APIs listed in the left side panel is generated automatically from
+Thunderbird's schema files. The `webext-schemas <https://github.com/thunderbird/webext-schemas>`__
+repository can be used to obtain a copy of the relevant files.
 
 .. toctree::
   :hidden:
