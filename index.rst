@@ -3,8 +3,6 @@
   ≡ On this page
   
   * `Getting started`_
-  * `Thunderbird WebExtension APIs`_
-  * `Firefox WebExtension APIs supported by Thunderbird`_
   * :ref:`Examples`
   * :ref:`Experiments`
   * :ref:`ChangeLog`
