@@ -54,9 +54,7 @@ composeScripts API
 folders API
 ===========
 * The ``type`` property of :ref:`folders.MailFolder` has been removed. Use the ``specialUse`` property instead.
-* The ``favorite`` property of :ref:`folders.MailFolderInfo` has been removed. It is now available as a property of
-:ref:`folders.MailFolder`.
-
+* The ``favorite`` property of :ref:`folders.MailFolderInfo` has been removed. It is now available as a property of :ref:`folders.MailFolder`.
 * The ``type`` property of the ``queryInfo`` parameter of :ref:`folders.query` has been removed. Use the ``specialUse`` property instead.
 * Default value for the ``includeSubFolders`` parameter of :ref:`folders.get` has been changed from ``true`` to ``false``.
 * :ref:`folders.create` no longer accepts a :ref:`folders.MailFolder` or :ref:`accounts.MailAccount` for its first parameter, but a :ref:`folders.MailFolderId`. Use the accounts ``rootFolder`` to create a new folder at the accounts top level.
@@ -74,16 +72,16 @@ folders API
 
 mailTabs API
 ============
-* The ``mailTabs.getCurrent()`` function has been removed, use <code>messenger.mailTabs.query({active:true, currentWindow: true})</code> instead.
+* The ``mailTabs.getCurrent()`` function has been removed, use :code:`messenger.mailTabs.query({active:true, currentWindow: true})` instead.
 * The ``id`` property of :ref:`mailTabs.MailTab` has been replaced by the ``tabId`` property.
 * The ``viewType`` property of :ref:`mailTabs.MailTab` and :ref:`mailTabs.MailTabProperties` has been replaced by the ``groupType`` property.
-* The ``displayedFolder`` property of :ref:`MailTabProperties` has been replaced by the ``displayedFolderId`` property, and no longer accepts a :ref:`folders.MailFolder`, but a :ref:`folders.MailFolderId`.
+* The ``displayedFolder`` property of :ref:`mailTabs.MailTabProperties` has been replaced by the ``displayedFolderId`` property, and no longer accepts a :ref:`folders.MailFolder`, but a :ref:`folders.MailFolderId`.
 
 menus API
 =========
 * The built-in ``_execute_browser_action`` shortcut for the ``command`` property of the ``createProperties`` parameter of :ref:`menus.create` has been renamed to ``_execute_action``.
 * The values ``browser_action`` and ``browser_action_menu`` for :ref:`menus.ContextTypes` have been renamed to ``action`` and ``action_menu``.
-* The ``selectedAccount`` and ``selectedFolder`` properties have been removed from :ref:`menus.OnShowData` and :ref:`menus.OnClickedData`. Use the ``selectedFolders`` property instead.
+* The ``selectedAccount`` and ``selectedFolder`` properties have been removed from :ref:`menus.OnShowData` and :ref:`menus.OnClickData`. Use the ``selectedFolders`` property instead.
 
 messageDisplay API
 ==================
@@ -109,11 +107,11 @@ messages API
 
 spaces API
 ==========
-* The ``id`` property of the ``queryInfo`` parameter of :ref:`spaces.query` has been renamed to ``spaceId`.
+* The ``id`` property of the ``queryInfo`` parameter of :ref:`spaces.query` has been renamed to ``spaceId``.
 
 spacesToolbar API
 =================
-* The spacesToolbar API has been removed, use :doc:`/spaces` instead.
+* The ``spacesToolbar API`` has been removed, use :doc:`/spaces` instead.
 
 tabs API
 ========
