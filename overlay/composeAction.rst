@@ -6,6 +6,6 @@
 composeAction API
 =================
 
-The composeAction API is very similar to Firefox's `browserAction API`__, but creates an action button in the message compose window.
+The composeAction API is very similar to Firefox's `action API`__, but creates an action button in the message compose window.
 
-__ https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction
+__ https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/action
