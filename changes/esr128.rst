@@ -1,0 +1,10 @@
+=============================
+Changes in Manifest Version 3
+=============================
+
+Thunderbird 128 ESR is the first Thunderbird release officially supporting Manifest Version 3. This page
+documents the required changes to convert a Manifest Version 2 extension to be compatible with Manifest Version 3.
+
+browserAction API
+=================
+* Replaced by :ref:`action`

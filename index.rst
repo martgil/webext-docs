@@ -8,7 +8,7 @@
   * :ref:`ChangeLog`
   * `Where to get help and more information`_
 
-  .. include:: /overlay/developer-resources.rst
+  .. include:: /overlay/developer-resources.rst 
 
 
 ===============================================
@@ -137,11 +137,7 @@ repository can be used to obtain a copy of the relevant files.
   :maxdepth: 1
   :caption: Changelog
 
-  changes/esr78
-  changes/esr91
-  changes/esr102
-  changes/esr115
-  changes/beta
+  changes/esr128
 
 
 Where to get help and more information

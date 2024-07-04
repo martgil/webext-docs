@@ -22,7 +22,7 @@
 addressBooks API
 ================
 
-The :doc:`addressBooks`, also including the :doc:`contacts` and :doc:`mailingLists` namespaces, first appeared in Thunderbird 64.
+The addressBooks API allows to access and manage the user's address books.
 
 .. role:: permission
 
