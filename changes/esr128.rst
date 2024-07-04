@@ -16,7 +16,7 @@ accounts API
 
 contacts API
 ============
-* Replaced by :doc:`addressBooks.contacts`.
+* Replaced by :doc:`/addressBooks.contacts`.
 * The :ref:`addressBooks.contacts.ContactNode` type no longer has a ``ContactProperties`` property, but a ``vCard`` property. It is no longer possible to specify individual contact properties.
 * The :ref:`addressBooks.contacts.onUpdated` event provides the entire old vCard in its second parameter, instead of individual changed properties.
 * The ``parentId`` is no longer a dedicated parameter for :ref:`addressBooks.contacts.query`, but an optional property for its ``queryInfo`` parameter.
@@ -25,12 +25,12 @@ contacts API
 
 mailingLists API
 ================
-* Replaced by :doc:`addressBooks.mailingLists`.
+* Replaced by :doc:`/addressBooks.mailingLists`.
 
 
 browserAction API
 =================
-* Replaced by :doc:`action`
+* Replaced by :doc:`/action`
 
 commands API
 ============
@@ -45,7 +45,7 @@ compose API
 
 composeScripts API
 ==================
-* Replaced by :doc:`scripting.compose`.
+* Replaced by :doc:`/scripting.compose`.
 
 folders API
 ===========
@@ -68,6 +68,51 @@ folders API
 * Default value for the ``includeSubFolders`` parameter of :ref:`folders.getSubFolders` has been changed from ``true`` to ``false``.
 * :ref:`folders.markAsRead` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
 
+mailTabs API
+============
+* The ``mailTabs.getCurrent()`` function has been removed, use <code>messenger.mailTabs.query({active:true, currentWindow: true})</code> instead.
+* The ``id`` property of :ref:`mailTabs.MailTab` has been replaced by the ``tabId`` property.
+* The ``viewType`` property of :ref:`mailTabs.MailTab` and :ref:`mailTabs.MailTabProperties` has been replaced by the ``groupType`` property.
+* The ``displayedFolder`` property of :ref:`MailTabProperties` has been replaced by the ``displayedFolderId`` property, and no longer accepts a :ref:`folders.MailFolder`, but a :ref:`folders.MailFolderId`.
+
+menus API
+=========
+* The built-in ``_execute_browser_action`` shortcut for the ``command`` property of the ``createProperties`` parameter of :ref:`menus.create` has been renamed to ``_execute_action``.
+* The values ``browser_action`` and ``browser_action_menu`` for :ref:`menus.ContextTypes` have been renamed to ``action`` and ``action_menu``.
+* The ``selectedAccount`` and ``selectedFolder`` properties have been removed from :ref:`menus.OnShowData` and :ref:`menus.OnClickedData`. Use the ``selectedFolders`` property instead.
+
+messageDisplay API
+==================
+* The ``messageDisplay.onMessageDisplayed`` event has been removed, use :ref:`messageDisplay.onMessagesDisplayed` instead.
+* The :ref:`messageDisplay.onMessagesDisplayed` event returns a :ref:`messages.MessageList` instead of an array of :ref:`messages.MessageHeader`.
+* The ``messageDisplay.getDisplayedMessage()`` function has been removed, use :ref:`messageDisplay.getDisplayedMessages` instead.
+* The :ref:`messageDisplay.getDisplayedMessages` function returns a :ref:`messages.MessageList` instead of an array of :ref:`messages.MessageHeader`.
+
 messageDisplayScripts API
 =========================
-* Replaced by :doc:`scripting.messageDisplay`.
+* Replaced by :doc:`/scripting.messageDisplay`.
+
+messages API
+============
+* The :ref:`messages.list` function no longer accepts a :ref:`folders.MailFolder`, but a :ref:`folders.MailFolderId`.
+* The default value for the ``data_format`` parameter of :ref:`messages.getRaw` has been changed from ``BinaryString`` to ``File``.
+* The ``queryInfo`` parameter of :ref:`messages.query` no longer supports the ``folder`` property, use the ``folderId`` property instead.
+* The ``queryInfo`` parameter of :ref:`messages.query` no longer supports the ``unread`` property, use the ``read`` property instead.
+* The :ref:`messages.move` function no longer accepts a :ref:`folders.MailFolder`, but a :ref:`folders.MailFolderId` for its first parameter.
+* The :ref:`messages.copy` function no longer accepts a :ref:`folders.MailFolder`, but a :ref:`folders.MailFolderId` for its first parameter.
+* The :ref:`messages.import` function no longer accepts a :ref:`folders.MailFolder`, but a :ref:`folders.MailFolderId` for its second parameter.
+* The ``messages.listTags()``, ``messages.createTag()`` and ``messages.updateTag()`` functions have been replaced by :ref:`messages.tags.list`, :ref:`messages.tags.create` and :ref:`messages.tags.update`.
+
+spaces API
+==========
+* The ``id`` property of the ``queryInfo`` parameter of :ref:`spaces.query` has been renamed to ``spaceId`.
+
+spacesToolbar API
+=================
+* The spacesToolbar API has been removed, use :doc:`/spaces` instead.
+
+tabs API
+========
+* The ``mailTab`` property of the ``queryInfo`` parameter of :ref:`mailTabs.query` has been removed. Use the ``type`` property instead.
+* The ``mailTab`` property of :ref:`mailTabs.MailTab` has been removed. Use the ``type`` property instead.
+* The ``tabs.executeScript`` and ``tabs.insertCSS`` functions have been removed. Use :doc:`/scripting`, :doc:`/scripting.compose` or :doc:`/scripting.messageDisplay` instead. **Note**: It is no longer possible to execute a JavaScript string in Manifest V3.
