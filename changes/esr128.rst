@@ -2,9 +2,72 @@
 Changes in Manifest Version 3
 =============================
 
-Thunderbird 128 ESR is the first Thunderbird release officially supporting Manifest Version 3. This page
+Thunderbird 128 ESR is the first Thunderbird release which officially supports Manifest Version 3. This page
 documents the required changes to convert a Manifest Version 2 extension to be compatible with Manifest Version 3.
+
+accounts API
+============
+* Default value for the ``includeSubFolders`` parameter of :ref:`accounts.list` has been changed from ``true`` to ``false``.
+* Default value for the ``includeSubFolders`` parameter of :ref:`accounts.get` has been changed from ``true`` to ``false``.
+* Default value for the ``includeSubFolders`` parameter of :ref:`accounts.getDefault` has been changed from ``true`` to ``false``.
+* The function :ref:`accounts.setDefaultIdentity` has been removed (use :ref:`identities.getDefault`).
+* The ``folders`` property of the :ref:`accounts.MailAccount` type has been replaced by the ``rootFolder`` property.
+* The ``type`` property of the :ref:`accounts.MailAccount` type uses ``local`` instead of ``none`` for local accounts.
+
+addressBooks.contacts API
+=========================
+* The contacts API is now accessible via ``addressBooks.contacts.*``.
+* The :ref:`addressBooks.contacts.ContactNode` type no longer has a ``ContactProperties`` property, but a ``vCard`` property. It is no longer possible to specify individual contact properties.
+* The :ref:`addressBooks.contacts.onUpdated` event provided the entire old vCard in its second parameter, instead of individual changed properties.
+* The ``parentId`` is no longer a dedicated parameter for :ref:`addressBooks.contacts.query`, but an optional property for its ``queryInfo`` parameter.
+* The function :ref:`addressBooks.contacts.create` expects a vCard for its second parameter, instead of individual properties. It also no longer has a dedicated parameter to specify an id, which is now provided via the vCard.
+* The function :ref:`addressBooks.contacts.update` expects a vCard for its second parameter, instead of individual properties.
+
+addressBooks.mailingLists API
+=============================
+* The mailingLists API is now accessible via ``addressBooks.mailingLists.*``.
+
 
 browserAction API
 =================
 * Replaced by :ref:`action`
+
+commands API
+============
+* The built-in ``_execute_browser_action`` command shortcut for the ``commands`` manifest entry has been renamed to ``_execute_action``.
+
+compose API
+===========
+* The ``id`` property of the :ref:`compose.ComposeRecipient` type has been renamed to ``nodeId``.
+* The ``additionalFccFolder`` property of the :ref:`compose.ComposeDetails` type has been replaced by the ``additionalFccFolderId`` property (expecting a :ref:`folders.MailFolderId`).
+* The ``overrideDefaultFccFolder`` property of the :ref:`compose.ComposeDetails` type has been replaced by the ``overrideDefaultFccFolderId`` property (expecting a :ref:`folders.MailFolderId`).
+* The ``overrideDefaultFcc`` property of the :ref:`compose.ComposeDetails` has been removed. An override can now be cleared by setting ``overrideDefaultFccFolderId`` to ``null``.
+
+composeScripts API
+==================
+* Has been replaced by :ref:`scripting.compose`.
+
+folders API
+===========
+* The ``type`` property of :ref:`folders.MailFolder` has been removed. Use the ``specialUse`` property instead.
+* The ``favorite`` property of :ref:`folders.MailFolderInfo` has been removed. It is now available as a property of
+:ref:`folders.MailFolder`.
+
+* The ``type`` property of the ``queryInfo`` parameter of :ref:`folders.query` has been removed. Use the ``specialUse`` property instead.
+* Default value for the ``includeSubFolders`` parameter of :ref:`folders.get` has been changed from ``true`` to ``false``.
+* :ref:`folders.create` no longer accepts a :ref:`folders.MailFolder` or :ref:`accounts.MailAccount` for its first parameter, but a :ref:`folders.MailFolderId`. Use the accounts ``rootFolder`` to create a new folder at the accounts top level.
+* :ref:`folders.rename` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+* :ref:`folders.move` no longer accepts a :ref:`folders.MailFolder` or :ref:`accounts.MailAccount` for its parameters, but a :ref:`folders.MailFolderId`. Use the accounts ``rootFolder`` to move a folder to the accounts top level.
+* :ref:`folders.copy` no longer accepts a :ref:`folders.MailFolder` or :ref:`accounts.MailAccount` for its parameters, but a :ref:`folders.MailFolderId`. Use the accounts ``rootFolder`` to copy a folder to the accounts top level.
+* :ref:`folders.delete` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+* :ref:`folders.update` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+* :ref:`folders.getFolderInfo` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+* :ref:`folders.getFolderCapabilities` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+* :ref:`folders.getParentFolders` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+* :ref:`folders.getSubFolders` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+* Default value for the ``includeSubFolders`` parameter of :ref:`folders.getSubFolders` has been changed from ``true`` to ``false``.
+* :ref:`folders.markAsRead` no longer accepts a :ref:`folders.MailFolder` for its first parameter, but a :ref:`folders.MailFolderId`.
+
+messageDisplayScripts API
+=========================
+* Has been replaced by :ref:`scripting.messageDisplay`.

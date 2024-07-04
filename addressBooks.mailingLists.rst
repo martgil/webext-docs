@@ -18,9 +18,9 @@
 
   * `"Address Book" example <https://github.com/thunderbird/sample-extensions/tree/master/manifest_v3/addressBooks>`__
 
-================
-mailingLists API
-================
+=============================
+addressBooks.mailingLists API
+=============================
 
 The mailingLists API allows to access and manage the user's mailing lists.
 
