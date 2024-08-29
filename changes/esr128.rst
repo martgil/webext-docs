@@ -118,3 +118,8 @@ tabs API
 * The ``mailTab`` property of the ``queryInfo`` parameter of :ref:`mailTabs.query` has been removed. Use the ``type`` property instead.
 * The ``mailTab`` property of :ref:`mailTabs.MailTab` has been removed. Use the ``type`` property instead.
 * The ``tabs.executeScript`` and ``tabs.insertCSS`` functions have been removed. Use :doc:`/scripting`, :doc:`/scripting.compose` or :doc:`/scripting.messageDisplay` instead. **Note**: It is no longer possible to execute a JavaScript string in Manifest V3.
+
+Fixed defects
+=============
+* `Fixed WebExtension API defects in Thunderbird 128 <https://bugzilla.mozilla.org/buglist.cgi?o1=equals&o2=anywords&query_format=advanced&columnlist=bug_type%2Cshort_desc%2Cproduct%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cchangeddate%2Ctarget_milestone&f1=bug_type&component=Add-Ons%3A%20Extensions%20API&f2=target_milestone&v2=128&v1=defect&product=Thunderbird&resolution=FIXED>`__
+
