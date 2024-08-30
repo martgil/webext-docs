@@ -1,6 +1,6 @@
-=================================
-Changes up to Thunderbird 102 ESR
-=================================
+==================================
+Changes up to Thunderbird 102 Beta
+==================================
 
 -------------------
 Thunderbird 95 Beta
@@ -88,9 +88,9 @@ messageDisplay API
 ==================
 * :ref:`messageDisplay.getDisplayedMessage` now returns messages in inactive tabs.
 
----------------------
-Thunderbird 102.0 ESR
----------------------
+--------------------
+Thunderbird 102 Beta
+--------------------
 
 compose API
 ===========
@@ -110,12 +110,3 @@ messages API
 messageDisplay API
 ==================
 * Added :ref:`messageDisplay.open` to open messages in tabs or windows.
-
------------------------
-Thunderbird 102.3.0 ESR
------------------------
-
-compose API
-===========
-* Backported the :ref:`compose.onAfterSave` event.
-* Backported the :ref:`compose.onAfterSend` event.

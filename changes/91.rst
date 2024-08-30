@@ -1,6 +1,6 @@
-================================
-Changes up to Thunderbird 91 ESR
-================================
+=================================
+Changes up to Thunderbird 91 Beta
+=================================
 
 -------------------
 Thunderbird 81 Beta
@@ -309,9 +309,9 @@ messages API
 
 * added ``size`` property to the :ref:`messages.MessageHeader`
 
----------------------
-Thunderbird 91.0 ESR
----------------------
+-------------------
+Thunderbird 91 Beta
+-------------------
 
 accounts API
 ============
@@ -400,26 +400,3 @@ tabs API
 
 * added ``type`` property to :ref:`tabs.Tab`, supporting ``addressBook``, ``calendar``, ``calendarEvent``, ``calendarTask``, ``chat``, ``content``, ``mail``, ``messageCompose``, ``messageDisplay``, ``special`` and ``tasks``
 * added ``type`` as supported property of the ``queryInfo`` parameter of :ref:`tabs.query`
-
------------------------
-Thunderbird 91.0.2 ESR
------------------------
-
-browserAction API
-=================
-
-* backported support for the ``tabstoolbar`` location, usable in the ``default_area`` manifest key
-
------------------------
-Thunderbird 91.4.1 ESR
------------------------
-
-cloudFile API
-=============
-
-* backported support for the ``templateInfo`` property, which is now returned by the :ref:`cloudFile.onFileUpload` event
-
-messages API
-============
-
-* backported support to query for a given ``headerMessageId`` in :ref:`messages.query`

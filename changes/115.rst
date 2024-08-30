@@ -1,6 +1,6 @@
-=================================
-Changes up to Thunderbird 115 ESR
-=================================
+==================================
+Changes up to Thunderbird 115 Beta
+==================================
 
 --------------------
 Thunderbird 106 Beta
@@ -84,9 +84,9 @@ protocol_handler API
 * Add support for WebExtension defined protocols to be accepted as command line arguments. More details can be found in the `bug <https://bugzilla.mozilla.org/show_bug.cgi?id=1824976#c0>`__.
 
 
----------------------
-Thunderbird 115.0 ESR
----------------------
+--------------------
+Thunderbird 115 Beta
+--------------------
 
 WebExtensions usually are not reviewed when submitted but instead are made available instantly. The WebExtension permission system should guard against malicious actors. However, the data available to extensions is very sensitive and if a user granted access to messages and contacts he mostly assumes the data is only used locally. Extensions however, can unknowingly send this data to remote servers. We therefore started to enforce review of all extensions, which request sensitive permissions like :permission:`messagesRead` or :permission:`addressBooks`. We also introduce an additional :permission:`sensitiveDataUpload` permission, which allows to by-pass this human review, but prompts the user for the following permission: *Transfer sensitive user data (if access has been granted) to a remote server for further processing.*
 
@@ -138,12 +138,3 @@ tabs API
 * Add a ``cookieStoreId`` member to the :ref:`tabs.Tab` type. A big thank you to Neil Rashbrook.
 * Add support for the ``previousTabId`` parameter to the :ref:`tabs.onActivated` event.
 * Changed handling of URLs in :ref:`tabs.update`: If the URL points to a content page (a web page, an extension page or a registered WebExtension protocol handler page), the tab will navigate to the requested page. All other URLs will be opened externally without changing the tab. Note: The function will throw an error, if a content page is loaded into a non-content tab (its type must be either :value:`content` or :value:`mail`).
-
-
------------------------
-Thunderbird 115.3.2 ESR
------------------------
-
-messages API
-============
-* Backported the optional ``data_format`` parameter to :ref:`messages.getRaw` to request the message as a DOM ``File`` object.
